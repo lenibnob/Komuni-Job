@@ -1,0 +1,53 @@
+body 
+{
+    background-color: rgb(255, 255, 255);
+}
+.container
+{
+    display: flex;
+    background-color: green;
+    justify-content: center;
+    align-items: center;
+}
+.nav
+{
+    display: flex;
+    width: 100%;
+    height: 100px;
+    background-color: rgb(168, 168, 168);
+    justify-content: space-between;
+    font: 20px;
+}
+.log1
+{
+    color: brown;
+}
+.log2
+{
+    color: rgb(255, 255, 255);
+}
+.navbar
+{
+    display: flex;
+    flex-direction: row;
+    font-size: 40px;
+    padding: 40px;
+    justify-content: center;
+    align-items: center;
+}
+ul
+{
+    color: white;
+    padding-right: 18px
+}
+.navbar > li>a:hover
+{
+    color: red;
+    transition: all .5 ease-in-out;
+}
+
+.navbar > li > a 
+{
+    text-decoration: none;
+    color: white;
+}
