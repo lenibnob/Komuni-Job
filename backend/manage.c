@@ -7,7 +7,6 @@ int main(int argc, char *argv[]) {
         printf("Usage: manage <command>\n");
         return 1;
     }
-
     char command[256]; 
     snprintf(command, sizeof(command), "python manage.py %s", argv[1]);
 
