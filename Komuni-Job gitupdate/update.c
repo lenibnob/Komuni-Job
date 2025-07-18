@@ -3,10 +3,9 @@
 #include <unistd.h>
 #include <stdbool.h>
 
-bool changeDir();
 bool addChange();
 bool commit();
-bool pullOrigin();
+// bool pullOrigin();
 bool upload();
 
 int main() {
@@ -29,12 +28,12 @@ int main() {
     }
 }
 
-bool pullOrigin() {
-    if(system("git pull origin main")) {
-        return true;
-    }
-    else return false;
-}
+// bool pullOrigin() {
+//     if(system("git pull origin main")) {
+//         return true;
+//     }
+//     else return false;
+// }
 
 bool addChange() {
     if(system("git add .")) {
@@ -57,9 +56,3 @@ bool commit() {
     else return false;
 }
 
-bool changeDir() {
-    if(chdir("C:\\Users\\jbsan\\Documents\\Program\\WEB DEV\\Komuni-Job")) {
-        return true;
-    }
-    else return false;
-}
