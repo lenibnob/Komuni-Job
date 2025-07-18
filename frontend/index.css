@@ -1,3 +1,8 @@
+@font-face
+{
+    font-family: 'Varela Round';
+    src: url(/frontend/recources/VarelaRound-Regular.ttf);
+}
 body 
 {
     background-color: rgb(255, 255, 255);
@@ -17,6 +22,7 @@ body
     background-color: rgb(168, 168, 168);
     justify-content: space-between;
     font: 20px;
+    font-family: 'Varela Round';
 }
 .log1
 {
