@@ -44,7 +44,7 @@ bool addChange() {
 }
 
 bool upload() {
-    if(system("git push origin main --force")) {
+    if(system("git push origin main --force-with-lease")) {
         return true;
     } else return false;
 }
