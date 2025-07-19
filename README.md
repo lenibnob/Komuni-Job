@@ -2,7 +2,7 @@
 
 !!!Backend DEVS!!! <br>
 Before doing anything in Django, always use the my_workshop virtual environment to be able
-to run manage.py commands. <br><br>
+to run manage.py commands. <br>
 
 To run my_workshop virtual environment on cmd. type "my_workshop\Scripts\activate.bat".
 
@@ -11,8 +11,10 @@ manage runserver //start a local server. <br>
 manage makeMigrations //make changes available for merging. <br>
 manage migrate //execute migration. <br><br>
 
+---------------------------------------------------------------------------------------------
+
 !!!For all DEVS!!! <br>
-!!!Komuni-Job gitupdate Usage!!! <br><br>
+!!!Komuni-Job gitupdate Usage!!! 
 
 1. Copy path.
 2. click windows button. Search "Edit the system environment variable". Hit enter.
@@ -27,3 +29,5 @@ update push //update repository <br>
 
 Important note: <br>
 Always do "update pull" before editing any file. <br><br>
+
+Use integrated terminal for using commands.
