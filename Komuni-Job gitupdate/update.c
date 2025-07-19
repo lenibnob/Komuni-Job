@@ -40,21 +40,18 @@ bool pullOrigin() {
 bool addChange() {
     if(system("git add .")) {
         return true;
-    }
-    else return false;
+    } else return false;
 }
 
 bool upload() {
     if(system("git push origin main --force")) {
         return true;
-    }
-    else return false;
+    } else return false;
 }
 
 bool commit() {
     if(system("git commit -m \"Basic File Structure\"")) {
         return true;
-    }
-    else return false;
+    } else return false;
 }
 
