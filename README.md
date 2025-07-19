@@ -4,6 +4,8 @@
 Before doing anything in Django, always use the my_workshop virtual environment to be able
 to run manage.py commands.
 
+To run my_workshop virtual environment on cmd. type "my_workshop\Scripts\activate.bat".
+
 manage.py commands:
 manage runserver //start a local server.
 manage makeMigrations //make changes available for merging.
