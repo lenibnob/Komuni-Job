@@ -5,9 +5,9 @@ Before doing anything in Django, always use the my_workshop virtual environment 
 to run manage.py commands.
 
 manage.py commands:
-manage runserver
-manage makeMigrations
-manage migrate
+manage runserver //start a local server.
+manage makeMigrations //make changes available for merging.
+manage migrate //execute migration.
 
 !!!For all DEVS!!!
 !!!Komuni-Job gitupdate Usage!!!
@@ -20,8 +20,8 @@ manage migrate
 6. Click OK until all windows vanishes.
 
 Keywords: 
-update pull
-update push
+update pull //pull from repository
+update push //update repository
 
 Important note: 
 Always do update pull before editing any file.
