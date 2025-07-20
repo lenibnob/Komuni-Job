@@ -1,10 +1,13 @@
 # Komuni-Job
 
-!!!Backend DEVS!!! <br>
-Before doing anything in Django, always use the my_workshop virtual environment to be able
-to run manage.py commands. <br>
-
-To run my_workshop virtual environment on cmd. type "my_workshop\Scripts\activate.bat".
+<pre>
+!!!Backend DEVS!!! 
+Before doing anything in Django, always use the virtual environment to be able
+to run manage.py commands. To use a virtual environment, just simply type "python -m venv [filename]".
+[filename] can be named with anything that you want. 
+</pre>
+<br>
+To run virtual environment on cmd, just type "[filename]\Scripts\activate.bat".
 
 manage.py commands:<br>
 manage runserver //start a local server. <br>
