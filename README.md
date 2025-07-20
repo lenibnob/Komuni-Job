@@ -70,10 +70,10 @@ In your frontend (React, Vue, etc.): <br>
 
 // Example in React-like pseudocode <br>
 useEffect(() => { <br>
-  const token = localStorage.getItem('token'); <br>
-  if (token) { <br>
-    navigate('/dashboard'); <br>
-  } <br>
+&nbsp;const token = localStorage.getItem('token'); <br>
+&nbsp;if (token) { <br>
+&nbsp;&nbsp;navigate('/dashboard'); <br>
+&nbsp;} <br>
 }, []); <br><br>
 
 Or if using Next.js / Vue / SvelteKit / etc., use middleware or route guards. <br><br>
@@ -88,8 +88,8 @@ Ensure that logout:
 * Redirects user to homepage or login page
 
 function logout() { <br>
-  localStorage.removeItem('token'); <br>
-  navigate('/'); <br>
+&nbsp;localStorage.removeItem('token'); <br>
+&nbsp;navigate('/'); <br>
 } <br><br>
 
 --- <br><br>
