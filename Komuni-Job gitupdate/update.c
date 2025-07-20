@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
 }
 
 bool pullOrigin() {
-    if(system("git fetch origin")) {
+    if(system("git fetch origin") == 0) {
         if(system("git merge origin/main")) {
             return true;
         }
@@ -38,19 +38,19 @@ bool pullOrigin() {
 }
 
 bool addChange() {
-    if(system("git add .")) {
+    if(system("git add .") == 0) {
         return true;
     } else return false;
 }
 
 bool upload() {
-    if(system("git push origin main")) {
+    if(system("git push origin main") == 0) {
         return true;
     } else return false;
 }
 
 bool commit() {
-    if(system("git commit -m \"Basic File Structure\"")) {
+    if(system("git commit -m \"Basic File Structure\"") == 0) {
         return true;
     } else return false;
 }
