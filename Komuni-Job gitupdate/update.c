@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
                 if(commit()) {
                     if(upload()) {
                         printf("Uploaded to git repository");
-                    } else printf("There is an error pushing to main repository"); return 1;
+                    } else printf("No need for further update"); return 1;
                 } else printf("There is an error committing changes"); return 1;
             } else printf("There is an error adding changes"); return 1;
         } else printf("Syntax error.\nupdate <pull>\nupdate <push>"); return 1; 
