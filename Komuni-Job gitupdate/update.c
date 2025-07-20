@@ -12,7 +12,7 @@ bool upload();
 int main(int argc, char *argv[]) {
     if(argc > 1) {
         if((strcmp(argv[1], "pull")) == 0) {
-            if(pullOrigin) {
+            if(pullOrigin()) {
                 printf("Local repository updated");
             } else printf("There is an error pulling the main repository"); return 1;
         } 
