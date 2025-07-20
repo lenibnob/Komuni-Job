@@ -70,12 +70,12 @@ In your frontend (React, Vue, etc.): <br>
 
 // Example in React-like pseudocode <br>
 <pre>
-useEffect(() => { <br>
-  const token = localStorage.getItem('token'); <br>
-  if (token) { <br>
-    navigate('/dashboard'); <br>
-  } <br>
-}, []); <br><br>
+useEffect(() => { 
+  const token = localStorage.getItem('token'); 
+  if (token) { 
+    navigate('/dashboard');
+  } 
+}, []); 
 </pre>
 Or if using Next.js / Vue / SvelteKit / etc., use middleware or route guards. <br><br>
 
@@ -87,12 +87,12 @@ Ensure that logout:
 
 * Removes token from localStorage/cookie
 * Redirects user to homepage or login page
-
-function logout() { <br>
-localStorage.removeItem('token'); <br>
-navigate('/'); <br>
-} <br><br>
-
+<pre>
+function logout() { 
+  localStorage.removeItem('token'); 
+  navigate('/'); 
+} 
+</pre>
 --- <br><br>
 
 ## 🧪 Bonus UX Tip:
