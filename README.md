@@ -30,4 +30,74 @@ update push //update repository <br>
 Important note: <br>
 Always do "update pull" before editing any file. <br><br>
 
-Use integrated terminal for using commands.
+Use integrated terminal for using commands.<br><br>
+
+-----------------------------------------------------------------------------------------------------------------<br><br>
+
+To make your flow: <br>
+
+*Homepage → Sign Up → User Dashboard → (exit website) → open again → auto-redirect to User Dashboard*,<br>
+you need to *persist the user login session*, so when they come back, they don't have to log in again.<br><br>
+
+Here's how to *implement this logic*:<br><br>
+
+---
+
+## ✅ 1. *Use Persistent Login (Session or Token-based Auth)*
+
+### 🛠 If you use JWT (JSON Web Tokens):
+
+* When the user logs in or signs up:
+
+  * Generate a *JWT token*
+  * Store it in **localStorage** or **cookies** (preferably *HttpOnly secure cookie* for security)
+* On future visits:
+
+  * Check if a valid token exists
+  * If yes → auto-redirect to User Dashboard
+  * If not → stay on Homepage / login page
+
+### 🔐 Best practice:
+
+* *Store token in cookies (HttpOnly + Secure)* to prevent XSS.
+* On the server side, verify the token for each protected route.
+
+---
+
+## ✅ 2. *Routing Logic*
+
+In your frontend (React, Vue, etc.): <br>
+
+// Example in React-like pseudocode <br>
+useEffect(() => { <br>
+  const token = localStorage.getItem('token'); <br>
+  if (token) { <br>
+    navigate('/dashboard'); <br>
+  } <br>
+}, []); <br><br>
+
+Or if using Next.js / Vue / SvelteKit / etc., use middleware or route guards. <br><br>
+
+---
+
+## ✅ 3. *Logout Flow*
+
+Ensure that logout: 
+
+* Removes token from localStorage/cookie
+* Redirects user to homepage or login page
+
+function logout() { <br>
+  localStorage.removeItem('token'); <br>
+  navigate('/'); <br>
+} <br><br>
+
+--- <br><br>
+
+## 🧪 Bonus UX Tip:
+
+Show a brief *"Welcome back" loader/screen* if you’re verifying the token in the background before redirecting. <br><br>
+
+--- <br><br>
+
+Would you like code snippets in a specific framework (React, Vue, PHP, etc.)?
