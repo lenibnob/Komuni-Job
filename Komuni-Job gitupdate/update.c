@@ -14,14 +14,14 @@ int main(int argc, char *argv[]) {
         if((strcmp(argv[1], "pull")) == 0) {
             if(pullOrigin()) {
                 printf("Local repository updated");
-            } else printf("There is an error pulling the main repository"); return 1;
+            } else printf("No need for further update"); return 1;
         } 
         else if((strcmp(argv[1], "push")) == 0) {
             if(addChange()) {
                 if(commit()) {
                     if(upload()) {
                         printf("Uploaded to git repository");
-                    } else printf("No need for further update"); return 1;
+                    } else printf("There is an error uploading to the git repository"); return 1;
                 } else printf("There is an error committing changes"); return 1;
             } else printf("There is an error adding changes"); return 1;
         } else printf("Syntax error.\nupdate <pull>\nupdate <push>"); return 1; 
