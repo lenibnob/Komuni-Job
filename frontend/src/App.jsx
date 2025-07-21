@@ -1,12 +1,29 @@
-import './App.css'
+import './css/App.css';
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Favorites from "./pages/Favorites";
+import LoginForm from "./pages/LoginForm";
+import RegistrationForm from "./pages/RegistrationForm";
 
-function App() {
-
+export default function App() {
+ 
   return (
-    <>
-      
-    </>
-  )
-}
 
-export default App
+    <div>
+
+      <main className="main-content">
+        
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/login" element={<LoginForm />}></Route>
+          <Route path="/register" element={<RegistrationForm />} ></Route>
+        </Routes>
+
+      </main>
+      
+      
+    </div>
+
+  );
+}
