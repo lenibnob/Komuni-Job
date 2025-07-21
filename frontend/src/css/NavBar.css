@@ -40,11 +40,13 @@
 
 .navButton {
   background-color: orange;
+  border-color: orange;
   font-size: 15px;
   padding: 10px;
   border-radius: 20px;
 } .navButton:hover {
   border-color: black;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {

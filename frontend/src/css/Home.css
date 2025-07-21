@@ -55,6 +55,7 @@
   align-self: flex-start;
   padding: 10px 16px;
   background-color: orange;
+  border-radius: 20px;
   border: 1px solid #ffffff;
   cursor: pointer;
   font-size: 25px;
