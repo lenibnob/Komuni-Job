@@ -1,16 +1,16 @@
 .home {
   width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
 }
 
 @media (max-width: 900px) {
   .home {
-    padding: 1rem 0;
+    padding: 1rem;
   }
 }
 
@@ -18,11 +18,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 2rem;
-  padding-bottom: 0rem;
-  
-  min-width: 900px;
-  max-height: 1000px;
+  width: 100%;
+  padding: 2rem 1rem;
+  overflow-x: auto; /* Prevents horizontal squish */
 }
 
 .box {
@@ -40,26 +38,30 @@
   height: 250px;
 
   gap: 1rem;
-} .box hr {
-  margin: 6px;
-  border: 2px solid black;
 }
 
-.startLink {
+.box hr {
+  margin: 0.5rem;
+  border: 2px solid black;
+  width: 100%;
+}
+
+.startLink,
+.startButton {
   width: 220px;
 }
 
 .startButton {
   color: white;
-  width: 220px;
-  align-self: flex-start;
   padding: 10px 16px;
   background-color: orange;
   border-radius: 20px;
-  border: 1px solid #ffffff;
-  cursor: pointer;
+  border: 1px solid white;
   font-size: 25px;
-} .startButton:hover {
+  cursor: pointer;
+}
+
+.startButton:hover {
   color: black;
   border-color: black;
 }
@@ -79,7 +81,7 @@
 .headRow {
   padding-top: 2rem;
   width: 1000px;
-  height: 1000px;
+  height: auto;
 } .headRow h1 {
   padding: 2px;
 } .headRow hr {
@@ -118,3 +120,164 @@
   font-size: 2rem;
   padding-bottom: 2rem;
 }
+
+.featuredJobs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  width: auto;
+}
+
+.cardGallery {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  overflow-x: auto;
+}
+
+.cardGallery .card {
+  width: 150px;
+  height: 300px;
+  flex-shrink: 0;
+}
+
+.learnMore {
+  display: flex;
+  flex-direction: column;
+  align-items: center;           /* centers all children horizontally */
+  justify-content: center;       /* vertical centering if there's extra height */
+  
+  padding-left: 5rem;
+
+  background-color: orange;
+  padding: 4rem 2rem;
+  width: 100%;
+  text-align: center;            /* center-align the text inside */
+}
+
+.learnMore h1 {
+  font-size: 2rem;
+  max-width: 800px;
+}
+
+.learnMore button {
+  margin-top: 2rem;
+  padding: 10px 16px;
+  font-size: 1.2rem;
+  border-radius: 20px;
+  border: 1px solid white;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}
+
+.journeyPath {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+} .journeyPath .headCol {
+
+  padding: 1rem 2rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+
+  width: 800px;
+  padding-bottom: 4rem;
+}
+
+.journeyCardRow {
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 3rem;
+  gap: 2rem;
+} .journeyCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: black;
+  background-color: white;
+  box-shadow: 0 5px 10px black;
+
+  padding-left: 20px;
+  padding-right: 20px;
+
+  width: 200px;
+  height: 400px;
+  border-radius: 20px;
+}.journeyCard hr {
+  margin: 2rem;
+  width: 100%;
+} .journeyCard h1 {
+  font-size: 2rem;
+  padding-bottom: 2rem;
+}
+
+.signCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 3rem;
+} .signCol h1 {
+  margin: 0;
+}
+
+.signButton {
+  margin-top: 2rem;
+  padding: 10px 16px;
+  font-size: 1.2rem;
+  border-radius: 20px;
+  border: 1px solid black;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.head {
+  text-align: center;
+  font-size: 40px;
+
+  width: 500px;
+  height: 100px;
+  
+  margin-bottom: 1rem;
+
+  padding-bottom: 5rem;
+}
+
+.contactRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.contactLinks {
+  width: 300px;
+  height: 300px;
+  margin-bottom: 2rem;
+
+  padding: 20px;
+}
+
+.email {
+  width: auto;
+  height: 100px;
+}
+
