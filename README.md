@@ -24,11 +24,11 @@ Important note!<br>
 your computer must have xampp installed.<br>
 
 Keywords:
-* database runserver mysql <!-- This command opens MySQL server-->
-* database runserver apache <!-- This command opens Apache server-->
-* database open online <!-- This command opens MySQL server online database -->
-* database open <!-- This command opens MySQL with a user root -->
-* database open [username] [password] <!-- This command opens MySQL with a user of choice and its password -->
+* database runserver mysql //This command opens MySQL server.
+* database runserver apache //This command opens Apache server.
+* database open online //This command opens MySQL server online database.
+* database open //This command opens MySQL with a user root.
+* database open [username] [password] //This command opens MySQL with a user of choice and its password.
 
 ---------------------------------------------------------------------------------------------
 
