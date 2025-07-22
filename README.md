@@ -23,6 +23,15 @@ This command allows you to open MySQL server and mysql.exe easily. <br><br>
 Important note!<br>
 your computer must have xampp installed.<br>
 
+#### Installation Guide
+1. Copy path of the folder MySQL Shortcut.
+2. click windows button. Search "Edit the system environment variable". Hit enter.
+3. Click Environment Variables.
+4. Click path on the upper table, then click edit.
+5. Click new, then paste the MySQL Shortcut path. 
+6. Click OK until all windows vanishes.
+7. Restart your VSCode.
+
 Keywords:
 * database runserver mysql //This command opens MySQL server.
 * database runserver apache //This command opens Apache server.
@@ -35,12 +44,14 @@ Keywords:
 ## For all DEVS 
 ### Komuni-Job gitupdate Usage
 
+#### Installation Guide
 1. Copy path.
 2. click windows button. Search "Edit the system environment variable". Hit enter.
 3. Click Environment Variables.
 4. Click path, then click edit.
 5. Click new, then paste the Komuni-Job gitupdate Shortcut path. 
 6. Click OK until all windows vanishes.
+7. Restart your VSCode.
 
 Keywords: <br>
 * update pull //pull from repository 
