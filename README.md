@@ -32,8 +32,8 @@ Keywords:
 
 ---------------------------------------------------------------------------------------------
 
-!!!For all DEVS!!! <br>
-!!!Komuni-Job gitupdate Usage!!! 
+## For all DEVS 
+### Komuni-Job gitupdate Usage
 
 1. Copy path.
 2. click windows button. Search "Edit the system environment variable". Hit enter.
@@ -43,8 +43,8 @@ Keywords:
 6. Click OK until all windows vanishes.
 
 Keywords: <br>
-update pull //pull from repository <br>
-update push //update repository <br>
+* update pull //pull from repository 
+* update push //update repository 
 
 Important note: <br>
 Always do "update pull" before editing any file. <br><br>
