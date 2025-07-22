@@ -1,7 +1,8 @@
 # Komuni-Job
 
+### Backend DEVS
+
 <pre>
-!!!Backend DEVS!!! 
 Before doing anything in Django, always use the virtual environment to be able
 to run manage.py commands. To use a virtual environment, just simply type "python -m venv [filename]".
 [filename] can be named with anything that you want. 
@@ -9,10 +10,25 @@ to run manage.py commands. To use a virtual environment, just simply type "pytho
 <br>
 To run virtual environment on cmd, just type "[filename]\Scripts\activate.bat".
 
-manage.py commands:<br>
-manage runserver //start a local server. <br>
-manage makeMigrations //make changes available for merging. <br>
-manage migrate //execute migration. <br><br>
+manage.py commands:
+* manage runserver //start a local server. 
+* manage makeMigrations //make changes available for merging. 
+* manage migrate //execute migration. 
+
+### MySQL Shortcut
+
+This shortcut command is to open your MySQL server for testing and viewing records.<br>
+This command allows you to open MySQL server and mysql.exe easily. <br><br>
+
+Important note!<br>
+your computer must have xampp installed.<br>
+
+Keywords:
+* database runserver mysql <!-- This command opens MySQL server-->
+* database runserver apache <!-- This command opens Apache server-->
+* database open online <!-- This command opens MySQL server online database -->
+* database open <!-- This command opens MySQL with a user root -->
+* database open [username] [password] <!-- This command opens MySQL with a user of choice and its password -->
 
 ---------------------------------------------------------------------------------------------
 
