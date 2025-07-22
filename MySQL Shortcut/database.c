@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
                 }
             } else printf("Error on changing directory to /xampp/mysql/bin\n");
         } else printf("Syntax error. \ndatabase runserver <mysql> <apache>\ndatabase <open>\n"); return 1;
-    } else printf("Syntax error. \ndatabase runserver <mysql> <apache>\ndatabase <open>\ndatabase <open> <MySQL user> <MySQL password>"); return 1;
+    } else printf("Syntax error. \ndatabase runserver <mysql> <apache>\ndatabase <open>\ndatabase <open> <online>\ndatabase <open> <MySQL user> <MySQL password>"); return 1;
 }
 
 bool change() {
