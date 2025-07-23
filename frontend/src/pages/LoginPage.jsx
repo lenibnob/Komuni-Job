@@ -1,6 +1,8 @@
 import "../css/Credential.css";
-import NavBar from "../components/Navbar";
-export default function RegistrationForm() {
+import { Link } from "react-router-dom";
+import NavBar from "../components/NavBar";
+
+export default function LoginForm() {
 
     return (
         <>
@@ -10,7 +12,7 @@ export default function RegistrationForm() {
                 
                 <form className="credential-form">
 
-                    <h1>Sign up</h1>
+                    <h1>Sign in</h1>
 
                     <input id="username" 
                         className="credential-field"
@@ -19,24 +21,16 @@ export default function RegistrationForm() {
                     
                     />
 
-                    <input id="email" 
-                        className="credential-field" 
-                        type="text" 
-                        placeholder="Email address"
-                    />
-
                     <input id="password" 
                         className="credential-field" 
                         type="text" 
-                        placeholder="New password"
+                        placeholder="Password"
                     />
 
-                    <input id="confirmPassword" 
-                        className="credential-field" 
-                        type="text" 
-                        placeholder="Confirm password"
-                    />
+                    <Link className="link-button" to="/login/identify">Forgotten password?</Link>
                     
+                    <Link className="link-button" to="/register">Sign up</Link>
+
                     <button className="submit-button" type="submit">Log in</button>
                 </form>
             </div>

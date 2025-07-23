@@ -2,8 +2,8 @@ import './css/App.css';
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
-import LoginForm from "./pages/LoginForm";
-import RegistrationForm from "./pages/RegistrationForm";
+import LoginPage from "./pages/LoginPage";
+import RegistrationPage from "./pages/RegistrationPage";
 
 export default function App() {
  
@@ -16,8 +16,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/favorites" element={<Favorites />} />
-          <Route path="/login" element={<LoginForm />}></Route>
-          <Route path="/register" element={<RegistrationForm />} ></Route>
+          <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="/register" element={<RegistrationPage />} ></Route>
         </Routes>
 
       </main>
