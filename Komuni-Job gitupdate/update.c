@@ -5,7 +5,7 @@
 #include <string.h>
 
 bool addChange();
-bool commit();
+bool commit(char *comment);
 bool pullOrigin();
 bool upload();
 
@@ -18,14 +18,16 @@ int main(int argc, char *argv[]) {
         } 
         else if((strcmp(argv[1], "push")) == 0) {
             if(addChange()) {
-                if(commit()) {
-                    if(upload()) {
-                        printf("Uploaded to git repository");
-                    } else printf("There is an error uploading to the git repository"); return 1;
-                } else printf("There is an error committing changes"); return 1;
+                if(argc > 2) {
+                    if(commit(argv[2])) {
+                        if(upload()) {
+                            printf("Uploaded to git repository");
+                        } else printf("There is an error uploading to the git repository"); return 1;
+                    } else printf("There is an error committing changes"); return 1;
+                } else printf("Syntax error.\nupdate <pull>\nupdate <push> <comment>");
             } else printf("There is an error adding changes"); return 1;
-        } else printf("Syntax error.\nupdate <pull>\nupdate <push>"); return 1; 
-    } else printf("Syntax error.\nupdate <pull>\nupdate <push>"); return 1;
+        } else printf("Syntax error.\nupdate <pull>\nupdate <push> <comment>"); return 1; 
+    } else printf("Syntax error.\nupdate <pull>\nupdate <push> <comment>"); return 1;
 }
 
 bool pullOrigin() {
@@ -49,8 +51,10 @@ bool upload() {
     } else return false;
 }
 
-bool commit() {
-    if(system("git commit -m \"Basic File Structure\"") == 0) {
+bool commit(char *comment) {
+    char command[256];
+    snprintf(command, 256, "git commit -m \"%s\"", comment);
+    if(system(command) == 0) {
         return true;
     } else return false;
 }
