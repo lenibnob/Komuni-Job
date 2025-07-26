@@ -58,4 +58,3 @@ bool commit(char *comment) {
         return true;
     } else return false;
 }
-

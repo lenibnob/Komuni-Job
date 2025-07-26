@@ -62,8 +62,8 @@
 }
 
 .navLink:hover {
-  color: black;
-  background-color: rgba(81, 16, 16, 0.1);
+    color: black;
+    background-color: rgba(81, 16, 16, 0.1);
 }
 
 .navLinkButton {
@@ -75,10 +75,11 @@
     text-decoration: none;
     color: black;
     border: 1px solid orange;
-} .navLinkButton:hover {
-    border: 1px solid black;
 }
 
+.navLinkButton:hover {
+    border: 1px solid black;
+}
 
 .registerPage {
     display: flex;
@@ -86,11 +87,12 @@
     align-items: center;
     padding: 20px;
 }
+
 .signUp {
     padding: 1rem;
     background-color: white;
     width: 1000px;
-    height: 520px;
+    height: 600px;
 
     border-radius: 10px;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
@@ -126,7 +128,7 @@
 .textField {
     display: flex;
     flex-direction: column;
-    width: 200px;
+    width: 350px;
 }
 
 .textField label {
@@ -135,18 +137,19 @@
 }
 
 .textField input {
-    height: 30px;
-    padding: 4px 8px;
-    border: 1px solid #ccc;
-    border-radius: 15px;
+    width: 350px;
+    height: 45px;
+    font-size: 20px;
+    padding: 4px 15px;
     border: 1.5px solid black;
+    border-radius: 15px;
 }
 
 .longField {
     margin-top: 10px;
     display: flex;
     flex-direction: column;
-    width: 450px;
+    width: 350px;
 }
 
 .longField label {
@@ -155,8 +158,10 @@
 }
 
 .longField input {
-    height: 30px;
-    padding: 4px 8px;
+    width: 350px;
+    height: 45px;
+    font-size: 20px;
+    padding: 4px 15px;
     border: 1.5px solid black;
     border-radius: 15px;
 }
@@ -167,7 +172,6 @@
     align-items: center;
     text-decoration: none;
 
-    margin-top: 16px;
     font-size: 30px;
     width: 210px;
     padding: 10px 0;
@@ -179,7 +183,61 @@
     cursor: pointer;
 }
 
+.buttonRow {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    margin-top: 3rem;
+}
+
 .nextButton:hover {
     background-color: orange;
     color: white;
+}
+
+input.error {
+    border: 1px solid red;
+}
+
+.accountSetup {
+    padding: 1rem;
+    background-color: white;
+    width: 1000px;
+    height: 520px;
+
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.accountSetup hr {
+    margin-top: 1.2rem;
+    width: 50rem;
+    border: 1px solid black;
+}
+
+.accountFields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 220px;
+    gap: 20px;
+}
+
+.accountFields input {
+    width: 350px;
+    height: 45px;
+    font-size: 20px;
+    padding: 4px 15px;
+    border: 1.5px solid black;
+    border-radius: 15px;
+}
+
+.accountFields input.error {
+    border: 1px solid red;
 }
