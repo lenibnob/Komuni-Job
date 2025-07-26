@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_1#%hhl$7_16i81x)owm#qnaro2#24*fkc2honh9oe#31*0qk-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -98,8 +98,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',                  # Supabase database name
+        'USER': 'postgres.hpbngublyorgzblcrkln',                  # Supabase username
+        'PASSWORD': 'rMKwx-v9-x*bqZM', # Supabase password
+        'HOST': 'aws-0-ap-southeast-1.pooler.supabase.com',        # Supabase host URL
+        'PORT': '5432',                      # Default PostgreSQL port
     }
 }
 
@@ -146,5 +150,9 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # !!!!CHANGE FOR DEPLOYMENT!!!!
-CORS_ALLOWED_ORIGINS = True
-CORS_ALLOWED_CREDENTIALS = True 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Example: React frontend running locally
+    "https://your-production-domain.com",  # Example: Production domain
+]
+
+CORS_ALLOWED_CREDENTIALS = True
