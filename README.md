@@ -10,6 +10,8 @@ to run manage.py commands. To use a virtual environment, just simply type "pytho
 <br>
 To run virtual environment on cmd, just type "[filename]\Scripts\activate.bat".
 
+Install required dependencies with "pip instal -r requirements.txt"
+
 manage.py commands:
 * manage runserver //start a local server. 
 * manage makeMigrations //make changes available for merging. 
