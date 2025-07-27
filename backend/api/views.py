@@ -11,7 +11,7 @@ class RegisterView(APIView):
     permission_classes = [AllowAny]
     
     def post(self, request):
-        data = request.data
+        data = request.data.copy()
 
         # Hash the password before saving
         if 'password_hash' in data:
@@ -31,6 +31,11 @@ class RegisterView(APIView):
         # Add the combined user_location to the data
         data['user_location'] = user_location
 
+        first_name = data.get("first_name", "").strip()
+        last_name = data.get("last_name", "").strip()
+        # Set username as "First Last"
+        data["username"] = f"{first_name} {last_name}".strip()
+
         serializer = UserSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
@@ -40,11 +45,14 @@ class RegisterView(APIView):
 class LoginView(APIView):
     permission_classes = [AllowAny]
     def post(self, request):
-        username = request.data.get('username')
+        email = request.data.get('email')
         password = request.data.get('password_hash')
 
+        if not email or not password:
+            return Response({'message': 'Email and password are required.'}, status=status.HTTP_400_BAD_REQUEST)
+
         try:
-            user = User.objects.get(username=username)
+            user = User.objects.get(email=email)
             if check_password(password, user.password_hash):
                 return Response({
                     'message': 'Login successful!',
