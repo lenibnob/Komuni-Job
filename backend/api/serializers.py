@@ -26,9 +26,15 @@ class UserSerializer(serializers.ModelSerializer):
             if User.objects.filter(username=data['username']).exists():
                 raise serializers.ValidationError("Username already exists.")
 
-        # Validate optional fields (e.g., phone number)
+        # Validate phonenumber
         if 'phone_number' in data and data['phone_number']:
             if not data['phone_number'].isdigit():
                 raise serializers.ValidationError("Phone number must contain only digits.")
+
+        # Validate sex field
+        if 'sex' in data and data['sex']:
+            valid_sex_values = ['Male', 'Female', 'Other']
+            if data['sex'] not in valid_sex_values:
+                raise serializers.ValidationError(f"Sex must be one of {valid_sex_values}.")
 
         return data

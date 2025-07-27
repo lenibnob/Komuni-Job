@@ -8,6 +8,12 @@ class User(models.Model):
     first_name = models.CharField(max_length=100)
     middle_name = models.CharField(max_length=100, blank=True, null=True)
     last_name = models.CharField(max_length=100)
+    SEX_CHOICES = [
+            ('Male', 'Male'),
+            ('Female', 'Female'),
+            ('Other', 'Other'),
+        ]
+    sex = models.CharField(max_length=10, choices=SEX_CHOICES, blank=True, null=True)
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     profile_pic_url = models.URLField(max_length=500, blank=True, null=True)

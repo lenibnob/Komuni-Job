@@ -17,6 +17,13 @@ class RegisterView(APIView):
         if 'password_hash' in data:
             data['password_hash'] = make_password(data['password_hash'])
 
+        # Validate the 'sex' field
+        allowed_sex_values = ['Male', 'Female', 'Other']
+        sex = data.get('sex')
+        if sex and sex not in allowed_sex_values:
+            return Response({'message': f"Invalid value for 'sex'. Must be one of {allowed_sex_values}."}, 
+                            status=status.HTTP_400_BAD_REQUEST)
+
         # Combine location fields (optional logic based on frontend structure)
         location_fields = ['municipality', 'barangay', 'province', 'zip_code']
         user_location = ', '.join([data.get(field, '') for field in location_fields if data.get(field)])
@@ -47,6 +54,7 @@ class LoginView(APIView):
                     'first_name': user.first_name,
                     'middle_name': user.middle_name,
                     'last_name': user.last_name,
+                    'sex': user.sex,
                     'phone_number': user.phone_number,
                     'date_joined': user.date_joined,
                     'profile_pic_url': user.profile_pic_url,
