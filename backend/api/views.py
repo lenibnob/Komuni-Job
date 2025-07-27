@@ -4,11 +4,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.hashers import make_password, check_password
-from .models import User
-from .serializers import UserSerializer
+from .models import User, Job
+from .serializers import UserSerializer, JobSerializer
+from rest_framework import viewsets
 
 class RegisterView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [AllowAny] # Change for production
     
     def post(self, request):
         data = request.data.copy()
@@ -43,7 +44,7 @@ class RegisterView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class LoginView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [AllowAny] # Change for production
     def post(self, request):
         email = request.data.get('email')
         password = request.data.get('password_hash')
@@ -76,3 +77,16 @@ class LoginView(APIView):
                 return Response({'message': 'Invalid credentials.'}, status=status.HTTP_401_UNAUTHORIZED)
         except User.DoesNotExist:
             return Response({'message': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+class JobViewSet(viewsets.ModelViewSet):
+    permission_classes = [AllowAny] # Change for production
+    queryset = Job.objects.all()
+    serializer_class = JobSerializer
+
+    def create(self, request, *args, **kwargs):
+        response = super().create(request, *args, **kwargs)
+        response.data = {
+            "message": "Job created successfully!",
+            "job": response.data
+        }
+        return response

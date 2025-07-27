@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User
+from .models import User, Job, JobImage, PaymentOption, JobCategory, JobRequiredSkill
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -38,3 +38,30 @@ class UserSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError(f"Sex must be one of {valid_sex_values}.")
 
         return data
+
+class PaymentOptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PaymentOption
+        fields = '__all__'
+
+class JobCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JobCategory
+        fields = '__all__'
+
+class JobRequiredSkillSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JobRequiredSkill
+        fields = '__all__'
+
+class JobImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JobImage
+        fields = '__all__'
+
+class JobSerializer(serializers.ModelSerializer):
+    images = JobImageSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Job
+        fields = '__all__'
