@@ -100,10 +100,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',                  # Supabase database name
-        'USER': 'postgres.hpbngublyorgzblcrkln',                  # Supabase username
+        'USER': 'postgres.jvjxlczrhvudrbmkutvy',                  # Supabase username
         'PASSWORD': 'rMKwx-v9-x*bqZM', # Supabase password
         'HOST': 'aws-0-ap-southeast-1.pooler.supabase.com',        # Supabase host URL
-        'PORT': '5432',                      # Default PostgreSQL port
+        'PORT': '6543',                      # Default PostgreSQL port
     }
 }
 

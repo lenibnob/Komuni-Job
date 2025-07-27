@@ -5,13 +5,17 @@ class User(models.Model):
     username = models.CharField(max_length=50, unique=True)
     email = models.EmailField(max_length=100, unique=True)
     password_hash = models.CharField(max_length=255)
-    full_name = models.CharField(max_length=100, blank=True, null=True)
+    first_name = models.CharField(max_length=100)
+    middle_name = models.CharField(max_length=100, blank=True, null=True)
+    last_name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=20, blank=True, null=True)
-    dob = models.DateField(blank=True, null=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     profile_pic_url = models.URLField(max_length=500, blank=True, null=True)
-    user_location = models.CharField(max_length=500, blank=True, null=True)
+    municipality = models.CharField(max_length=50, blank=True, null=True)
+    barangay = models.CharField(max_length=50, blank=True, null=True)
+    province = models.CharField(max_length=50, blank=True, null=True)
+    zip_code = models.CharField(max_length=50, blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return self.username
+        return f'{self.username} ({self.email})'
