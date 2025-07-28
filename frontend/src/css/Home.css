@@ -1,21 +1,29 @@
 .home {
+  margin-top: 5rem;
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
+  gap: 10px;
 }
 
+@media (max-width: 900px) {
+  .home {
+    padding: 1rem 0;
+  }
+}
 
 .boxContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  padding: 2rem 1rem;
-  overflow-x: auto; /* Prevents horizontal squish */
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  
+  min-width: 900px;
+  max-height: 1000px;
 }
 
 .box {
@@ -23,256 +31,136 @@
   flex-direction: column;
 
   color: black;
-  background-color: orange;
+  background-color: #f59643;
+  box-shadow: 4px 10px 10px rgba(0, 0, 0, 0.2);
   
   padding-left: 30px;
   padding-right: 30px;
   padding-top: 320px;
 
-  width: 1000px;
-  height: 250px;
+  width: 1100px;
+  height: 550px;
 
   gap: 1rem;
-}
-
-.box hr {
-  margin: 0.5rem;
+} .box hr {
+  margin: 6px;
   border: 2px solid black;
-  width: 100%;
 }
 
-.startLink,
-.startButton {
+.startLink {
   width: 220px;
 }
 
 .startButton {
-  color: white;
+  color: #f59643;
+  width: 220px;
+  align-self: flex-start;
   padding: 10px 16px;
-  background-color: orange;
-  border-radius: 20px;
-  border: 1px solid white;
-  font-size: 25px;
-  cursor: pointer;
-}
+  background-color: white;
+  border: 1px solid #ffffff;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
 
-.startButton:hover {
+  cursor: pointer;
+  font-size: 25px;
+} .startButton:hover {
   color: black;
   border-color: black;
 }
 
-.cardContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  
-  color: black;
-  background-color: orange;
-
+.introduction {
   width: 100vw;
-  height: 800px;
-}
-
-.headRow {
-  padding-top: 2rem;
-  width: 1000px;
-  height: auto;
-} .headRow h1 {
-  padding: 2px;
-} .headRow hr {
-  margin: 20px;
-  border: 2px solid black;
-}
-
-.cardRow {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-} .cardRow h1 {
-  font-size: 2rem;
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  color: black;
-  background-color: white;
-  box-shadow: 0 5px 10px black;
-
-  padding-left: 20px;
-  padding-right: 20px;
-
-  width: 900px;
-  height: 500px;
-  border-radius: 20px;
-} .card hr {
-  margin: 2rem;
-  width: 100%;
-} .card h1 {
-  font-size: 2rem;
-  padding-bottom: 2rem;
-}
-
-.featuredJobs {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem;
-  width: auto;
-}
-
-.cardGallery {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 2rem;
-  padding: 2rem;
-  overflow-x: auto;
-}
-
-.cardGallery .card {
-  width: 150px;
-  height: 300px;
-  flex-shrink: 0;
-}
-
-.learnMore {
-  display: flex;
-  flex-direction: column;
-  align-items: center;           /* centers all children horizontally */
-  justify-content: center;       /* vertical centering if there's extra height */
+  height: 750px;
+  background-color: #ffc999;
   
-  padding-left: 5rem;
-
-  background-color: orange;
-  padding: 4rem 2rem;
-  width: 100%;
-  text-align: center;            /* center-align the text inside */
-}
-
-.learnMore h1 {
-  font-size: 2rem;
-  max-width: 800px;
-}
-
-.learnMore button {
-  margin-top: 2rem;
-  padding: 10px 16px;
-  font-size: 1.2rem;
-  border-radius: 20px;
-  border: 1px solid white;
-  background-color: white;
-  color: black;
-  cursor: pointer;
-}
-
-.journeyPath {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 2rem;
-} .journeyPath .headCol {
-
-  padding: 1rem 2rem;
-  margin-bottom: 1rem;
-  justify-content: center;
-
-  width: 800px;
-  padding-bottom: 4rem;
-}
-
-.journeyCardRow {
-  display: flex;
-  justify-content: center;
-
-  margin-bottom: 3rem;
-  gap: 2rem;
-} .journeyCard {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  color: black;
-  background-color: white;
-  box-shadow: 0 5px 10px black;
-
-  padding-left: 20px;
-  padding-right: 20px;
-
-  width: 200px;
-  height: 400px;
-  border-radius: 20px;
-}.journeyCard hr {
-  margin: 2rem;
-  width: 100%;
-} .journeyCard h1 {
-  font-size: 2rem;
-  padding-bottom: 2rem;
-}
-
-.signCol {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  margin-top: 3rem;
-} .signCol h1 {
-  margin: 0;
-}
-
-.signButton {
-  margin-top: 2rem;
-  padding: 10px 16px;
-  font-size: 1.2rem;
-  border-radius: 20px;
-  border: 1px solid black;
-  background-color: black;
-  color: white;
-  cursor: pointer;
-}
-
-.contacts {
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.head {
-  text-align: center;
-  font-size: 40px;
-
-  width: 500px;
-  height: 100px;
+.introductionContainer {
+  width: 1200px;
+  height: 600px;
   
-  margin-bottom: 1rem;
-
-  padding-bottom: 5rem;
-}
-
-.contactRow {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 3rem;
+} .introductionContainer hr {
+  width: 100%;
+  border: 3px solid black;
+  border-radius: 200px;
 }
 
-.contactLinks {
-  width: 300px;
-  height: 300px;
-  margin-bottom: 2rem;
+.introductionHeaderContainer {
+  color: black;
+  width: 1200px;
+  height: 120px;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 10px;
+} .introductionHeaderContainer h1 {
+  font-size: 2rem;
+} .introductionHeaderContainer h2 {
+  font-size: 1.5rem;
+}
+
+.introductionCardsContainer {
+  width: 1200px;
+  height: 480px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
+  gap: 60px;
+}
+.introductionCard {
+  background-color: rgba(255, 255, 255, 0.591); /* red with 50% opacity */
+  border-radius: 30px;
+  width: 370px;
+  height: 430px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px;
+  gap: 1rem;
+} .introductionCard hr {
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 200px;
 }
 
-.email {
-  width: auto;
-  height: 100px;
+.cardIcon {
+  width: 60px;
+  height: 60px;
+  background-color: red; /* Remove this when image is placed */
+  border-radius: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.3rem;
 }
 
+.cardText {
+  height: 190px;
+  padding-top: 10px;
+  color: black;
+  font-size: .5rem;
+  display: flex;
+}
+
+.cardFooter {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+} .cardFooter h1 {
+  font-size: 1rem;
+  color: black;
+}
