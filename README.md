@@ -56,11 +56,27 @@ Keywords:
 7. Restart your VSCode.
 
 Keywords: <br>
-* update pull //pull from repository 
-* update push //update repository 
+update <command> <option> <br>
+command - ['-a', '-c', '-p'] <br>
+option - if -a is chosen, type the name of the file that you wanted to add changes into. <br>
+       - if -c is chosen, type the message for the commit. <br>
+       - if -p is chosen, you don't need to type anything after it. this pushes your updates to the remote branch <br>
+       - if -f is chosen, you don't need to type anything after it. this fetches updates from the remote branch <br>
+       - if -m is chosen, you don't need to type anything after it. this merges your local repository with the updates from the remote branch <br>
+usage: <br>
+update -a <filename> / . (to add all changes) <br>
+update -a <filename> / . (to add all changes) <br>
+update -c <comment/message> <br>
+update -p <br>
+update -f <br>
+update -m <br>
+proper usage: <br>
+update -f -m <br>
+update -a <filename/.> -c <comment/message> -p <br><br>
 
 Important note: <br>
-Always do "update pull" before editing any file. <br><br>
+Make sure to fetch and merge before you work on a ny file. <br>
+Push everytime you finish a file <br>
 
 Use integrated terminal for using commands.<br><br>
 
