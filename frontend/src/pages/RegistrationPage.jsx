@@ -3,20 +3,59 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
 
-function TextInput({ label, name, value, onChange, type = "text" }) {
+function SuffixDropdown({ onChange }) {
+  const [selected, setSelected] = useState("");
+  const [open, setOpen] = useState(false);
+
+  const suffixes = ["Jr.", "Sr.", "I.", "II.", "III.", "N/A"];
+
+  const handleSelect = (value) => {
+    setSelected(value === "N/A" ? "" : value); // Reset if N/A
+    setOpen(false);
+    if (onChange) onChange(value === "N/A" ? "" : value);
+  };
+
   return (
-    <div className="inputGroup">
+    <div className="suffix-dropdown-container">
+      <div className="suffix-label"><h2>Suffix</h2></div>
+      <button className="dropdown-button" onClick={() => setOpen(!open)}>
+        {selected || "▼"}
+      </button>
+      {open && (
+        <ul className="dropdown-menu">
+          {suffixes.map((suf, index) => (
+            <li key={index} onClick={() => handleSelect(suf)}>
+              {suf}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+function TextInput({ label, name, value, onChange, type = "text" }) {
+  const isSurname = name === "surname"; // check if this is the Surname field
+
+  return (
+    <>
+      <div className="inputGroup">
       <h2>{label}</h2>
       <input
-        className="registrationTextInput"
+        className={`registrationTextInput ${isSurname ? "surnameInput" : ""}`}
         type={type}
         name={name}
         value={value}
         onChange={onChange}
       />
     </div>
+    <div>
+      
+    </div>
+    </>
   );
 }
+
 
 function RadioGroup({ label, name, options, selected, onChange }) {
   return (
@@ -42,6 +81,7 @@ function RadioGroup({ label, name, options, selected, onChange }) {
 }
 
 export default function RegistrationForm() {
+  const [suffix, setSuffix] = useState('');
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     givenName: '',
@@ -111,12 +151,15 @@ export default function RegistrationForm() {
                       value={formData.middleName}
                       onChange={handleChange}
                     />
-                    <TextInput
-                      label="Surname"
-                      name="surname"
-                      value={formData.surname}
-                      onChange={handleChange}
-                    />
+                    <div className="surnameInputContainer">
+                      <TextInput
+                        label="Surname"
+                        name="surname"
+                        value={formData.surname}
+                        onChange={handleChange}
+                      />
+                      <SuffixDropdown onChange={(val) => setSuffix(val)} />
+                    </div>
                     <RadioGroup
                       label="Sex"
                       name="sex"
@@ -124,7 +167,9 @@ export default function RegistrationForm() {
                       selected={formData.sex}
                       onChange={handleChange}
                     />
-                    <button onClick={() => setStep(2)}>Next</button>
+                    <div className="registrationNextButton">
+                      <button onClick={() => setStep(2)}>Next</button>
+                    </div>
                   </>
                 )}
 
@@ -154,7 +199,7 @@ export default function RegistrationForm() {
                       value={formData.address}
                       onChange={handleChange}
                     />
-                    <div className="buttonGroup">
+                    <div className="registrationNextButton">
                       <button onClick={() => setStep(3)}>Next</button>
                     </div>
                   </>
@@ -201,7 +246,7 @@ export default function RegistrationForm() {
                         I agree to the terms and conditions
                       </label>
                     </div>
-                    <div className="buttonGroup">
+                    <div className="registrationNextButton">
                       <button onClick={handleRegister}>Register</button>
                     </div>
                   </>
