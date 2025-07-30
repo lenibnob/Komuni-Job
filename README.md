@@ -8,14 +8,24 @@ to run manage.py commands. To use a virtual environment, just simply type "pytho
 [filename] can be named with anything that you want. 
 </pre>
 <br>
-To run virtual environment on cmd, just type "[filename]\Scripts\activate.bat".
+To run virtual environment on cmd, just type "[filename]\Scripts\activate.bat". <br>
+Or you can use the env.bat. 
 
-Install required dependencies with "pip instal -r requirements.txt"
+Install required dependencies with "pip install -r requirements.txt" <br>
+
+Usage env.bat:
+* env [venv folder name]
+
+#### Important note:
+Add this to your settings.json in your vscode "python.terminal.activateEnvironment": false, . <br>
+This stops the .bat file on running automatically on your new terminal.
+
 
 manage.py commands:
 * manage runserver //start a local server. 
 * manage makeMigrations //make changes available for merging. 
 * manage migrate //execute migration. 
+* manage flush //deletes all data from all tables
 
 ### MySQL Shortcut
 

@@ -38,7 +38,10 @@ class JobSerializer(serializers.ModelSerializer):
     application_count = serializers.SerializerMethodField()
     payment_option_type = serializers.SerializerMethodField()
     job_category_name = serializers.SerializerMethodField()
-    required_skill_name = serializers.SerializerMethodField()
+    required_skill_names = serializers.SerializerMethodField()
+    required_skills = serializers.PrimaryKeyRelatedField(
+        queryset=JobSkill.objects.all(), many=True
+    )
     
     class Meta:
         model = Job
@@ -46,7 +49,7 @@ class JobSerializer(serializers.ModelSerializer):
             'job_id', 'user_id', 'job_title', 'job_description',
             'payment_option', 'payment_option_type', 'payment_amount',
             'job_location', 'job_category', 'job_category_name',
-            'required_skills', 'required_skill_name', 'job_post_date',
+            'required_skills', 'required_skill_names', 'job_post_date',
             'application_deadline', 'job_expire_date', 'job_is_active',
             'job_viewcount', 'images', 'employer_name', 'application_count'
         ]
@@ -64,8 +67,8 @@ class JobSerializer(serializers.ModelSerializer):
     def get_job_category_name(self, obj):
         return obj.job_category.job_cat_name if obj.job_category else None
     
-    def get_required_skill_name(self, obj):
-        return obj.required_skills.job_skill_name if obj.required_skills else None
+    def get_required_skill_names(self, obj):
+        return [skill.job_skill_name for skill in obj.required_skills.all()]
 
 class JobApplicationSerializer(serializers.ModelSerializer):
     applicant_name = serializers.SerializerMethodField()

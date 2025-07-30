@@ -1,7 +1,4 @@
 from django.db import models
-
-# Create your models here.
-from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
@@ -36,7 +33,7 @@ class Job(models.Model):
     payment_amount = models.DecimalField(max_digits=10, decimal_places=2)
     job_location = models.CharField(max_length=100)
     job_category = models.ForeignKey(JobCategory, on_delete=models.PROTECT)
-    required_skills = models.ForeignKey(JobSkill, on_delete=models.PROTECT)
+    required_skills = models.ManyToManyField(JobSkill)
     job_post_date = models.DateTimeField(default=timezone.now)
     application_deadline = models.DateTimeField()
     job_expire_date = models.DateTimeField()
