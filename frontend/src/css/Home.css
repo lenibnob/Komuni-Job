@@ -15,7 +15,7 @@
   }
 }
 
-.boxContainer {
+.mottoContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,13 +26,14 @@
   max-height: 1000px;
 }
 
-.box {
+.motto {
   display: flex;
   flex-direction: column;
 
   color: black;
   background-color: #f59643;
   box-shadow: 4px 10px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 30px;
   
   padding-left: 30px;
   padding-right: 30px;
@@ -42,7 +43,7 @@
   height: 550px;
 
   gap: 1rem;
-} .box hr {
+} .motto hr {
   margin: 6px;
   border: 2px solid black;
 }
@@ -64,8 +65,9 @@
   cursor: pointer;
   font-size: 25px;
 } .startButton:hover {
-  color: black;
-  border-color: black;
+  color: white;
+  border: none;
+  background-color: #f59643;
 }
 
 .introduction {

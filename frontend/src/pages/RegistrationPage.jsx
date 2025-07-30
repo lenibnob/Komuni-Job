@@ -1,251 +1,216 @@
-import "../css/Register.css";
-import { Link } from "react-router-dom";
+import "../css/Registration.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import NavBar from "../components/Navbar";
+
+function TextInput({ label, name, value, onChange, type = "text" }) {
+  return (
+    <div className="inputGroup">
+      <h2>{label}</h2>
+      <input
+        className="registrationTextInput"
+        type={type}
+        name={name}
+        value={value}
+        onChange={onChange}
+      />
+    </div>
+  );
+}
+
+function RadioGroup({ label, name, options, selected, onChange }) {
+  return (
+    <div className="inputGroup">
+      <h2>{label}</h2>
+      <div className="registrationCheckboxContainer">
+        {options.map((option) => (
+          <label className="registrationRadio" key={option}>
+            <input
+              className="registrationCheckbox"
+              type="radio"
+              name={name}
+              value={option}
+              checked={selected === option}
+              onChange={onChange}
+            />
+            {option}
+          </label>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function RegistrationForm() {
-    const [step, setStep] = useState(1);
-    const [formData, setFormData] = useState({
-        givenName: '',
-        suffix: '',
-        middleName: '',
-        dob: '',
-        surname: '',
-        phone: '',
-        city: '',
-        province: '',
-        barangay: '',
-        zipcode: '',
-        address: '',
-        email: '',
-        password: ''
-    });
-    const [errors, setErrors] = useState({});
+  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState({
+    givenName: '',
+    middleName: '',
+    surname: '',
+    sex: '',
+    city: '',
+    province: '',
+    barangay: '',
+    address: '',
+    phone: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    agreeToTerms: false
+  });
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
-        setErrors(prev => ({ ...prev, [name]: '' })); // Clear errors on input
-    };
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
 
-    const handleNext = () => {
-        const requiredFields = ['givenName', 'surname', 'dob', 'phone', 'city', 'province', 'barangay', 'zipcode', 'address'];
-        const newErrors = {};
-
-        requiredFields.forEach(field => {
-            if (!formData[field]?.trim()) {
-                newErrors[field] = true;
-            }
-        });
-
-        if (Object.keys(newErrors).length > 0) {
-            setErrors(newErrors);
-        } else {
-            setStep(2); // move to second step
-        }
-    };
-
-    const handleSubmit = () => {
-        const requiredFields2 = ['email', 'password', 'confirmPassword'];
-        const newErrors = {};
-
-        requiredFields2.forEach(field => {
-            if (!formData[field]?.trim()) { 
-                newErrors[field] = true;
-            }
-        });
-
-        if (Object.keys(newErrors).length > 0) {
-            setErrors(newErrors);
-        } else {
-            alert('Form submitted successfully!'); // Replace with actual submit logic
-        }
+  const handleRegister = () => {
+    if (!formData.agreeToTerms) {
+      alert("You must agree to the terms and conditions.");
+      return;
     }
+    alert("Registration complete!");
+  };
 
-    return (
-        <>
-            <div className="registerPageContainer">
-                <nav className="navBarContainer">
-                    <div className="navBar">
-                        <Link className="titleLink" to="/">
-                            <h1 className="logo">KJ</h1>
-                            <h1 className="title">KomuniJOB</h1>
-                        </Link>
+  return (
+    <>
+      <NavBar />
+      <div className="registrationPage">
+        <div className="registrationContainer">
+          <div className="registration">
+            <div className="imageContainer"></div>
+
+            <div className="registrationForm">
+              <div className="pagination">
+                {step > 1 && (
+                  <button className="backButton" onClick={() => setStep(step - 1)}>
+                    ←
+                  </button>
+                )}
+                <h2 className={step === 1 ? 'active' : ''}>1</h2>
+                <h2 className={step === 2 ? 'active' : ''}>2</h2>
+                <h2 className={step === 3 ? 'active' : ''}>3</h2>
+              </div>
+              <hr />
+
+              <div className="registrationInputField">
+                {step === 1 && (
+                  <>
+                    <TextInput
+                      label="Given Name"
+                      name="givenName"
+                      value={formData.givenName}
+                      onChange={handleChange}
+                    />
+                    <TextInput
+                      label="Middle Name"
+                      name="middleName"
+                      value={formData.middleName}
+                      onChange={handleChange}
+                    />
+                    <TextInput
+                      label="Surname"
+                      name="surname"
+                      value={formData.surname}
+                      onChange={handleChange}
+                    />
+                    <RadioGroup
+                      label="Sex"
+                      name="sex"
+                      options={["Male", "Female"]}
+                      selected={formData.sex}
+                      onChange={handleChange}
+                    />
+                    <button onClick={() => setStep(2)}>Next</button>
+                  </>
+                )}
+
+                {step === 2 && (
+                  <>
+                    <TextInput
+                      label="City"
+                      name="city"
+                      value={formData.city}
+                      onChange={handleChange}
+                    />
+                    <TextInput
+                      label="Province"
+                      name="province"
+                      value={formData.province}
+                      onChange={handleChange}
+                    />
+                    <TextInput
+                      label="Barangay"
+                      name="barangay"
+                      value={formData.barangay}
+                      onChange={handleChange}
+                    />
+                    <TextInput
+                      label="Address"
+                      name="address"
+                      value={formData.address}
+                      onChange={handleChange}
+                    />
+                    <div className="buttonGroup">
+                      <button onClick={() => setStep(3)}>Next</button>
                     </div>
+                  </>
+                )}
 
-                    <div className="links">
-                        <Link className="navLink">About Us</Link>
-                        <Link className="navLink">Contact</Link>
-                        <Link className="navLinkButton">Sign up</Link>
+                {step === 3 && (
+                  <>
+                    <TextInput
+                      label="Phone Number"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      type="tel"
+                    />
+                    <TextInput
+                      label="Email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      type="email"
+                    />
+                    <TextInput
+                      label="Password"
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      type="password"
+                    />
+                    <TextInput
+                      label="Confirm Password"
+                      name="confirmPassword"
+                      value={formData.confirmPassword}
+                      onChange={handleChange}
+                      type="password"
+                    />
+                    <div className="inputGroup">
+                      <label className="termsCheckbox">
+                        <input
+                          type="checkbox"
+                          name="agreeToTerms"
+                          checked={formData.agreeToTerms}
+                          onChange={handleChange}
+                        />
+                        I agree to the terms and conditions
+                      </label>
                     </div>
-                </nav>
-
-                <div className="registerPage">
-                    {step === 1 ? (
-                        <div className="signUp">
-                            <div className="headerRow">
-                                <h1>Sign Up</h1>
-                            </div>
-                            <hr />
-
-                            <div className="textFields">
-                                <div className="textField">
-                                    <input
-                                        type="text"
-                                        name="givenName"
-                                        placeholder="Given Name"
-                                        value={formData.givenName}
-                                        onChange={handleChange}
-                                        className={errors.givenName ? "error" : ""}
-                                    />
-                                </div>
-                                <div className="textField">
-                                    <input
-                                        type="text"
-                                        name="suffix"
-                                        placeholder="Suffix"
-                                        value={formData.suffix}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-
-                                <div className="textField">
-                                    <input
-                                        type="text"
-                                        name="middleName"
-                                        placeholder="Middle Name"
-                                        value={formData.middleName}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                                <div className="textField">
-                                    <input
-                                        type="date"
-                                        name="dob"
-                                        value={formData.dob}
-                                        onChange={handleChange}
-                                        className={errors.dob ? "error" : ""}
-                                    />
-                                </div>
-
-                                <div className="textField">
-                                    <input
-                                        type="text"
-                                        name="surname"
-                                        placeholder="Surname"
-                                        value={formData.surname}
-                                        onChange={handleChange}
-                                        className={errors.surname ? "error" : ""}
-                                    />
-                                </div>
-                                <div className="textField">
-                                    <input
-                                        type="tel"
-                                        name="phone"
-                                        placeholder="Phone No."
-                                        value={formData.phone}
-                                        onChange={handleChange}
-                                        className={errors.phone ? "error" : ""}
-                                    />
-                                </div>
-
-                                <div className="textField">
-                                    <input
-                                        type="text"
-                                        name="city"
-                                        placeholder="Municipality/City"
-                                        value={formData.city}
-                                        onChange={handleChange}
-                                        className={errors.city ? "error" : ""}
-                                    />
-                                </div>
-                                <div className="textField">
-                                    <input
-                                        type="text"
-                                        name="province"
-                                        placeholder="Province"
-                                        value={formData.province}
-                                        onChange={handleChange}
-                                        className={errors.province ? "error" : ""}
-                                    />
-                                </div>
-
-                                <div className="textField">
-                                    <input
-                                        type="text"
-                                        name="barangay"
-                                        placeholder="Barangay"
-                                        value={formData.barangay}
-                                        onChange={handleChange}
-                                        className={errors.barangay ? "error" : ""}
-                                    />
-                                </div>
-                                <div className="textField">
-                                    <input
-                                        type="text"
-                                        name="zipcode"
-                                        placeholder="Zip Code"
-                                        value={formData.zipcode}
-                                        onChange={handleChange}
-                                        className={errors.zipcode ? "error" : ""}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="longField">
-                                <input
-                                    type="text"
-                                    name="address"
-                                    placeholder="Address"
-                                    value={formData.address}
-                                    onChange={handleChange}
-                                    className={errors.address ? "error" : ""}
-                                />
-                            </div>
-                            <div className="buttonRow">
-                                <button className="nextButton" onClick={handleNext}>Next</button>   
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="accountSetup">
-                            <div className="headerRow">
-                                <h1>Account Setup</h1>
-                            </div>
-                            <hr />
-                            <div className="accountFields">
-                                <input
-                                    type="text"
-                                    name="email"
-                                    placeholder="Email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    className={errors.email ? "error" : ""}
-                                />
-                                <input
-                                    type="text"
-                                    name="password"
-                                    placeholder="Password"
-                                    value={formData.password}
-                                    onChange={handleChange}
-                                    className={errors.password ? "error" : ""}
-                                />
-                                <input
-                                    type="text"
-                                    name="confirmPassword"
-                                    placeholder="Confirm Password"
-                                    value={formData.confirmPassword}
-                                    onChange={handleChange}
-                                    className={errors.confirmPassword ? "error" : ""}
-                                />
-                            </div>
-
-                             <div className="buttonRow">
-                                <button className="nextButton" onClick={() => setStep(1)}>Back</button>
-                                <button className="nextButton" onClick={handleSubmit}>Next</button>
-                            </div>
-                        </div>
-                    )}
-                </div>
+                    <div className="buttonGroup">
+                      <button onClick={handleRegister}>Register</button>
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
-        </>
-    );
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }

@@ -9,7 +9,7 @@
   top: 0;
   width: 100%;
   z-index: 999; /* Keeps it above other elements */
-  background-color: white; /* Optional: Prevents overlap transparency */
+  background-color: #FFF9EF; /* Optional: Prevents overlap transparency */
 }
 
 .logoIcon {

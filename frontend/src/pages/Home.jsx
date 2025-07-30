@@ -18,13 +18,13 @@ export default function Home() {
             </div>
         );
     }
-
+    
     return (
         <>
             <NavBar />
             <div className="home">
-                <div className="boxContainer">
-                    <div className="box">
+                <div className="mottoContainer">
+                    <div className="motto">
                         <div>
                             <h1>Jobs that build trust.</h1>
                             <h1>Powered by your community</h1>
