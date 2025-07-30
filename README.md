@@ -11,7 +11,7 @@ to run manage.py commands. To use a virtual environment, just simply type "pytho
 To run virtual environment on cmd, just type "[filename]\Scripts\activate.bat". <br>
 Or you can use the env.bat. 
 
-Install required dependencies with "pip instal -r requirements.txt" <br>
+Install required dependencies with "pip install -r requirements.txt" <br>
 
 Usage env.bat:
 * env [venv folder name]
