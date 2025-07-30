@@ -1,40 +1,82 @@
-import "../css/Credential.css";
+import "../css/Login.css";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import NavBar from "../components/NavBar";
+import NavBar from "../components/Navbar";
+
+function TextInput({ label, name, value, onChange, type = "text" }) {
+  return (
+    <div className="inputGroup">
+      <h2>{label}</h2>
+      <input
+        className="loginTextInput"
+        type={type}
+        name={name}
+        value={value}
+        onChange={onChange}
+      />
+    </div>
+  );
+}
 
 export default function LoginForm() {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
-    return (
-        <>
-            <NavBar />
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
-            <div className="credential-container">
-                
-                <form className="credential-form">
+  const handleLogin = () => {
+    if (!formData.email || !formData.password) {
+      alert("Please fill in both email and password.");
+      return;
+    }
+    alert("Logging in...");
+    // Add login logic here (e.g., API call)
+  };
 
-                    <h1>Sign in</h1>
+  return (
+    <>
+      <NavBar />
+      <div className="loginPage">
+        <div className="loginContainer">
+          <div className="login">
+            <div className="imageContainer"></div>
 
-                    <input id="username" 
-                        className="credential-field"
-                        type="text"
-                        placeholder="Username"
-                    
-                    />
-
-                    <input id="password" 
-                        className="credential-field" 
-                        type="text" 
-                        placeholder="Password"
-                    />
-
-                    <Link className="link-button" to="/login/identify">Forgotten password?</Link>
-                    
-                    <Link className="link-button" to="/register">Sign up</Link>
-
-                    <button className="submit-button" type="submit">Log in</button>
-                </form>
+            <div className="loginForm">
+              <h1>Login</h1>
+              <hr />
+              <TextInput
+                label="Email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                type="email"
+              />
+              <TextInput
+                label="Password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                type="password"
+              />
+              <p>
+                Don't have an account?{" "}
+                <Link to="/register">Register here</Link>
+              </p>
+              <div className="buttonGroup">
+                <button onClick={handleLogin}>Login</button>
+              </div>
             </div>
-        
-        </>
-    )
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
