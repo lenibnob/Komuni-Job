@@ -33,15 +33,14 @@ int main(int argc, char *argv[]) {
             if(strncmp(argv[1], "-f", 2) == 0) {
                 if(pullOrigin()) {
                     printf("Fetch successful\n"); 
+                    if(merge()) {
+                        printf("Merge successful\n");
+                    } else {
+                        printf("Failed to merge"); 
+                        return 1;
+                    }
                 } else {
                     printf("Failed to fetch");
-                    return 1;
-                }
-            } else if(strncmp(argv[2], "-m", 2) == 0) {
-                if(merge()) {
-                    printf("Merge successful\n");
-                } else {
-                    printf("Failed to merge"); 
                     return 1;
                 }
             } else {
