@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'accounts',  # user management app
     'jobs', # job management app
+    'user_rating',  # user ratings app
 ]
 
 MIDDLEWARE = [
