@@ -1,7 +1,7 @@
 import "../css/NavBar.css";
 import { Link } from "react-router-dom";
 
-export default function NavBar() {
+export default function NavBar({authenticate}) {
     return (
         <nav className="navBar">
 
@@ -13,7 +13,7 @@ export default function NavBar() {
             <div className="navBarLinks">
                 <Link className="navLink" to="/" >About Us</Link>
                 <Link className="navLink" to="/favorites" >Contact</Link>
-                <Link to="/register"><button className="navButton">Sign up</button></Link>
+                <Link to={authenticate.address}><button className="navButton">{authenticate.option}</button></Link>
             </div>
             
         </nav>

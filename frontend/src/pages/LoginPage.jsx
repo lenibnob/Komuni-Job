@@ -1,7 +1,7 @@
 import "../css/Login.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import NavBar from "../components/Navbar";
+import NavBar from "../components/NavBar";
 
 function TextInput({ label, name, value, onChange, type = "text" }) {
   return (
@@ -43,7 +43,7 @@ export default function LoginForm() {
 
   return (
     <>
-      <NavBar />
+      <NavBar authenticate={{address : "/register", option : "Sign up"}}/>
       <div className="loginPage">
         <div className="loginContainer">
           <div className="login">

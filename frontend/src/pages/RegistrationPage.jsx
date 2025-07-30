@@ -1,7 +1,7 @@
 import "../css/Registration.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import NavBar from "../components/Navbar";
+import NavBar from "../components/NavBar";
 
 function TextInput({ label, name, value, onChange, type = "text" }) {
   return (
@@ -77,7 +77,7 @@ export default function RegistrationForm() {
 
   return (
     <>
-      <NavBar />
+      <NavBar authenticate={{address : "/login", option : "Log in"}} />
       <div className="registrationPage">
         <div className="registrationContainer">
           <div className="registration">

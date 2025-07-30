@@ -1,6 +1,6 @@
 import "../css/Home.css";
 import { Link } from "react-router-dom";
-import NavBar from "../components/Navbar";
+import NavBar from "../components/NavBar";
 
 export default function Home() {
 
@@ -21,7 +21,7 @@ export default function Home() {
     
     return (
         <>
-            <NavBar />
+            <NavBar authenticate={{address : "/register", option : "Sign up"}} />
             <div className="home">
                 <div className="mottoContainer">
                     <div className="motto">

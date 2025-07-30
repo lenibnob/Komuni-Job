@@ -69,6 +69,7 @@
   padding-left: 30px;
   padding-right: 30px;
   border-radius: 30px;
+  width: 160px;
 } .navButton:hover {
   color: white;
   border-color: #f59643;
