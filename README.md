@@ -23,7 +23,7 @@ This stops the .bat file on running automatically on your new terminal.
 
 manage.py commands:
 * manage runserver //start a local server. 
-* manage makeMigrations //make changes available for merging. 
+* manage makemigrations //make changes available for merging. 
 * manage migrate //execute migration. 
 * manage flush //deletes all data from all tables
 
