@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
+import AboutPage from './pages/AboutPage';
 
 export default function App() {
  
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/register" element={<RegistrationPage />} ></Route>
+          <Route path="/about" element={<AboutPage />}></Route>
         </Routes>
 
       </main>

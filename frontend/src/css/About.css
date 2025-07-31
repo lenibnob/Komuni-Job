@@ -1,0 +1,54 @@
+.aboutPage {
+    background-color: #FFF9EF;;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.aboutBackground {
+    width: 100vw;
+    height: 755px;
+
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+
+    margin-top: 6rem;
+    background-color: white;
+    border-radius: 20px;
+    width: 1200px;
+    height: 500px;
+}
+
+.imageLogo {
+    background-color: orange;
+    border-radius: 20px;
+    width: 400px;
+    height: 400px;
+}
+
+.aboutText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 600px;
+    height: 400px;
+    color: black;
+} .aboutText h1 {
+    margin-bottom: 1rem;
+} .aboutText h2 {
+    margin-bottom: .5rem;
+} .aboutText h3 {
+    color: rgb(59, 59, 59);
+}

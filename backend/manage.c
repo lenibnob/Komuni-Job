@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
         printf("Syntax error.\nmanage <command>\n\n");
         printf("Command:\n");
         printf("manage runserver //Start a local server\n");
-        printf("manage makeMigrations //Make changes available for merging\n");
+        printf("manage makemigrations //Make changes available for merging\n");
         printf("manage migrate //Execute migration\n");
         printf("manage flush //Deletes all data from all tables\n");
         return 1;
