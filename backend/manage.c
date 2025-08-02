@@ -42,7 +42,7 @@ bool run(char *option[], int args) {
         } else return false;
     } else {
         for(int i = 2; i < args; i++) {
-            snprintf(command + strlen(command), sizeof(command) - strlen(command), "%s ", option[i]);
+            snprintf(command + strlen(command), sizeof(command) - strlen(command), " %s", option[i]);
         }
         if(system(command) == 0) {
             return true;
