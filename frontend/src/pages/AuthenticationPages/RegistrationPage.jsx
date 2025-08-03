@@ -1,10 +1,10 @@
 // pages/RegistrationForm.jsx
-import "./AuthCSS/Registration.css";
+import "../../css/AuthCSS/Registration.css";
 import { useState } from "react";
 import NavBar from "../../components/NavBar";
-import TextInput from "./AuthComponents/TextInput";
-import SuffixDropdown from "./AuthComponents/SuffixDropdown";
-import RadioGroup from "./AuthComponents/RadioGroup";
+import TextInput from "../../components/AuthComponents/TextInput";
+import SuffixDropdown from "../../components/AuthComponents/SuffixDropdown";
+import RadioGroup from "../../components/AuthComponents/RadioGroup";
 
 export default function RegistrationPage() {
   const [suffix, setSuffix] = useState('');
