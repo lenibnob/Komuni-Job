@@ -13,7 +13,7 @@ void printError();
 
 int main(int argc, char *argv[]) {
     if(argc > 1) {
-        if(argc < 3) {
+        if(argc == 2) {
             if(strncmp(argv[1], "-f", 2) == 0) {
                 if(pullOrigin()) {
                     printf("Fetch successful\n"); 
@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
                     return 1;
                 }
             }
-        } else if(argc < 4 && argc > 2) {
+        } else if(argc == 3) {
             if(strncmp(argv[1], "-f", 2) == 0) {
                 if(pullOrigin()) {
                     printf("Fetch successful\n"); 
