@@ -43,7 +43,7 @@ export default function LoginForm() {
 
   return (
     <>
-      <NavBar authenticate={{address : "/register", option : "Sign up"}}/>
+      <NavBar authenticatePage={{address : "/register", option : "Sign up"}}/>
       <div className="loginPage">
         <div className="loginContainer">
           <div className="login">

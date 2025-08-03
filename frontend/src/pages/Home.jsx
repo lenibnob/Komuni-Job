@@ -21,7 +21,7 @@ export default function Home() {
     
     return (
         <>
-            <NavBar authenticate={{address : "/register", option : "Sign up"}} />
+            <NavBar authenticatePage={{address : "/register", option : "Sign up"}} />
             <div className="home">
                 <div className="mottoContainer">
                     <div className="motto">

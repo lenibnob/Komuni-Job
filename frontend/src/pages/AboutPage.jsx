@@ -4,7 +4,7 @@ import NavBar from "../components/NavBar";
 export default function AboutPage() {
     return (
         <>
-            <NavBar authenticate={{address: "/register", option: "Sign up"}} />
+            <NavBar authenticatePage={{address: "/register", option: "Sign up"}} />
             <div className="aboutPage">
                 <div className="aboutBackground">
                     <div className="about">
