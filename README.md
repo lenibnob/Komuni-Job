@@ -22,10 +22,11 @@ This stops the .bat file on running automatically on your new terminal.
 
 
 manage.py commands:
-* manage runserver //start a local server. 
-* manage makemigrations //make changes available for merging. 
-* manage migrate //execute migration. 
-* manage flush //deletes all data from all tables
+* manage -r //start a local server. 
+* manage -M //make changes available for merging. 
+* manage -M [app_name] //make specific changes available for merging. 
+* manage -m //execute migration. 
+* manage -f //deletes all data from all tables
 
 ### MySQL Shortcut
 
