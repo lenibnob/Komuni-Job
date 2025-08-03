@@ -1,9 +1,9 @@
 // pages/LoginForm.jsx
-import "../../css/AuthCSS/Login.css";
+import "@/css/AuthCSS/Login.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import NavBar from "../../components/NavBar";
-import TextInput from "../../components/AuthComponents/TextInput";
+import NavBar from "@/components/NavBar";
+import TextInput from "@/components/AuthComponents/TextInput";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
