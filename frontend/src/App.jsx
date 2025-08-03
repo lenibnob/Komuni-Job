@@ -1,8 +1,8 @@
 import './css/App.css';
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import LoginPage from "./pages/LoginPage";
-import RegistrationPage from "./pages/RegistrationPage";
+import LoginPage from "./pages/AuthenticationPages/LoginPage";
+import RegistrationPage from "./pages/AuthenticationPages/RegistrationPage";
 import AboutPage from './pages/AboutPage';
 
 export default function App() {

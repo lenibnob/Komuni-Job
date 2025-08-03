@@ -1,24 +1,11 @@
-import "../css/Login.css";
+// pages/LoginForm.jsx
+import "./AuthCSS/Login.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import NavBar from "../components/NavBar";
+import NavBar from "../../components/NavBar";
+import TextInput from "./AuthComponents/TextInput";
 
-function TextInput({ label, name, value, onChange, type = "text" }) {
-  return (
-    <div className="inputGroup">
-      <h2>{label}</h2>
-      <input
-        className="loginTextInput"
-        type={type}
-        name={name}
-        value={value}
-        onChange={onChange}
-      />
-    </div>
-  );
-}
-
-export default function LoginForm() {
+export default function LoginPage() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -38,17 +25,16 @@ export default function LoginForm() {
       return;
     }
     alert("Logging in...");
-    // Add login logic here (e.g., API call)
+    // API login call
   };
 
   return (
     <>
-      <NavBar authenticatePage={{address : "/register", option : "Sign up"}}/>
+      <NavBar authenticatePage={{ address: "/register", option: "Sign up" }} />
       <div className="loginPage">
         <div className="loginContainer">
           <div className="login">
             <div className="imageContainer"></div>
-
             <div className="loginForm">
               <h1>Login</h1>
               <hr />
@@ -58,6 +44,7 @@ export default function LoginForm() {
                 value={formData.email}
                 onChange={handleChange}
                 type="email"
+                variant="login"
               />
               <TextInput
                 label="Password"
@@ -65,10 +52,10 @@ export default function LoginForm() {
                 value={formData.password}
                 onChange={handleChange}
                 type="password"
+                variant="login"
               />
               <p>
-                Don't have an account?{" "}
-                <Link to="/register">Register here</Link>
+                Don't have an account? <Link to="/register">Register here</Link>
               </p>
               <div className="buttonGroup">
                 <button onClick={handleLogin}>Login</button>
