@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+
+# Existing choices...
 
 SEX_CHOICES = [
     ('Male', 'Male'),
@@ -26,6 +26,23 @@ VERIFICATION_STATUS_CHOICES = [
     ('rejected', 'Rejected'),
 ]
 
+# --- New Models ---
+
+class IdentificationCardType(models.Model):
+    type_name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.type_name
+
+class IdentificationCard(models.Model):
+    card_type = models.ForeignKey(IdentificationCardType, on_delete=models.PROTECT, related_name='cards')
+    id_front = models.URLField(max_length=500)
+    id_back = models.URLField(max_length=500, blank=True, null=True)
+    notes = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.card_type.type_name} Card"
+
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
@@ -41,16 +58,7 @@ class UserProfile(models.Model):
     bio = models.TextField(blank=True, null=True)
     verification_status = models.CharField(max_length=10, choices=VERIFICATION_STATUS_CHOICES, default='pending')
     verification_notes = models.TextField(blank=True, null=True)
+    identification_card = models.OneToOneField(IdentificationCard, on_delete=models.SET_NULL, null=True, blank=True, related_name='user_profile')
 
     def __str__(self):
         return f"{self.user.username}'s profile"
-
-@receiver(post_save, sender=User)
-def create_or_update_user_profile(sender, instance, created, **kwargs):
-    if created:
-        UserProfile.objects.create(user=instance)
-    else:
-        try:
-            instance.profile.save()
-        except UserProfile.DoesNotExist:
-            UserProfile.objects.create(user=instance)
