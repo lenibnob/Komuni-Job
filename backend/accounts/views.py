@@ -1,12 +1,12 @@
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
-from .serializers import UserSerializer
-from .models import UserProfile
+from .serializers import UserSerializer, UserProfileVerificationAdminSerializer
+from .models import UserProfile, VERIFICATION_STATUS_CHOICES
 from django.db import transaction
 
 class RegisterView(APIView):
@@ -14,15 +14,12 @@ class RegisterView(APIView):
 
     def post(self, request, *args, **kwargs):
         mutable_data = request.data.copy()
-
-        # Extract profile data
         profile_fields = [
             'middle_name', 'sex', 'phone_number', 'profile_pic_url',
             'municipality', 'barangay', 'province', 'zip_code', 'bio', 'suffix'
         ]
         profile_data = {field: mutable_data.get(field) for field in profile_fields if mutable_data.get(field) is not None}
 
-        # Temporary username from email if not provided
         email = mutable_data.get('email', '')
         if email and not mutable_data.get('username'):
             mutable_data['username'] = email.split('@')[0]
@@ -31,11 +28,9 @@ class RegisterView(APIView):
         if serializer.is_valid():
             with transaction.atomic():
                 user = serializer.save()
-                # Update username to pattern: first.last#id
                 new_username = f"{user.first_name.lower()}.{user.last_name.lower()}#{user.id}"
                 user.username = new_username
                 user.save()
-                # Update profile
                 profile, created = UserProfile.objects.get_or_create(user=user)
                 for field, value in profile_data.items():
                     setattr(profile, field, value)
@@ -89,3 +84,17 @@ class UserProfileView(APIView):
                 'user': serializer.data
             })
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class UserProfileVerificationView(APIView):
+    permission_classes = [IsAdminUser]
+
+    def patch(self, request, pk):
+        try:
+            profile = UserProfile.objects.get(pk=pk)
+        except UserProfile.DoesNotExist:
+            return Response({'error': 'UserProfile not found'}, status=404)
+        serializer = UserProfileVerificationAdminSerializer(profile, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'message': 'Verification status updated', 'profile': serializer.data})
+        return Response(serializer.errors, status=400)

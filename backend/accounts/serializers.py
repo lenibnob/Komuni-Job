@@ -1,10 +1,12 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import UserProfile, SEX_CHOICES, SUFFIX_CHOICES
+from .models import UserProfile, SEX_CHOICES, SUFFIX_CHOICES, VERIFICATION_STATUS_CHOICES
 
 class UserProfileSerializer(serializers.ModelSerializer):
     sex = serializers.ChoiceField(choices=SEX_CHOICES, required=False, allow_blank=True, allow_null=True)
     suffix = serializers.ChoiceField(choices=SUFFIX_CHOICES, required=False, allow_blank=True, allow_null=True)
+    verification_status = serializers.ChoiceField(choices=VERIFICATION_STATUS_CHOICES, read_only=True)
+    verification_notes = serializers.CharField(read_only=True)
 
     class Meta:
         model = UserProfile
@@ -12,7 +14,6 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     profile = UserProfileSerializer(required=False)
-
     class Meta:
         model = User
         fields = ['id', 'username', 'email', 'first_name', 'last_name', 'password', 'profile', 'date_joined']
@@ -47,3 +48,8 @@ class UserSerializer(serializers.ModelSerializer):
             setattr(instance.profile, attr, value)
         instance.profile.save()
         return instance
+
+class UserProfileVerificationAdminSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = ['verification_status', 'verification_notes']
