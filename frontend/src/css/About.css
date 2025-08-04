@@ -8,7 +8,7 @@
 
 .aboutBackground {
     width: 100vw;
-    height: 755px;
+    height: 100vh;
 
     background-color: red;
     display: flex;
@@ -51,4 +51,253 @@
     margin-bottom: .5rem;
 } .aboutText h3 {
     color: rgb(59, 59, 59);
+}
+
+/*----------------------------------------------------------------------*/
+
+.missionVisionBackground {
+    width: 100vw;
+    height: 100vh;
+
+    background-color: #ffd388;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.missionVisionContainer {
+    border: 1px solid black;
+    width: 1000px;
+    height: 600px;
+}
+
+.missionVisionHeader {
+    border: 3px solid rgb(72, 0, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.missionVisionCardContainer {
+    color: white;
+    background-color:green;
+    width: 1000px;
+    height: 486px;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+}
+
+.missionVisionCard {
+    border: 2px solid black;
+    color: black;
+    background-color: rgb(196, 196, 196);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 450px;
+}
+
+/*----------------------------------------------------------------------*/
+
+.teamSection {
+    width: 100vw;
+    height: 115vh;
+
+    background-color: #FFF9EF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.teamSectionContainer {
+    color: black;
+    width: 100vw;
+    height: 90vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 1rem;
+}
+
+.teamCardsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+}
+
+.teamCard {
+    border: 2px solid black;
+    background-color: rgb(196, 196, 196);
+    color: black;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 200px;
+    height: 300px;
+    margin: 0.5rem;
+}
+
+/*----------------------------------------------------------------------*/
+
+.unGoals {
+    width: 100vw;
+    height: 110vh;
+
+    background-color: #3B7080;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.unGoalsContainer {
+    border: 2px solid black;
+    width: 1200px;
+    height: 700px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 1rem;
+    color: white;
+}
+
+.unCardsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+    gap: 1rem;
+}
+
+.unCard {
+    border: 2px solid black;
+    background-color: rgb(196, 196, 196);
+    width: 250px;
+    height: 300px;
+}
+
+/*----------------------------------------------------------------------*/
+
+.youthParticipation {
+    width: 100vw;
+    height: 90vh;
+
+    background-color: #FFF9EF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.youthParticipationContainer {
+    border: 2px solid black;
+    width: 1050px;
+    height: 600px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    color: black;
+}
+
+.youthCardsContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    width: 100%;
+    gap: 1rem
+}
+
+.youthCard {
+    border: 2px solid black;
+    background-color: rgb(196, 196, 196);
+    width: 515px;
+    height: 230px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.youthCardIcon {
+    border: 2px solid black;
+    width: 150px;
+    height: 150px;
+}
+
+.youthCardTexts {
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    width: 310px;
+    height: 190px;
+} .youthCardTexts h3 {
+    margin-bottom: 1rem;
+}
+
+/*----------------------------------------------------------------------*/
+
+.aboutFooter {
+    width: 100vw;
+    height: 70vh;
+
+    background: linear-gradient(to bottom, #FFF9EF, #F59643);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.aboutFooterContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    height: 250px;
+    width: 900px;
+    gap: 10rem;
+}
+
+.aboutFooterLinks {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    width: fit-content;
+    height: 250px;
+}
+
+.sectionHead {
+    margin-bottom: 0.5rem;
 }

@@ -7,12 +7,12 @@ export default function Home() {
     function IntroductionCard({card}) {
         return (
             <div className="introductionCard">
-                <div className="cardIcon">{card.icon}</div>
-                <div className="cardText">
+                <div className="homeCardIcon">{card.icon}</div>
+                <div className="homeCardText">
                     <h1>{card.text}</h1>
                 </div>
                 <hr />
-                <div className="cardFooter">
+                <div className="homeCardFooter">
                     <h1>{card.footer}</h1>
                 </div>
             </div>
