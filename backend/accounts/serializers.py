@@ -1,9 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import (
-    UserProfile, SEX_CHOICES, SUFFIX_CHOICES, VERIFICATION_STATUS_CHOICES,
-    IdentificationCardType, IdentificationCard
-)
+from .models import *
 
 class IdentificationCardTypeSerializer(serializers.ModelSerializer):
     class Meta:
