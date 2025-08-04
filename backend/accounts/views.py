@@ -39,8 +39,6 @@ class RegisterView(APIView):
                 refresh = RefreshToken.for_user(user)
                 return Response({
                     'message': 'Registration successful!',
-                    'refresh': str(refresh),
-                    'access': str(refresh.access_token),
                     'user': UserSerializer(user).data
                 }, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -49,6 +47,7 @@ class LoginView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
+        res = Response()
         email = request.data.get('email')
         password = request.data.get('password')
         if not email or not password:
@@ -60,12 +59,32 @@ class LoginView(APIView):
         user = authenticate(username=user.username, password=password)
         if user:
             refresh = RefreshToken.for_user(user)
-            return Response({
+            access = str(refresh.access_token)
+            refresh = str(refresh)
+            res = Response({
                 'message': 'Login successful!',
-                'refresh': str(refresh),
-                'access': str(refresh.access_token),
                 'user': UserSerializer(user).data
             })
+        
+            res.set_cookie(
+                key='access_token',
+                value=access,
+                httponly=True,
+                secure=True,
+                samesite='None',
+                path='/'
+            )
+
+            res.set_cookie(
+                key='refresh_token',
+                value=refresh,
+                httponly=True,
+                secure=True,
+                samesite='None',
+                path='/'
+            )
+
+            return res
         return Response({'error': 'Invalid credentials'}, status=400)
 
 class UserProfileView(APIView):
