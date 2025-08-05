@@ -9,17 +9,21 @@
   top: 0;
   width: 100%;
   z-index: 999; /* Keeps it above other elements */
-  background-color: #FFF9EF; /* Optional: Prevents overlap transparency */
+  background-color: #FFF9EF;
+  text-decoration: underline; /* Optional: Prevents overlap transparency */
 }
 
 .logoIcon {
   width: 60px;
   height: 60px;
-  background-color: red; /* Remove this when image is placed */
-  background-image: url('/path/to/icon.png'); /* Replace with actual icon path */
+  background-color: #f59643; /* Remove this when image is placed */
+  background-image: url("komunijob_logo.svg"); /* Replace with actual icon path */
   background-size: cover;
   margin-right: 5px;
-} .iconImage:hover {
+} 
+
+.iconImage:hover 
+{
   cursor: pointer;
 }
 
@@ -33,11 +37,15 @@
   align-items: center;
 }
 
-.navBarTitle {
+.navBarTitle 
+{
   color: black;
   text-decoration: none;
-  padding-left: 5px;
-} .navBarTitle:hover {
+  padding-left: 5px; 
+}
+
+.navBarTitle:hover
+{
   color: black;
 }
 
@@ -52,32 +60,42 @@
   gap: 2rem;
 }
 
-.navLink {
+.navLink 
+{
   color: black;
   font-size: 1.1rem;
   padding: 0.5rem 1rem;
-} .navLink:hover {
+} 
+
+.navLink:hover 
+{
   color: black;
 }
 
-.navButton {
+.navButton 
+{
   color: #f59643;
   background-color: white;
   border-color: rgb(218, 218, 218);
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-  font-size: 25px;
+  font-size: 20px;
   padding-left: 30px;
   padding-right: 30px;
-  border-radius: 30px;
+  border-radius: 70px;
   width: 160px;
-} .navButton:hover {
+  
+} 
+
+.navButton:hover 
+{
   color: white;
   border-color: #f59643;
   background-color: #f59643;
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px) 
+{
   .navbar {
     padding: 1rem;
   }

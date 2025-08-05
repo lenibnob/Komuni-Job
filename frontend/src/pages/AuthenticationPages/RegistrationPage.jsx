@@ -61,7 +61,7 @@ export default function RegistrationPage() {
               <div className="registrationInputField">
                 {step === 1 && (
                   <>
-                    <TextInput label="Given Name" name="givenName" value={formData.givenName} onChange={handleChange} variant="registration" />
+                    <TextInput label="Given Name" name="givenName" value={formData.givenName} onChange={handleChange} variant="registration"  />
                     <TextInput label="Middle Name" name="middleName" value={formData.middleName} onChange={handleChange} variant="registration" />
                     <div className="surnameInputContainer">
                       <TextInput label="Surname" name="surname" value={formData.surname} onChange={handleChange} variant="registration" />

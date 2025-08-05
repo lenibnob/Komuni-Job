@@ -1,4 +1,5 @@
-.registrationPage {
+.registrationPage 
+{
   background-color: #FFF9EF;;
   width: 100%;
   height: 100vh;
@@ -7,15 +8,18 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  color: #3B7080;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 900px) 
+{
   .registrationPage {
     padding: 1rem 0;
   }
 }
 
-.registrationContainer {
+.registrationContainer 
+{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,7 +28,8 @@
   max-height: 1000px;
 }
 
-.registration {
+.registration 
+{
   display: flex;
   background-color: white;
   box-shadow: 4px 10px 10px rgba(0, 0, 0, 0.2);
@@ -38,45 +43,60 @@
 .imageContainer {
   width: 500px;
   height: 510px;
-  background-color: red;
+  background-image: url('../../../recources/SVG files/gear.svg');
+  background-position: center;
+  background: rgba(255, 255, 255, 0.1); /* semi-transparent */
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white; /* optional: make text readable on glass */
+  z-index: 10;
+  position: relative;
 }
 
-.registrationForm {
+.registrationForm 
+{
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 1rem;
   width: 500px;
   height: 510px;
-  background-color: red;
+  background-color: #fff;
 }
 
-.registrationForm hr {
-  border: 2px solid black;
+.registrationForm hr 
+{
+  border: 1px solid #3B7080;
   border-radius: 20px;
   width: 450px;
   margin: 0.6rem;
 }
 
-.pagination {
+.pagination 
+{
   display: flex;
   justify-content: center;
   gap: 4rem;
 }
 
-.pagination h2 {
+.pagination h2 
+{
   font-size: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 50px;
   height: 50px;
-  border: 1px solid black;
+  border:1px solid #3B7080;
   border-radius: 1000px;
 }
 
-.registrationInputField {
-  border: 1px solid black;
+.registrationInputField 
+{
+  
   width: 350px;
   height: 400px;
   display: flex;
@@ -85,25 +105,44 @@
   gap: 0.5rem;
 }
 
-.registrationTextInput {
+.registrationTextInput 
+{
+  border:#fff;
   width: 350px;
   height: 40px;
-  border: 1px solid black;
   border-radius: 20px;
   padding: 0 1rem;
   font-size: 14px;
+  background-color: rgb(248, 240, 230);
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.registrationNextButton{
+.registrationNextButton
+{
+   color:#f59643;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 25rem;
-    padding-left: 8.5rem;
+    margin-left: 8%;
+    margin-top:21%; 
     position: absolute;
 }
 
-.surnameInputContainer {
+.registrationNextButton{
+   color:#f59643;
+   background-color: #fff;
+    border:3px solid #f59643;
+    border-radius: 10px;
+    min-width: 100px;
+    font-size: small;
+    
+}
+
+
+
+
+.surnameInputContainer 
+{
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -111,23 +150,26 @@
   width: 100%;
 }
 
-.surnameInput {
+.surnameInput 
+{
   flex: 1;
   height: 40px;
   width: 250px;
-  border: 1px solid black;
+  border: 1px solid transparent;
   border-radius: 20px;
   padding: 0 1rem;
   font-size: 14px;
 }
 
-.suffix-dropdown-container {
+.suffix-dropdown-container 
+{
   position: relative;
   display: inline-block;
   min-width: 70px;
 }
 
-.dropdown-button {
+.dropdown-button 
+{
   background-color: #fef6e9;
   border: none;
   border-radius: 20px;
@@ -135,15 +177,16 @@
   font-size: 14px;
   cursor: pointer;
   color: #000000;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 3px #fef6e9;
   width: 80px;
   height: 40px;
   text-align: center;
 }
 
-.dropdown-menu {
+.dropdown-menu 
+{
   position: absolute;
-  background-color: #3f0000;
+  background-color: #fef6e9;
   border-radius: 10px;
   margin-top: 5px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -153,24 +196,30 @@
   z-index: 1000;
 }
 
-.dropdown-menu li {
+.dropdown-menu li 
+{
   padding: 5px 12px;
   cursor: pointer;
   text-align: center;
+  background-color:#fef6e9;
+
 }
 
 .dropdown-menu li:hover {
-  background-color: #bf0000;
+  background-color: #ffff;
 }
 
-.registrationCheckboxContainer {
+.registrationCheckboxContainer 
+{
   display: flex;
   align-items: center;
   width: 350px;
   gap: 2rem;
+  border-color: #f59643;
 }
 
-.registrationCheckbox {
+.registrationCheckbox 
+{
   width: 30px;
   height: 30px;
 }

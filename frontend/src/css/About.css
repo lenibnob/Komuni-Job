@@ -1,4 +1,5 @@
-.aboutPage {
+.aboutPage 
+{
     background-color: #FFF9EF;;
     height: 100vh;
     display: flex;
@@ -6,11 +7,12 @@
     align-items: center;
 }
 
-.aboutBackground {
+.aboutBackground 
+{
     width: 100vw;
     height: 100vh;
 
-    background-color: red;
+    background-color: #f59643;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,7 +33,7 @@
 }
 
 .imageLogo {
-    background-color: orange;
+    background-color: #fff;
     border-radius: 20px;
     width: 400px;
     height: 400px;
@@ -59,7 +61,7 @@
     width: 100vw;
     height: 100vh;
 
-    background-color: #ffd388;
+    background-color: #f59643;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,7 +74,7 @@
 }
 
 .missionVisionHeader {
-    border: 3px solid rgb(72, 0, 255);
+    border: 3px solid rgba(255, 102, 0, 0.856);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -81,7 +83,7 @@
 
 .missionVisionCardContainer {
     color: white;
-    background-color:green;
+    background-color:#fff;
     width: 1000px;
     height: 486px;
     padding: 1rem;
