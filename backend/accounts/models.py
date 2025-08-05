@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 SEX_CHOICES = [
     ('Male', 'Male'),
     ('Female', 'Female'),
-    ('Other', 'Other'),
 ]
 
 SUFFIX_CHOICES = [
@@ -26,7 +25,6 @@ VERIFICATION_STATUS_CHOICES = [
     ('rejected', 'Rejected'),
 ]
 
-# --- New Models ---
 
 class IdentificationCardType(models.Model):
     type_name = models.CharField(max_length=100, unique=True)
@@ -51,6 +49,7 @@ class UserProfile(models.Model):
     suffix = models.CharField(max_length=5, choices=SUFFIX_CHOICES, blank=True, null=True)
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     profile_pic_url = models.URLField(max_length=500, blank=True, null=True)
+    address = models.TextField(blank=True, null=True) 
     municipality = models.CharField(max_length=50, blank=True, null=True)
     barangay = models.CharField(max_length=50, blank=True, null=True)
     province = models.CharField(max_length=50, blank=True, null=True)

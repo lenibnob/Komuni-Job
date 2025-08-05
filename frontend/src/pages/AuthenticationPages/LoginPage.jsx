@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import NavBar from "@/components/NavBar";
 import TextInput from "@/components/AuthComponents/TextInput";
+import { login } from '../../endpoints/api'
 
 
 export default function LoginPage() {
@@ -13,20 +14,20 @@ export default function LoginPage() {
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData({...formData, [e.target.name]: e.target.value})
   };
 
-  const handleLogin = () => {
+  const handleLogin = async (e) => {
     if (!formData.email || !formData.password) {
       alert("Please fill in both email and password.");
       return;
     }
-    alert("Logging in...");
-    // API login call
+    else {
+      if(login(formData)) {
+        alert("Log in successful");
+      }
+      else alert("Log in successful");
+    }
   };
 
   return (

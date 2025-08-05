@@ -71,7 +71,35 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'profile']
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'profile', 'password']
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        # Extract password from validated data
+        password = validated_data.pop('password', None)
+        
+        # Create user instance
+        user = User.objects.create(**validated_data)
+        
+        # Set password properly with Django's hashing
+        if password:
+            user.set_password(password)
+            user.save()
+            
+        return user
+        
+    def update(self, instance, validated_data):
+        # Handle password updates properly
+        if 'password' in validated_data:
+            password = validated_data.pop('password')
+            instance.set_password(password)
+        
+        # Update other fields
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        
+        instance.save()
+        return instance
 
 class UserProfileVerificationAdminSerializer(serializers.ModelSerializer):
     class Meta:

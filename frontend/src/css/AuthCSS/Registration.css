@@ -123,8 +123,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+<<<<<<< HEAD
     margin-left: 8%;
     margin-top:21%; 
+=======
+    margin-top: 25rem;
+    margin-left: 8.8rem;
+>>>>>>> origin/main
     position: absolute;
 }
 

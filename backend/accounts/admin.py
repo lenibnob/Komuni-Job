@@ -10,7 +10,7 @@ class UserProfileInline(admin.StackedInline):
 
 class UserAdmin(BaseUserAdmin):
     inlines = (UserProfileInline,)
-    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'get_phone')
+    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'get_phone', 'get_address')
     
     def get_phone(self, obj):
         try:
@@ -18,6 +18,13 @@ class UserAdmin(BaseUserAdmin):
         except UserProfile.DoesNotExist:
             return "-"
     get_phone.short_description = 'Phone Number'
+    
+    def get_address(self, obj):
+        try:
+            return obj.profile.address
+        except UserProfile.DoesNotExist:
+            return "-"
+    get_address.short_description = 'Address'
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)

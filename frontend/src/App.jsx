@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import LoginPage from "./pages/AuthenticationPages/LoginPage";
 import RegistrationPage from "./pages/AuthenticationPages/RegistrationPage";
 import AboutPage from './pages/AboutPage';
+import DashboardPage from './pages/DashboardPage';
 
 export default function App() {
  
@@ -15,9 +16,10 @@ export default function App() {
         
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<LoginPage />}></Route>
-          <Route path="/register" element={<RegistrationPage />} ></Route>
-          <Route path="/about" element={<AboutPage />}></Route>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegistrationPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path='/dashboard' element={<DashboardPage />} />
         </Routes>
 
       </main>

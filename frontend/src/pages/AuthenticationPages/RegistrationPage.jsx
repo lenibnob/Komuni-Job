@@ -1,14 +1,17 @@
-// pages/RegistrationForm.jsx
 import "@/css/AuthCSS/Registration.css";
 import { useState } from "react";
 import NavBar from "@/components/NavBar";
 import TextInput from "@/components/AuthComponents/TextInput";
 import SuffixDropdown from "@/components/AuthComponents/SuffixDropdown";
 import RadioGroup from "@/components/AuthComponents/RadioGroup";
+import { useNavigate } from "react-router-dom";
+import { register } from "../../endpoints/api"
 
 export default function RegistrationPage() {
+  const navigate = useNavigate();
   const [suffix, setSuffix] = useState('');
   const [step, setStep] = useState(1);
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     givenName: '',
     middleName: '',
@@ -33,12 +36,48 @@ export default function RegistrationPage() {
     }));
   };
 
-  const handleRegister = () => {
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    // Basic validation
     if (!formData.agreeToTerms) {
-      alert("You must agree to the terms and conditions.");
+      setError("You must agree to the terms and conditions.");
       return;
     }
-    alert("Registration complete!");
+
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
+    // Map frontend fields to backend expected fields
+    const backendData = {
+      first_name: formData.givenName,
+      last_name: formData.surname,
+      middle_name: formData.middleName,
+      sex: formData.sex,
+      municipality: formData.city,
+      barangay: formData.barangay,
+      province: formData.province,
+      address: formData.address,
+      phone_number: formData.phone,
+      email: formData.email,
+      password: formData.password,
+      suffix: suffix
+    };
+
+    try {
+      if(register(backendData)) {
+        alert("Registration successful");
+        navigate("/login");
+      } else {
+        alert("There is an error");
+      }
+    } catch (error) {
+      console.error("Registration error:", error);
+      setError("Network error. Please check your connection and try again.");
+    }
   };
 
   return (
@@ -58,6 +97,7 @@ export default function RegistrationPage() {
                 <h2 className={step === 3 ? 'active' : ''}>3</h2>
               </div>
               <hr />
+              {error && <div className="error-message" style={{ color: 'red', margin: '10px 0' }}>{error}</div>}
               <div className="registrationInputField">
                 {step === 1 && (
                   <>
