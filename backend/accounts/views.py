@@ -8,6 +8,11 @@ from django.contrib.auth import authenticate
 from .serializers import UserSerializer, UserProfileVerificationAdminSerializer
 from .models import UserProfile, VERIFICATION_STATUS_CHOICES
 from django.db import transaction
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+    TokenVerifyView,
+)
 
 class RegisterView(APIView):
     permission_classes = [AllowAny]
@@ -56,7 +61,7 @@ class LoginView(APIView):
         try:
             user = User.objects.get(email=email)
         except User.DoesNotExist:
-            return Response({'error': 'Invalid credentials'}, status=400)
+            return Response({'success': False}, status=400)
         user = authenticate(username=user.username, password=password)
         if user:
             refresh = RefreshToken.for_user(user)
@@ -66,13 +71,15 @@ class LoginView(APIView):
                 'message': 'Login successful!',
                 'user': UserSerializer(user).data
             })
+
+            res.data = {'success': True}
         
             res.set_cookie(
                 key='access_token',
                 value=access,
                 httponly=True,
-                secure=True,
-                samesite='None',
+                secure=False,
+                samesite='Lax',
                 path='/'
             )
 
@@ -80,13 +87,13 @@ class LoginView(APIView):
                 key='refresh_token',
                 value=refresh,
                 httponly=True,
-                secure=True,
-                samesite='None',
+                secure=False,
+                samesite='Lax',
                 path='/'
             )
 
             return res
-        return Response({'error': 'Invalid credentials'}, status=400)
+        return Response({'success': False}, status=400)
 
 class UserProfileView(APIView):
     permission_classes = [IsAuthenticated]
@@ -118,3 +125,31 @@ class UserProfileVerificationView(APIView):
             serializer.save()
             return Response({'message': 'Verification status updated', 'profile': serializer.data})
         return Response(serializer.errors, status=400)
+    
+
+class RefreshTokenView(TokenRefreshView):
+    def post(self, request, *args, **kwargs):
+        refresh_token = request.COOKIES.get('refresh_token')
+
+        if not refresh_token:
+            raise Response({'error':"No refresh token found in cookies"})
+
+        request.data._mutable = True  
+        request.data['refresh'] = refresh_token
+        request.data._mutable = False
+
+        response = super().post(request, *args, **kwargs)
+        access_token = response.data.get('access')
+
+        res = Response({'refreshed': True})
+
+        res.set_cookie(
+            key='access_token',
+            value=access_token,
+            httponly=True,
+            secure=False,  
+            samesite='Lax',
+            path='/'
+        )
+
+        return res

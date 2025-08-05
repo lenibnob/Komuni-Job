@@ -5,6 +5,7 @@ import TextInput from "@/components/AuthComponents/TextInput";
 import SuffixDropdown from "@/components/AuthComponents/SuffixDropdown";
 import RadioGroup from "@/components/AuthComponents/RadioGroup";
 import { useNavigate } from "react-router-dom";
+import { register } from "../../endpoints/api"
 
 export default function RegistrationPage() {
   const navigate = useNavigate();
@@ -67,22 +68,11 @@ export default function RegistrationPage() {
     };
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/accounts/register/", {
-        method: "POST",
-        headers: {
-          'Content-Type': "application/json"
-        },
-        body: JSON.stringify(backendData)
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        alert("Registration successful!");
+      if(register(backendData)) {
+        alert("Registration successful");
         navigate("/login");
       } else {
-        setError(data.message || "Registration failed. Please try again.");
-        console.error("Registration error:", data);
+        alert("There is an error");
       }
     } catch (error) {
       console.error("Registration error:", error);

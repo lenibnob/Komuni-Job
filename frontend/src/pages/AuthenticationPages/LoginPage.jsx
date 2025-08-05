@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import NavBar from "@/components/NavBar";
 import TextInput from "@/components/AuthComponents/TextInput";
+import { login } from '../../endpoints/api'
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -21,9 +22,10 @@ export default function LoginPage() {
       return;
     }
     else {
-      const response = await fetch("http://127.0.0.1:8000/api/register/", {
-
-      })
+      if(login(formData)) {
+        alert("Log in successful");
+      }
+      else alert("Log in successful");
     }
   };
 
