@@ -1,16 +1,16 @@
-// pages/RegistrationForm.jsx
 import "@/css/AuthCSS/Registration.css";
 import { useState } from "react";
 import NavBar from "@/components/NavBar";
 import TextInput from "@/components/AuthComponents/TextInput";
 import SuffixDropdown from "@/components/AuthComponents/SuffixDropdown";
 import RadioGroup from "@/components/AuthComponents/RadioGroup";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 export default function RegistrationPage() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [suffix, setSuffix] = useState('');
   const [step, setStep] = useState(1);
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     givenName: '',
     middleName: '',
@@ -36,22 +36,58 @@ export default function RegistrationPage() {
   };
 
   const handleRegister = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    // Basic validation
     if (!formData.agreeToTerms) {
-      alert("You must agree to the terms and conditions.");
+      setError("You must agree to the terms and conditions.");
       return;
     }
-    else {
-      const response = await fetch("http://127.0.0.1:8000/api/register/", {
+
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
+    // Map frontend fields to backend expected fields
+    const backendData = {
+      first_name: formData.givenName,
+      last_name: formData.surname,
+      middle_name: formData.middleName,
+      sex: formData.sex,
+      municipality: formData.city,
+      barangay: formData.barangay,
+      province: formData.province,
+      address: formData.address,
+      phone_number: formData.phone,
+      email: formData.email,
+      password: formData.password,
+      suffix: suffix
+    };
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/accounts/register/", {
         method: "POST",
         headers: {
-          'Content-Type' : "application/json"
+          'Content-Type': "application/json"
         },
-        body: JSON.stringify(formData)
+        credentials: 'include',
+        body: JSON.stringify(backendData)
       });
-      if(response.ok) {
-        alert("Registration complete");
-        navigate("login/")
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Registration successful!");
+        navigate("/login");
+      } else {
+        setError(data.message || "Registration failed. Please try again.");
+        console.error("Registration error:", data);
       }
+    } catch (error) {
+      console.error("Registration error:", error);
+      setError("Network error. Please check your connection and try again.");
     }
   };
 
@@ -72,6 +108,7 @@ export default function RegistrationPage() {
                 <h2 className={step === 3 ? 'active' : ''}>3</h2>
               </div>
               <hr />
+              {error && <div className="error-message" style={{ color: 'red', margin: '10px 0' }}>{error}</div>}
               <div className="registrationInputField">
                 {step === 1 && (
                   <>
