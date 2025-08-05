@@ -1,0 +1,128 @@
+.dashboard {
+    background-color: #FFF9EF;
+    
+    display: flex;
+    height: 200vh;
+}
+
+/*=====================================================*/
+
+.dashboardNav {
+    background-color: #FFF9EF;
+    width: 8rem;
+    height: 45rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px;
+}
+
+.dashboardLogo {
+    border-radius: 15px;
+    background-color: #F59643;
+    width: 100px;
+    height: 100px;
+}
+
+.dashboardButtonRow {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.jobListingButton {
+    color: #22424C;
+    width: 60px;
+    height: 60px;
+}
+
+.jobPostedButton {
+    color: #F59643;
+    width: 60px;
+    height: 60px;
+}
+.createButton {
+    color: #F59643;
+    width: 60px;
+    height: 60px;
+}
+.profileButton {
+    color: #F59643;
+    width: 60px;
+    height: 60px;
+}
+.inboxButton {
+    color: #F59643;
+    width: 60px;
+    height: 60px;
+}
+.settingsButton {
+    color: #F59643;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+}
+
+/*=====================================================*/
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
+    width: 87vw;
+    height: 8vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.searchIcon {
+    color: #F59643;
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+}
+
+.searchBar input {
+    color: black;
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 1rem;
+    background: transparent;
+}
+
+/*=====================================================*/
+
+.jobList {
+    width: 100vw;
+    height: 200vh;
+
+    padding: 2rem;
+}
+
+.jobContainer {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    
+    padding: 3rem;
+    margin-top: 2.5rem;
+    width: 87vw;
+    height: 180vh;
+}
+
+.jobHeader {
+    color: #F59643;
+    width: 100%;
+    height: 100px;
+} .jobHeader hr {
+    margin-top: 0.5rem;
+    border: 3px solid #22424C;
+    border-radius: 10px;
+}
