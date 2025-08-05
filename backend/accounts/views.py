@@ -61,7 +61,7 @@ class LoginView(APIView):
         try:
             user = User.objects.get(email=email)
         except User.DoesNotExist:
-            return Response({'success': False}, status=400)
+            return Response({'error': 'Invalid credentials'}, status=400)
         user = authenticate(username=user.username, password=password)
         if user:
             refresh = RefreshToken.for_user(user)
@@ -72,8 +72,8 @@ class LoginView(APIView):
                 'user': UserSerializer(user).data
             })
 
-            res.data = {'success': True}
-        
+            res.data = {"success": True}
+
             res.set_cookie(
                 key='access_token',
                 value=access,
@@ -93,7 +93,7 @@ class LoginView(APIView):
             )
 
             return res
-        return Response({'success': False}, status=400)
+        return Response({'error': 'Invalid credentials'}, status=400)
 
 class UserProfileView(APIView):
     permission_classes = [IsAuthenticated]
