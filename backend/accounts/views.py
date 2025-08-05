@@ -153,3 +153,14 @@ class RefreshTokenView(TokenRefreshView):
         )
 
         return res
+
+class LogOutView(TokenObtainPairView):
+    def post(self, request, *args, **kwargs):
+        try:
+            res = Response()
+            res.data = {'success': True}
+            res.delete_cookie("acccess_token", path='/', samesite="None")
+            res.delete_cookie("refresh_token", path='/', samesite="None")
+            return res
+        except:
+            return Response({"error": "Something went wrong"})
