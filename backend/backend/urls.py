@@ -6,5 +6,6 @@ urlpatterns = [
     path('api/accounts/', include('accounts.urls')),
     path('api/jobs/', include('jobs.urls')),  # Add jobs URLs here
     path('api/user-rating/', include('user_rating.urls')),  # Add user rating URLs here
-    path('api/', include('accounts.urls'))
+    path('api/', include('accounts.urls')),
+    path('api/files/', include('files.urls')),
 ]

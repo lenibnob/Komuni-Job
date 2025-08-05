@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate
 from .serializers import UserSerializer, UserProfileVerificationAdminSerializer
 from .models import UserProfile, VERIFICATION_STATUS_CHOICES
 from django.db import transaction
+from files.services import FileService
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -164,3 +165,36 @@ class LogOutView(TokenObtainPairView):
             return res
         except:
             return Response({"error": "Something went wrong"})
+
+class ProfilePictureUploadView(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def post(self, request):
+        try:
+            # Get the file from request
+            file = request.FILES.get('profile_picture')
+            if not file:
+                return Response({'error': 'No file provided'}, status=status.HTTP_400_BAD_REQUEST)
+            
+            # Upload using FileService
+            file_obj = FileService.upload_file(
+                file_obj=file,
+                category_name='Profile Pictures',
+                user=request.user,
+                content_type_str='userprofile',
+                object_id=request.user.profile.id,
+                is_public=True
+            )
+            
+            # Update user profile
+            user_profile = request.user.profile
+            user_profile.profile_pic_url = file_obj.file_url
+            user_profile.save()
+            
+            return Response({
+                'success': True,
+                'profile_pic_url': file_obj.file_url
+            }, status=status.HTTP_200_OK)
+            
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
