@@ -5,8 +5,10 @@ import NavBar from "@/components/NavBar";
 import TextInput from "@/components/AuthComponents/TextInput";
 import SuffixDropdown from "@/components/AuthComponents/SuffixDropdown";
 import RadioGroup from "@/components/AuthComponents/RadioGroup";
+import { useNavigate } from "react-router-dom"
 
 export default function RegistrationPage() {
+  const navigate = useNavigate()
   const [suffix, setSuffix] = useState('');
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -33,12 +35,24 @@ export default function RegistrationPage() {
     }));
   };
 
-  const handleRegister = () => {
+  const handleRegister = async (e) => {
     if (!formData.agreeToTerms) {
       alert("You must agree to the terms and conditions.");
       return;
     }
-    alert("Registration complete!");
+    else {
+      const response = await fetch("http://127.0.0.1:8000/api/register/", {
+        method: "POST",
+        headers: {
+          'Content-Type' : "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+      if(response.ok) {
+        alert("Registration complete");
+        navigate("login/")
+      }
+    }
   };
 
   return (

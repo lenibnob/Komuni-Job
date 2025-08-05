@@ -98,8 +98,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 25rem;
-    padding-left: 8.5rem;
+    margin-top: 25rem;
+    margin-left: 8.8rem;
     position: absolute;
 }
 

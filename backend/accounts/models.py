@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 SEX_CHOICES = [
     ('Male', 'Male'),
     ('Female', 'Female'),
-    ('Other', 'Other'),
 ]
 
 SUFFIX_CHOICES = [
