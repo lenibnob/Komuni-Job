@@ -10,13 +10,19 @@
     width: 100vw;
     height: 100vh;
 
-    background-color: red;
+    background-color: #343331;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url("../../recources/SVG files/background_pictures/Background_about_us.svg");
+    background-size: cover;
+    
+    
+ 
 }
 
 .about {
+    
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -31,7 +37,8 @@
 }
 
 .imageLogo {
-    background-color: orange;
+    background-image: url("../../recources/SVG files/komunijob_logo.svg");
+    background-size: cover;
     border-radius: 20px;
     width: 400px;
     height: 400px;
@@ -59,29 +66,35 @@
     width: 100vw;
     height: 100vh;
 
-    background-color: #ffd388;
+    background-image: url("..\\..\\recources\\SVG files\\background_pictures\\lake.svg");
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .missionVisionContainer {
-    border: 1px solid black;
+    border: 1px solid rgba(0, 0, 0, 0);
     width: 1000px;
     height: 600px;
 }
 
 .missionVisionHeader {
-    border: 3px solid rgb(72, 0, 255);
+    border: 3px solid rgba(72, 0, 255, 0);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
+.missionVisionHeader h2{
+    text-align: center;
+    color: #22424C;
+}
+
 .missionVisionCardContainer {
     color: white;
-    background-color:green;
+    background-color:rgba(0, 128, 0, 0);
     width: 1000px;
     height: 486px;
     padding: 1rem;
@@ -94,17 +107,21 @@
 }
 
 .missionVisionCard {
-    border: 2px solid black;
-    color: black;
-    background-color: rgb(196, 196, 196);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 20px;
+    color: #22424C;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 50%);
+    backdrop-filter:blur(15px);
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 350px;
-    height: 450px;
+    height: 380px;
 }
+
 
 /*----------------------------------------------------------------------*/
 
@@ -119,7 +136,7 @@
 }
 
 .teamSectionContainer {
-    color: black;
+    color: #22424C;
     width: 100vw;
     height: 90vh;
 
@@ -140,8 +157,10 @@
 }
 
 .teamCard {
-    border: 2px solid black;
-    background-color: rgb(196, 196, 196);
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 50%);
+    backdrop-filter: blur(15px);
     color: black;
 
     display: flex;

@@ -2,7 +2,7 @@ export default function TeamSection() {
     function TeamCard({member}) {
         return (
             <div className="teamCard">
-                {/*Insert team image here*/}
+                <img src="@frontend\recources\SVG files\profiles\Lance.svg"/>
             </div>
         );
     }
