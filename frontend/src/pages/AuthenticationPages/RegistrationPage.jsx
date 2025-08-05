@@ -72,7 +72,6 @@ export default function RegistrationPage() {
         headers: {
           'Content-Type': "application/json"
         },
-        credentials: 'include',
         body: JSON.stringify(backendData)
       });
 
