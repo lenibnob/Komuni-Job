@@ -16,7 +16,8 @@ class RegisterView(APIView):
         mutable_data = request.data.copy()
         profile_fields = [
             'middle_name', 'sex', 'phone_number', 'profile_pic_url',
-            'municipality', 'barangay', 'province', 'zip_code', 'bio', 'suffix'
+            'municipality', 'barangay', 'province', 'zip_code', 'bio', 'suffix',
+            'address'  # Added address field here
         ]
         profile_data = {field: mutable_data.get(field) for field in profile_fields if mutable_data.get(field) is not None}
 
