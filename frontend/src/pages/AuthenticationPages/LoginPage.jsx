@@ -12,20 +12,19 @@ export default function LoginPage() {
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData({...formData, [e.target.name]: e.target.value})
   };
 
-  const handleLogin = () => {
+  const handleLogin = async (e) => {
     if (!formData.email || !formData.password) {
       alert("Please fill in both email and password.");
       return;
     }
-    alert("Logging in...");
-    // API login call
+    else {
+      const response = await fetch("http://127.0.0.1:8000/api/register/", {
+
+      })
+    }
   };
 
   return (
