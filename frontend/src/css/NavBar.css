@@ -15,8 +15,9 @@
 .logoIcon {
   width: 60px;
   height: 60px;
-  background-color: red; /* Remove this when image is placed */
-  background-image: url('/path/to/icon.png'); /* Replace with actual icon path */
+  border-radius: 5px;
+  background-color: white; /* Remove this when image is placed */
+  background-image: url("../../recources/SVG files/komunijob_logo.svg"); /* Replace with actual icon path */
   background-size: cover;
   margin-right: 5px;
 } .iconImage:hover {
