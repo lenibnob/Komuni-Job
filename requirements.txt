@@ -47,3 +47,6 @@ typing-inspection==0.4.1
 typing_extensions==4.14.1
 tzdata==2025.2
 websockets==15.0.1
+deepface==0.0.94
+pytesseract==0.3.13
+pillow==11.3.0
