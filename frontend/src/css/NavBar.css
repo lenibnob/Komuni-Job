@@ -20,7 +20,7 @@
   background-image: url("../../recources/SVG files/komunijob_logo.svg"); /* Replace with actual icon path */
   background-size: cover;
   margin-right: 5px;
-} .iconImage:hover {
+} .logoIcon:hover {
   cursor: pointer;
 }
 
