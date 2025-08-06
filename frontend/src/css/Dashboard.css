@@ -27,7 +27,9 @@
     background-image: url("../../recources/SVG files/komunijob_logo.svg");
     background-size: cover;
     width: 70px;
-    height: 70px;
+height: 70px;
+} .dashboardLogo:hover {
+    background-image: url("../../recources/SVG files/komunijob_hover.svg");
 }
 
 .dashboardButtonRow {
@@ -42,33 +44,49 @@
     color: #22424C;
     width: 60px;
     height: 60px;
+} .jobListingButton:hover {
+    color: #22424C;    
 }
+
+.createButton {
+    color: #F59643;
+    width: 60px;
+    height: 60px;
+} .createButton:hover {
+    color: #22424C;    
+} 
 
 .jobPostedButton {
     color: #F59643;
     width: 60px;
     height: 60px;
+} .jobPostedButton:hover {
+    color: #22424C;    
 }
-.createButton {
-    color: #F59643;
-    width: 60px;
-    height: 60px;
-}
+
 .profileButton {
     color: #F59643;
     width: 60px;
     height: 60px;
+} .profileButton:hover {
+    color: #22424C;    
 }
+
 .inboxButton {
     color: #F59643;
     width: 60px;
     height: 60px;
+} .inboxButton:hover {
+    color: #22424C;    
 }
+
 .settingsButton {
     color: #F59643;
     width: 60px;
     height: 60px;
     margin-bottom: 1rem;
+} .settingsButton:hover {
+    color: #22424C;    
 }
 
 /*=====================================================*/
@@ -137,12 +155,20 @@
     height: 92%;
     
     display: grid;
-    justify-content: space-between;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+    justify-content: space-between;
 }
 
 .textBox {
-    background-color: black;
+    background-color: white;
+    border-radius: 20px;
+    color: black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    
     width: 580px;
     height: 350px;
+
+    
+    padding: 1rem;
 }
