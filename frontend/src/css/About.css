@@ -1,11 +1,9 @@
-<<<<<<< HEAD
 .aboutPage 
 {
-    background-color: #FFF9EF;;
-=======
+    background-color: #FFF9EF;
+}
 .aboutPage {
-    background-color: #fff9ef;;
->>>>>>> 6be6aa902e6720ab0a5c44cd97f03dce3147494b
+    background-color: #fff9ef;
     height: 100vh;
     display: flex;
     flex-direction: column;
