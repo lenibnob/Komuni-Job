@@ -31,13 +31,12 @@ export default function LoginPage() {
 
   return (
     <>
-      <NavBar authenticatePage={{ address: "/register", option: "Sign up" }} />
+      <NavBar authenticatePage={{ address: "/register", option: "Sign Up" }} />
       <div className="loginPage">
         <div className="loginContainer">
           <div className="login">
             <div className="imageContainer"></div>
             <div className="loginForm">
-              <h1>Login</h1>
               <hr />
               <TextInput
                 label="Email"
@@ -56,10 +55,10 @@ export default function LoginPage() {
                 variant="login"
               />
               <p>
-                Don't have an account? <Link to="/register">Register here</Link>
+                Don't have an account? <Link to="/register">Sign up</Link>
               </p>
               <div className="buttonGroup">
-                <button onClick={handleLogin}>Login</button>
+                <button onClick={handleLogin}>Log In</button>
               </div>
             </div>
           </div>

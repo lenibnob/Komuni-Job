@@ -61,7 +61,7 @@
 .pagination {
   display: flex;
   justify-content: center;
-  gap: 4rem;
+  gap: 2rem;
 }
 
 .pagination h2 {
@@ -173,4 +173,30 @@
 .registrationCheckbox {
   width: 30px;
   height: 30px;
+}
+
+.fileSelect {
+  border: 2px dashed #ccc;
+  padding: 20px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: border-color 0.2s;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 347px;
+  height: 150px;
+}
+
+.fileSelect:hover {
+  border-color: #888;
+}
+
+.validateButton {
+  position: absolute;
+  right: 30%;
+  margin-top: 1.5rem;
 }

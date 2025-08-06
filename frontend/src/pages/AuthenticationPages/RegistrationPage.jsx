@@ -82,7 +82,7 @@ export default function RegistrationPage() {
 
   return (
     <>
-      <NavBar authenticatePage={{ address: "/login", option: "Log in" }} />
+      <NavBar authenticatePage={{ address: "/login", option: "Sign In" }} />
       <div className="registrationPage">
         <div className="registrationContainer">
           <div className="registration">
@@ -95,9 +95,9 @@ export default function RegistrationPage() {
                 <h2 className={step === 1 ? 'active' : ''}>1</h2>
                 <h2 className={step === 2 ? 'active' : ''}>2</h2>
                 <h2 className={step === 3 ? 'active' : ''}>3</h2>
+                <h2 className={step === 4 ? 'active' : ''}>4</h2>
               </div>
               <hr />
-              {error && <div className="error-message" style={{ color: 'red', margin: '10px 0' }}>{error}</div>}
               <div className="registrationInputField">
                 {step === 1 && (
                   <>
@@ -147,7 +147,31 @@ export default function RegistrationPage() {
                           onChange={handleChange}
                         />
                         I agree to the terms and conditions
-                      </label>
+                      </label>    
+                      {error && <div className="error-message" style={{ color: 'black', margin: '10px 0' }}>{error}</div>}  
+                    </div>
+                    <div className="registrationNextButton">
+                      <button onClick={() => setStep(4)}>Next</button>
+                    </div>
+                  </>
+                )}
+                {step === 4 && (
+                  <>
+                    <div className="inputGroup">
+                        <div className="fileSelect" onClick={() => document.getElementById('fileInput').click()}>
+                          Click to select file
+                          <input
+                            id="fileInput"
+                            type="file"
+                            style={{ display: 'none' }}
+                            onChange={(e) => {
+                              const file = e.target.files[0];
+                              console.log('Selected file:', file);
+                              // You can store this in state if needed
+                            }}
+                          />
+                        </div>
+                        <button className="validateButton">Validate</button>
                     </div>
                     <div className="registrationNextButton">
                       <button onClick={handleRegister}>Register</button>

@@ -1,8 +1,8 @@
 export default function TeamSection() {
-    function TeamCard({member}) {
+    function TeamCard({ memberClass }) {
         return (
             <div className="teamCard">
-                {/*Insert team image here*/}
+                <div className={`teamImage ${memberClass}`}></div>
             </div>
         );
     }
@@ -12,15 +12,15 @@ export default function TeamSection() {
             <div className="teamSectionContainer">
                 <h1>Meet Our Team</h1>
                 <div className="teamCardsContainer">
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
+                    <TeamCard memberClass="lance" />
+                    <TeamCard memberClass="josh" />
+                    <TeamCard memberClass="rein" />
                 </div>
                 <div className="teamCardsContainer">
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
-                    <TeamCard />
+                    <TeamCard memberClass="mark" />
+                    <TeamCard memberClass="naomi" />
+                    <TeamCard memberClass="shawnlee" />
+                    <TeamCard memberClass="gelo" />
                 </div>
             </div>
         </div>
