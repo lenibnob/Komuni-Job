@@ -75,8 +75,6 @@ class LoginView(APIView):
 
             res.data = {"success": True}
             
-            
-
             res.set_cookie(
                 key='access_token',
                 value=access,
