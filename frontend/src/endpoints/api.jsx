@@ -8,8 +8,9 @@ const REGISTER_URL = `${BASE_URL}api/accounts/register/`
 
 const LOGOUT_URL = `${BASE_URL}api/accounts/logout/`
 
-const UPLOAD_URL = `${BASE_URL}api/accounts/register/upload-id`
+const UPLOAD_URL = `${BASE_URL}api/accounts/register/upload-id/`
 
+const VERIFY_URL =  `${BASE_URL}id-verify/id-ocr/`
 export const login = async (data) => {
     const response = await fetch(LOGIN_URL, {
         method: "POST",
@@ -64,4 +65,29 @@ export const uploadId = async () => {
         return true;
     }
     return false;
+}
+
+export const confirmId = async (fullName, personId) => {
+  
+  const formData = new FormData();
+  formData.append("full_name", fullName);
+  formData.append("id_image", personId);
+  try{
+    const response = await fetch(VERIFY_URL, {
+      method: "POST",
+      body: formData
+    });
+    const data = await response.json();
+
+    if(response.ok) {
+      return !!data.match
+    }
+    return false;
+  }
+  catch(error){
+    console.error("Error at: ", error);
+    return false;
+  }
+  
+  
 }
