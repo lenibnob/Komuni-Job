@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'accounts',  # user management app
     'jobs', # job management app
     'user_rating',  # user ratings app
+    'faceverify', # face verification app
 ]
 
 MIDDLEWARE = [
