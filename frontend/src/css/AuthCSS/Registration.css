@@ -117,32 +117,35 @@
    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.registrationNextButton
-{
-   color:#f59643;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-<<<<<<< HEAD
-    margin-left: 8%;
-    margin-top:21%; 
-=======
-    margin-top: 25rem;
-    margin-left: 8.8rem;
->>>>>>> origin/main
-    position: absolute;
+.registrationTextInput:focus,
+.registrationTextInput:active{
+  outline:none;
 }
 
-.registrationNextButton{
-   color:#f59643;
-   background-color: #fff;
-    border:3px solid #f59643;
-    border-radius: 10px;
-    min-width: 100px;
-    font-size: small;
-    
+.registrationNextButton {
+  color: #f59643;
+  background-color: #fff;
+  border: 3px solid #f59643;
+  border-radius: 10px;
+  min-width: 100px;
+  font-size: small;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8%;
+  margin-top: 20%;
+  position: absolute;
+
+  outline: none;
 }
 
+/* Remove outline and focus shadow when clicked or tabbed */
+.registrationNextButton:focus,
+.registrationNextButton:active {
+  outline: none;
+  box-shadow: none;
+}
 
 
 

@@ -12,11 +12,7 @@
     width: 100vw;
     height: 100vh;
 
-<<<<<<< HEAD
-    background-color: #f59643;
-=======
     background-color: #343331;
->>>>>>> origin/main
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,12 +39,8 @@
 }
 
 .imageLogo {
-<<<<<<< HEAD
-    background-color: #fff;
-=======
     background-image: url("../../recources/SVG files/komunijob_logo.svg");
     background-size: cover;
->>>>>>> origin/main
     border-radius: 20px;
     width: 400px;
     height: 400px;
@@ -76,12 +68,8 @@
     width: 100vw;
     height: 100vh;
 
-<<<<<<< HEAD
-    background-color: #f59643;
-=======
     background-image: url("..\\..\\recources\\SVG files\\background_pictures\\lake.svg");
     background-size: cover;
->>>>>>> origin/main
     display: flex;
     justify-content: center;
     align-items: center;
@@ -94,11 +82,7 @@
 }
 
 .missionVisionHeader {
-<<<<<<< HEAD
-    border: 3px solid rgba(255, 102, 0, 0.856);
-=======
     border: 3px solid rgba(72, 0, 255, 0);
->>>>>>> origin/main
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -112,11 +96,7 @@
 
 .missionVisionCardContainer {
     color: white;
-<<<<<<< HEAD
-    background-color:#fff;
-=======
     background-color:rgba(0, 128, 0, 0);
->>>>>>> origin/main
     width: 1000px;
     height: 486px;
     padding: 1rem;

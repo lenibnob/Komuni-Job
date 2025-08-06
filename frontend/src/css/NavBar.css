@@ -74,6 +74,7 @@
 
 .navButton 
 {
+  outline:none;
   color: #f59643;
   background-color: white;
   border-color: rgb(218, 218, 218);
@@ -93,6 +94,12 @@
   background-color: #f59643;
   cursor: pointer;
 }
+
+.navButton:focus,
+.navButton:active {
+  outline: none;
+}
+
 
 @media (max-width: 768px) 
 {

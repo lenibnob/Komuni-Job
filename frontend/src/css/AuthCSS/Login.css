@@ -88,12 +88,17 @@
 .loginTextInput {
     color:#f59643;
     width: 350px;
-<<<<<<< HEAD
     height: 50px;
     border: 1px solid transparent;
     border-radius: 24px;
     background-color: rgb(248, 240, 230);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.loginTextInput:focus,
+.loginTextInput:after
+{
+    outline:none;
 }
 
 .login button{
@@ -115,11 +120,9 @@
     padding-right: 30px;
     width:300px;
 }
-=======
-    height: 40px;
-    border: 1px solid black;
-    border-radius: 20px;
-    padding: 0 1rem;
-    font-size: 14px;
+
+.login button:focus,
+.login button:active
+{
+outline: none;
 }
->>>>>>> origin/main
