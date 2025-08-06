@@ -5,10 +5,12 @@ import TextInput from "@/components/AuthComponents/TextInput";
 import SuffixDropdown from "@/components/AuthComponents/SuffixDropdown";
 import RadioGroup from "@/components/AuthComponents/RadioGroup";
 import { useNavigate } from "react-router-dom";
-import { register } from "../../endpoints/api"
+import { confirmId, register } from "../../endpoints/api"
 
 export default function RegistrationPage() {
   const navigate = useNavigate();
+  const [status, setStatus] = useState('');
+  const [file, setFile] = useState('');
   const [suffix, setSuffix] = useState('');
   const [step, setStep] = useState(1);
   const [error, setError] = useState("");
@@ -36,21 +38,53 @@ export default function RegistrationPage() {
     }));
   };
 
+  const missing = () => {
+    switch(step){
+      case 1:
+        if(!formData.givenName || !formData.middleName || !formData.surname || !formData.sex) {
+          alert("Incomplete Field(s)");
+          return true;
+        }
+        break;
+      case 2:
+        if(!formData.city || !formData.province || !formData.barangay || !formData.address) {
+          alert("Incomplete Field(s)");
+          return true;
+        }
+        break;
+      case 3:
+        if(!formData.phone || !formData.email || !formData.password || !formData.confirmPassword) {
+          alert("Incomplete Field(s)");
+          return true;
+        }
+        break;
+      case 4:
+        if(!file) {
+          alert("Upload Student ID");
+          return true;
+        }
+        break;
+      default:
+        return false;
+    }
+  }
+
   const handleRegister = async (e) => {
     e.preventDefault();
     setError("");
-
+    missing();
     // Basic validation
     if (!formData.agreeToTerms) {
-      setError("You must agree to the terms and conditions.");
+      alert("You must agree to the terms and conditions.");
       return;
     }
 
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match.");
+      alert("Passwords do not match.");
       return;
     }
 
+    
     // Map frontend fields to backend expected fields
     const backendData = {
       first_name: formData.givenName,
@@ -67,11 +101,20 @@ export default function RegistrationPage() {
       suffix: suffix
     };
 
+    var fullName = formData.surname + formData.givenName; 
+
+    fullName = fullName.replace(/\s+/g, "").toLowerCase();
+    
     try {
-      if(register(backendData)) {
-        alert("Registration successful");
-        navigate("/login");
-      } else {
+      if(confirmId(fullName, file)) {
+        if(register(backendData)){
+          alert("Registration successful");
+        }
+        else {
+          alert("There is an error");
+        }
+      } 
+      else {
         alert("There is an error");
       }
     } catch (error) {
@@ -115,7 +158,7 @@ export default function RegistrationPage() {
                       onChange={handleChange}
                     />
                     <div className="registrationNextButton">
-                      <button onClick={() => setStep(2)}>Next</button>
+                      <button onClick={() => {if(!missing()){setStep(2)}}}>Next</button>
                     </div>
                   </>
                 )}
@@ -127,7 +170,7 @@ export default function RegistrationPage() {
                     <TextInput label="Barangay" name="barangay" value={formData.barangay} onChange={handleChange} variant="registration" />
                     <TextInput label="Address" name="address" value={formData.address} onChange={handleChange} variant="registration" />
                     <div className="registrationNextButton">
-                      <button onClick={() => setStep(3)}>Next</button>
+                      <button onClick={() => {if(!missing()){setStep(3)}}}>Next</button>
                     </div>
                   </>
                 )}
@@ -151,25 +194,30 @@ export default function RegistrationPage() {
                       {error && <div className="error-message" style={{ color: 'black', margin: '10px 0' }}>{error}</div>}  
                     </div>
                     <div className="registrationNextButton">
-                      <button onClick={() => setStep(4)}>Next</button>
+                      <button onClick={() => {if(!missing()){setStep(4)}}}>Next</button>
                     </div>
                   </>
                 )}
                 {step === 4 && (
                   <>
                     <div className="inputGroup">
-                        <div className="fileSelect" onClick={() => document.getElementById('fileInput').click()}>
+                        <div className="fileSelect" onClick={() => document.getElementById('id_image').click()}>
                           Click to select file
-                          <input
-                            id="fileInput"
-                            type="file"
-                            style={{ display: 'none' }}
-                            onChange={(e) => {
-                              const file = e.target.files[0];
-                              console.log('Selected file:', file);
-                              // You can store this in state if needed
-                            }}
-                          />
+                          <input 
+                          type="file" 
+                          id="id_image" 
+                          name="id_image" 
+                          accept="image/*" 
+                          style={{display: 'none'}} 
+                          onChange={(e) => {
+                            const file = e.target.files[0]; 
+                            if(file) {
+                              setStatus("Uploaded"); 
+                              setFile(file)
+                            }
+                          }}
+                          required/>
+                          <p>{status}</p>
                         </div>
                         <button className="validateButton">Validate</button>
                     </div>

@@ -1,14 +1,14 @@
 // pages/LoginForm.jsx
 import "@/css/AuthCSS/Login.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NavBar from "@/components/NavBar";
 import TextInput from "@/components/AuthComponents/TextInput";
 import { login } from '../../endpoints/api'
 
 
 export default function LoginPage() {
-  navigate = useNavigate();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -63,7 +63,11 @@ export default function LoginPage() {
                 Don't have an account? <Link to="/register">Sign up</Link>
               </p>
               <div className="buttonGroup">
+<<<<<<< HEAD
               <button onClick={handleLogin}>Login</button>
+=======
+                <button onClick={handleLogin}>Log In</button>
+>>>>>>> origin/main
               </div>
             </div>
           </div>
