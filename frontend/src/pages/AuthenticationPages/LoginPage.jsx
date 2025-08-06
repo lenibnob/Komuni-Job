@@ -6,6 +6,7 @@ import NavBar from "@/components/NavBar";
 import TextInput from "@/components/AuthComponents/TextInput";
 import { login } from '../../endpoints/api'
 
+
 export default function LoginPage() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -37,7 +38,9 @@ export default function LoginPage() {
       <div className="loginPage">
         <div className="loginContainer">
           <div className="login">
-            <div className="imageContainer"></div>
+            <div className="imageContainer">
+          
+            </div>
             <div className="loginForm">
               <hr />
               <TextInput
@@ -60,7 +63,12 @@ export default function LoginPage() {
                 Don't have an account? <Link to="/register">Sign up</Link>
               </p>
               <div className="buttonGroup">
+<<<<<<< HEAD
+                <button onClick={handleLogin}>Login</button>
+              
+=======
                 <button onClick={handleLogin}>Log In</button>
+>>>>>>> 6be6aa902e6720ab0a5c44cd97f03dce3147494b
               </div>
             </div>
           </div>

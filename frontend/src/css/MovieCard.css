@@ -2,7 +2,7 @@
   position: relative;
   border-radius: 8px;
   overflow: hidden;
-  background-color: #1a1a1a;
+  background-color: #fff;
   transition: transform 0.2s;
   height: 100%;
   display: flex;
@@ -55,7 +55,7 @@
   color: white;
   font-size: 1.5rem;
   padding: 0.5rem;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #f59643;
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -66,11 +66,11 @@
 }
 
 .favorite-btn:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color:#fff;
 }
 
 .favorite-btn.active {
-  color: #ff4757;
+  color: #f59643;
 }
 
 .rating-select {
@@ -102,7 +102,7 @@
 }
 
 .user-rating {
-  color: #ffd700;
+  color: #f59643;
   font-size: 0.9rem;
   margin-top: auto;
 }

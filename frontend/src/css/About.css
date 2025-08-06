@@ -1,12 +1,17 @@
+.aboutPage 
+{
+    background-color: #FFF9EF;
+}
 .aboutPage {
-    background-color: #fff9ef;;
+    background-color: #fff9ef;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.aboutBackground {
+.aboutBackground 
+{
     width: 100vw;
     height: 100vh;
 
