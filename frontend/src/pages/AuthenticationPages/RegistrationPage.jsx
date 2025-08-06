@@ -28,6 +28,10 @@ export default function RegistrationPage() {
     agreeToTerms: false
   });
 
+  const handleUpload = (e) => {
+    
+  }
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
@@ -131,7 +135,6 @@ export default function RegistrationPage() {
                     </div>
                   </>
                 )}
-
                 {step === 3 && (
                   <>
                     <TextInput label="Phone Number" name="phone" value={formData.phone} onChange={handleChange} type="tel" variant="registration" />
@@ -149,6 +152,16 @@ export default function RegistrationPage() {
                         I agree to the terms and conditions
                       </label>
                     </div>
+                    <div className="registrationNextButton">
+                      <button onClick={() => setStep(4)}>Next</button>
+                    </div>
+                  </>
+                )}
+                {step === 4 && (
+                  <>
+                    <TextInput label="Upload your student ID" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} type="password" variant="registration" />
+                    <button onClick={}>Upload</button>
+
                     <div className="registrationNextButton">
                       <button onClick={handleRegister}>Register</button>
                     </div>
