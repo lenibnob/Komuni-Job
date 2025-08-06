@@ -9,16 +9,16 @@ import { Link } from "react-router-dom";
 export default function DashboardNav () {
     return (
         <div className="dashboardNav">
-            <div className="dashboardLogo"></div>
+            <Link to="/"><div className="dashboardLogo"></div></Link>
             <div className="dashboardButtonRow">
                 {/*replace these divs with Links later*/}
                 <Link to="/"><LuHouse className="jobListingButton"/></Link>
-                <Link to="/"><FaRegPlusSquare   className="createButton" /></Link>
                 <Link to="/"><FiBriefcase className="jobPostedButton" /></Link>
+                <Link to="/"><FaRegPlusSquare   className="createButton" /></Link>
                 <Link to="/"><FiUser className="profileButton" /></Link>
                 <Link to="/"><MdMailOutline  className="inboxButton"/></Link>
             </div>
-            <GoGear className="settingsButton"/>
+            <Link to="/"><GoGear className="settingsButton"/></Link>
         </div>
     );
 }

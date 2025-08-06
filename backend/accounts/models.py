@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Existing choices...
-
 SEX_CHOICES = [
     ('Male', 'Male'),
     ('Female', 'Female'),
@@ -25,7 +23,6 @@ VERIFICATION_STATUS_CHOICES = [
     ('rejected', 'Rejected'),
 ]
 
-
 class IdentificationCardType(models.Model):
     type_name = models.CharField(max_length=100, unique=True)
 
@@ -34,13 +31,12 @@ class IdentificationCardType(models.Model):
 
 class IdentificationCard(models.Model):
     card_type = models.ForeignKey(IdentificationCardType, on_delete=models.PROTECT, related_name='cards')
-    id_front = models.URLField(max_length=500)
-    id_back = models.URLField(max_length=500, blank=True, null=True)
+    id_front = models.URLField(max_length=500, null=True, blank=True) 
+    id_back = models.URLField(max_length=500, null=True, blank=True)
     notes = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.card_type.type_name} Card"
-
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
@@ -49,6 +45,7 @@ class UserProfile(models.Model):
     suffix = models.CharField(max_length=5, choices=SUFFIX_CHOICES, blank=True, null=True)
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     profile_pic_url = models.URLField(max_length=500, blank=True, null=True)
+    cover_photo_url = models.URLField(max_length=500, blank=True, null=True)  # Added field for cover photo
     address = models.TextField(blank=True, null=True) 
     municipality = models.CharField(max_length=50, blank=True, null=True)
     barangay = models.CharField(max_length=50, blank=True, null=True)

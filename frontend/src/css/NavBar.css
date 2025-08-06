@@ -16,6 +16,7 @@
 .logoIcon {
   width: 60px;
   height: 60px;
+<<<<<<< HEAD
   background-color: #f59643; /* Remove this when image is placed */
   background-image: url("komunijob_logo.svg"); /* Replace with actual icon path */
   background-size: cover;
@@ -24,6 +25,14 @@
 
 .iconImage:hover 
 {
+=======
+  border-radius: 5px;
+  background-color: white; /* Remove this when image is placed */
+  background-image: url("../../recources/SVG files/komunijob_logo.svg"); /* Replace with actual icon path */
+  background-size: cover;
+  margin-right: 5px;
+} .logoIcon:hover {
+>>>>>>> 6be6aa902e6720ab0a5c44cd97f03dce3147494b
   cursor: pointer;
 }
 
@@ -93,6 +102,10 @@
   border-color: #f59643;
   background-color: #f59643;
   cursor: pointer;
+} .navButton:active {
+  outline: none;
+} .navButton:focus {
+  outline: none;
 }
 
 .navButton:focus,

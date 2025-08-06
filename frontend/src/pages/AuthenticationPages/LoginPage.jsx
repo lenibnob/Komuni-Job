@@ -8,6 +8,7 @@ import { login } from '../../endpoints/api'
 
 
 export default function LoginPage() {
+  navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -25,6 +26,7 @@ export default function LoginPage() {
     else {
       if(login(formData)) {
         alert("Log in successful");
+        navigate("/dashboard");
       }
       else alert("Log in successful");
     }
@@ -32,7 +34,7 @@ export default function LoginPage() {
 
   return (
     <>
-      <NavBar authenticatePage={{ address: "/register", option: "Sign up" }} />
+      <NavBar authenticatePage={{ address: "/register", option: "Sign Up" }} />
       <div className="loginPage">
         <div className="loginContainer">
           <div className="login">
@@ -40,7 +42,6 @@ export default function LoginPage() {
           
             </div>
             <div className="loginForm">
-              <h1>Login</h1>
               <hr />
               <TextInput
                 label="Email"
@@ -59,11 +60,15 @@ export default function LoginPage() {
                 variant="login"
               />
               <p>
-                Don't have an account? <Link to="/register">Register here</Link>
+                Don't have an account? <Link to="/register">Sign up</Link>
               </p>
               <div className="buttonGroup">
+<<<<<<< HEAD
                 <button onClick={handleLogin}>Login</button>
               
+=======
+                <button onClick={handleLogin}>Log In</button>
+>>>>>>> 6be6aa902e6720ab0a5c44cd97f03dce3147494b
               </div>
             </div>
           </div>
