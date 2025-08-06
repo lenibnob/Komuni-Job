@@ -7,6 +7,7 @@ import TextInput from "@/components/AuthComponents/TextInput";
 import { login } from '../../endpoints/api'
 
 export default function LoginPage() {
+  navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -24,6 +25,7 @@ export default function LoginPage() {
     else {
       if(login(formData)) {
         alert("Log in successful");
+        navigate("/dashboard");
       }
       else alert("Log in successful");
     }

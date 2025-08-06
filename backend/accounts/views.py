@@ -75,8 +75,6 @@ class LoginView(APIView):
 
             res.data = {"success": True}
             
-            
-
             res.set_cookie(
                 key='access_token',
                 value=access,
@@ -264,3 +262,4 @@ class IdentificationCardUploadView(APIView):
             'id_front': id_front_url,
             'id_back': id_back_url
         }, status=status.HTTP_201_CREATED)
+
