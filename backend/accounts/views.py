@@ -35,7 +35,7 @@ class RegisterView(APIView):
         if serializer.is_valid():
             with transaction.atomic():
                 user = serializer.save()
-                new_username = f"{user.first_name.lower()}.{user.last_name.lower()}#{user.id}"
+                new_username = f"{user.first_name.replace(" ", "").lower()}.{user.last_name.replace(" ", "").lower()}#{user.id}"
                 user.username = new_username
                 user.save()
                 profile, created = UserProfile.objects.get_or_create(user=user)
