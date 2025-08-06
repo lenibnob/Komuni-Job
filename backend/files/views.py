@@ -11,12 +11,10 @@ class FileCategoryViewSet(viewsets.ReadOnlyModelViewSet):
     """API endpoint to list file categories"""
     queryset = FileCategory.objects.all()
     serializer_class = FileCategorySerializer
-    permission_classes = [permissions.IsAuthenticated]
 
 class FileUploadView(APIView):
     """API endpoint for uploading files"""
     parser_classes = [MultiPartParser, FormParser]
-    permission_classes = [permissions.IsAuthenticated]
     
     def post(self, request):
         try:
@@ -60,7 +58,6 @@ class FileUploadView(APIView):
 
 class FileListView(APIView):
     """API endpoint for listing files"""
-    permission_classes = [permissions.IsAuthenticated]
     
     def get(self, request):
         content_type_str = request.query_params.get('content_type_str')
@@ -78,7 +75,6 @@ class FileListView(APIView):
 
 class FileDeleteView(APIView):
     """API endpoint for deleting files"""
-    permission_classes = [permissions.IsAuthenticated]
     
     def delete(self, request, file_id):
         try:

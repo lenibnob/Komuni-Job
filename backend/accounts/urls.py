@@ -6,7 +6,6 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView,
 )
-from. import views_debug
 
 urlpatterns = [
     path('refresh/', RefreshTokenView.as_view(), name="token_refresh"),
@@ -16,5 +15,4 @@ urlpatterns = [
     path('profile/', UserProfileView.as_view(), name='user_profile'),
     path('profile/upload-picture/', ProfilePictureUploadView.as_view(), name='profile_picture_upload'),
     path('profile/verify/<int:pk>/', UserProfileVerificationView.as_view(), name='user_profile_verify'),
-    path('debug/test-upload/', views_debug.test_upload, name='debug_test_upload')
 ]

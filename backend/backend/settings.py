@@ -36,6 +36,7 @@ ALLOWED_HOSTS = ["*"]
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "accounts.authentication.JWTCookieAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication"
     ),
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
