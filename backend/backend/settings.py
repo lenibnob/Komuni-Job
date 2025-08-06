@@ -63,10 +63,14 @@ INSTALLED_APPS = [
     'jobs', # job management app
     'user_rating',  # user ratings app
 <<<<<<< HEAD
+<<<<<<< HEAD
     'faceverify', # face verification app
 =======
     'files', # file management app
 >>>>>>> 432123e22a50c9217571fbd3b90bbf816f2cee64
+=======
+    'files', # file management app
+>>>>>>> origin/main
 ]
 
 MIDDLEWARE = [

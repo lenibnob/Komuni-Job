@@ -265,5 +265,9 @@ class IdentificationCardUploadView(APIView):
             'message': 'ID uploaded successfully.',
             'id_front': id_front_url,
             'id_back': id_back_url
+<<<<<<< HEAD
         }, status=status.HTTP_201_CREATED)
 >>>>>>> 432123e22a50c9217571fbd3b90bbf816f2cee64
+=======
+        }, status=status.HTTP_201_CREATED)
+>>>>>>> origin/main
