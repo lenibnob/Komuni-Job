@@ -174,8 +174,9 @@
 
 /* Inserted image container */
 .teamImage {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 300px;
+    border-radius: 15px;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -184,25 +185,40 @@
 /* Member-specific background images */
 .teamImage.lance {
     background-image: url("..\\..\\recources\\SVG files\\profiles\\Lance.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .teamImage.josh {
     background-image: url("..\\..\\recources\\SVG files\\profiles\\Lance.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .teamImage.rein {
     background-image: url("..\\..\\recources\\SVG files\\profiles\\Lance.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .teamImage.mark {
     background-image: url("..\\..\\recources\\SVG files\\profiles\\Lance.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .teamImage.naomi {
     background-image: url("..\\..\\recources\\SVG files\\profiles\\Lance.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .teamImage.shawnlee {
     background-image: url("..\\..\\recources\\SVG files\\profiles\\Lance.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .teamImage.gelo {
     background-image: url("..\\..\\recources\\SVG files\\profiles\\Lance.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
+
 /*----------------------------------------------------------------------*/
 
 .unGoals {

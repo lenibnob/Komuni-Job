@@ -76,6 +76,10 @@
   border-color: #f59643;
   background-color: #f59643;
   cursor: pointer;
+} .navButton:active {
+  outline: none;
+} .navButton:focus {
+  outline: none;
 }
 
 @media (max-width: 768px) {

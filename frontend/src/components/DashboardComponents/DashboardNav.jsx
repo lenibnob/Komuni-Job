@@ -13,8 +13,8 @@ export default function DashboardNav () {
             <div className="dashboardButtonRow">
                 {/*replace these divs with Links later*/}
                 <Link to="/"><LuHouse className="jobListingButton"/></Link>
-                <Link to="/"><FaRegPlusSquare   className="createButton" /></Link>
                 <Link to="/"><FiBriefcase className="jobPostedButton" /></Link>
+                <Link to="/"><FaRegPlusSquare   className="createButton" /></Link>
                 <Link to="/"><FiUser className="profileButton" /></Link>
                 <Link to="/"><MdMailOutline  className="inboxButton"/></Link>
             </div>

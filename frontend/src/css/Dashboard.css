@@ -149,10 +149,9 @@ height: 70px;
 
 .jobPostContainer {
     padding-top: 1rem;
+    padding-bottom: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    width: 100%;
-    height: 92%;
     
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -160,15 +159,89 @@ height: 70px;
     justify-content: space-between;
 }
 
-.textBox {
+.jobPost {
     background-color: white;
     border-radius: 20px;
     color: black;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     
     width: 580px;
-    height: 350px;
+    height: 275px;
 
+    display: flex;
+    flex-direction: row;
     
-    padding: 1rem;
+    padding: 1.5rem;
+    gap: 1rem;
+}
+
+.jobImage {
+    background-color: blue;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+    width: 225px;
+    height: 225px;
+}
+
+.jobDetails {
+    width: 290px;
+    height: 225px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 1rem;
+}
+
+.jobIntro {
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+    width: 290px;
+    height: 160px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    padding: .5rem;
+    font-size: 1.2rem;
+}
+
+.viewButton {
+    background-color: #FFF9EF;
+    color: #F59643;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 50px;
+    font-size: 1.8rem;
+
+    padding: 0.5rem;
+
+    width: 140px;
+    height: 70px;
+} .viewButton:hover:focus {
+    outline: none;
+}
+
+.jobStatusContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    width: 290px;
+    height: 80px;
+
+    gap: 0.5rem;
+}
+
+.jobStatus {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    font-size: 1.3rem;
 }

@@ -66,9 +66,12 @@
   cursor: pointer;
   font-size: 25px;
 } .startButton:hover {
+  outline: none;
   color: white;
   border: none;
   background-color: #f59643;
+} .startButton:focus {
+  outline: none;
 }
 
 .introduction {
