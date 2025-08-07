@@ -49,6 +49,8 @@ class UserProfileVerificationAdminSerializer(serializers.ModelSerializer):
 
 class UserProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
+    profile_pic_signed_url = serializers.SerializerMethodField()
+    cover_photo_signed_url = serializers.SerializerMethodField()
 
     class Meta:
         model = UserProfile
@@ -61,7 +63,9 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'sex',
             'suffix',
             'profile_pic_url',
+            'profile_pic_signed_url',
             'cover_photo_url',
+            'cover_photo_signed_url',
             'address',
             'municipality',
             'barangay',
@@ -71,3 +75,13 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'verification_notes',
             'identification_card',
         ]
+
+    def get_profile_pic_signed_url(self, obj):
+        if obj.profile_pic_url:
+            return FileService.get_signed_url_from_path(obj.profile_pic_url, expires_in=3600)
+        return None
+
+    def get_cover_photo_signed_url(self, obj):
+        if obj.cover_photo_url:
+            return FileService.get_signed_url_from_path(obj.cover_photo_url, expires_in=3600)
+        return None

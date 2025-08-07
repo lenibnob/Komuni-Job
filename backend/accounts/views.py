@@ -10,6 +10,7 @@ from .serializers import (
     UserProfileVerificationAdminSerializer,
     IdentificationCardUploadSerializer,
     IdentificationCardSerializer,
+    UserProfileSerializer,
 )
 from .models import UserProfile, VERIFICATION_STATUS_CHOICES, IdentificationCard, IdentificationCardType
 from django.db import transaction
@@ -114,7 +115,8 @@ class UserProfileView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        serializer = UserSerializer(request.user)
+        profile = request.user.profile
+        serializer = UserProfileSerializer(profile)
         return Response(serializer.data)
 
     def put(self, request):
@@ -213,6 +215,39 @@ class ProfilePictureUploadView(APIView):
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+class CoverPhotoUploadView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        try:
+            file = request.FILES.get('cover_photo')
+            if not file:
+                return Response({'error': 'No file provided'}, status=status.HTTP_400_BAD_REQUEST)
+
+            file_obj = FileService.upload_file(
+                file_obj=file,
+                category_name='Cover Photos',
+                user=request.user,
+                content_type_str='userprofile',
+                object_id=request.user.profile.id,
+                is_public=True
+            )
+
+            user_profile = request.user.profile
+            user_profile.cover_photo_url = file_obj.file_url if hasattr(file_obj, 'file_url') else file_obj['file_url']
+            user_profile.save()
+
+            # Use FileService directly, no re-import
+            signed_url = FileService.get_signed_url_from_path(user_profile.cover_photo_url, expires_in=3600)
+
+            return Response({
+                'success': True,
+                'cover_photo_url': user_profile.cover_photo_url,
+                'cover_photo_signed_url': signed_url
+            }, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
 class IdentificationCardUploadView(APIView):
     permission_classes = [IsAuthenticated]
 
