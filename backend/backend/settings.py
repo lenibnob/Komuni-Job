@@ -115,6 +115,9 @@ SUPABASE_URL = 'https://jvjxlczrhvudrbmkutvy.supabase.co'
 SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp2anhsY3pyaHZ1ZHJibWt1dHZ5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1MzU4NTczNSwiZXhwIjoyMDY5MTYxNzM1fQ.FJpp5-Wp-3VF2_WbzrpuD67b-eh3RF74TH9vwR-GFZQ'
 SUPABASE_BUCKET_NAME = 'komunijobuploads'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
