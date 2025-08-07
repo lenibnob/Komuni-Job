@@ -37,8 +37,11 @@
     gap: 1rem;
 
     height: 100%;
-} .rowThis p {
-    color: #a9a9a9;
+
+}
+
+.rowThis p {
+    color: #F59643;
     font-size: 1.5rem;
 }
 
@@ -48,7 +51,9 @@
 
     background-color: transparent;
     color: #F59643;
-} .returnButton:hover {
+} 
+
+.returnButton:hover {
     color: #3B7080
 }
 
@@ -63,7 +68,9 @@
     color: #F59643;
     background-color: transparent;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-} .applyButton:hover {
+}
+
+.applyButton:hover {
     background-color: #F59643;
     color: #FFF9EF
 }
