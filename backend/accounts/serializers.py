@@ -1,75 +1,87 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User
-from .models import (
-    UserProfile,
-    IdentificationCard,
-    IdentificationCardType,
-    SEX_CHOICES,
-    SUFFIX_CHOICES,
-    VERIFICATION_STATUS_CHOICES,
-)
+from django.contrib.auth import get_user_model
+from .models import UserProfile, IdentificationCard
+from files.services import FileService
 
-class IdentificationCardTypeSerializer(serializers.ModelSerializer):
+User = get_user_model()
+
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = IdentificationCardType
-        fields = ['id', 'type_name']
+        model = User
+        fields = ['id', 'username', 'email', 'first_name', 'last_name']
+
+class IdentificationCardUploadSerializer(serializers.Serializer):
+    card_type_id = serializers.IntegerField()
+    id_front = serializers.FileField(required=False)
+    id_back = serializers.FileField(required=False)
+    notes = serializers.CharField(required=False, allow_blank=True)
 
 class IdentificationCardSerializer(serializers.ModelSerializer):
-    card_type = IdentificationCardTypeSerializer(read_only=True)
+    id_front_signed_url = serializers.SerializerMethodField()
+    id_back_signed_url = serializers.SerializerMethodField()
 
     class Meta:
         model = IdentificationCard
-        fields = ['id', 'card_type', 'id_front', 'id_back', 'notes']
-        read_only_fields = fields
+        fields = [
+            'id',
+            'card_type',
+            'id_front',
+            'id_back',
+            'id_front_signed_url',
+            'id_back_signed_url',
+            'notes',
+        ]
 
-class UserProfileSerializer(serializers.ModelSerializer):
-    sex = serializers.ChoiceField(choices=SEX_CHOICES, required=False, allow_null=True)
-    suffix = serializers.ChoiceField(choices=SUFFIX_CHOICES, required=False, allow_null=True)
-    verification_status = serializers.ChoiceField(choices=VERIFICATION_STATUS_CHOICES, read_only=True)
-    verification_notes = serializers.CharField(read_only=True)
-    identification_card = IdentificationCardSerializer(read_only=True, allow_null=True)
+    def get_id_front_signed_url(self, obj):
+        if obj.id_front:
+            return FileService.get_signed_url_from_path(obj.id_front, expires_in=3600)
+        return None
 
-    class Meta:
-        model = UserProfile
-        exclude = ['user']
-
-class UserSerializer(serializers.ModelSerializer):
-    profile = UserProfileSerializer(read_only=True)
-
-    class Meta:
-        model = User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'profile', 'password']
-        extra_kwargs = {'password': {'write_only': True}}
-
-    def create(self, validated_data):
-        password = validated_data.pop('password', None)
-        user = User.objects.create(**validated_data)
-        if password:
-            user.set_password(password)
-            user.save()
-        return user
-
-    def update(self, instance, validated_data):
-        if 'password' in validated_data:
-            password = validated_data.pop('password')
-            instance.set_password(password)
-        for attr, value in validated_data.items():
-            setattr(instance, attr, value)
-        instance.save()
-        return instance
-
-class IdentificationCardUploadSerializer(serializers.Serializer):
-    card_type_id = serializers.IntegerField(required=True)
-    id_front = serializers.FileField(required=True)
-    id_back = serializers.FileField(required=False, allow_null=True)
-    notes = serializers.CharField(required=False, allow_blank=True, allow_null=True)
-
-    def validate(self, attrs):
-        if not attrs.get('id_front'):
-            raise serializers.ValidationError({'id_front': 'Front image is required.'})
-        return attrs
+    def get_id_back_signed_url(self, obj):
+        if obj.id_back:
+            return FileService.get_signed_url_from_path(obj.id_back, expires_in=3600)
+        return None
 
 class UserProfileVerificationAdminSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
-        fields = ['verification_status', 'verification_notes']
+        fields = ['verification_status']
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+    profile_pic_signed_url = serializers.SerializerMethodField()
+    cover_photo_signed_url = serializers.SerializerMethodField()
+
+    class Meta:
+        model = UserProfile
+        fields = [
+            'id',
+            'user',
+            'bio',
+            'phone_number',
+            'middle_name',
+            'sex',
+            'suffix',
+            'profile_pic_url',
+            'profile_pic_signed_url',
+            'cover_photo_url',
+            'cover_photo_signed_url',
+            'address',
+            'municipality',
+            'barangay',
+            'province',
+            'zip_code',
+            'verification_status',
+            'verification_notes',
+            'identification_card',
+        ]
+
+    def get_profile_pic_signed_url(self, obj):
+        if obj.profile_pic_url:
+            return FileService.get_signed_url_from_path(obj.profile_pic_url, expires_in=3600)
+        return None
+
+    def get_cover_photo_signed_url(self, obj):
+        if obj.cover_photo_url:
+            return FileService.get_signed_url_from_path(obj.cover_photo_url, expires_in=3600)
+        return None

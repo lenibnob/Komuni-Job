@@ -67,11 +67,14 @@ export const uploadId = async () => {
     return false;
 }
 
-export const confirmId = async (fullName, personId) => {
+export const confirmId = async (firstName, middleName, lastName, personId) => {
   
   const formData = new FormData();
-  formData.append("full_name", fullName);
+  formData.append("first_name", firstName);
+  formData.append("middle_name", middleName);
+  formData.append("last_name", lastName);
   formData.append("id_image", personId);
+  
   try{
     const response = await fetch(VERIFY_URL, {
       method: "POST",
@@ -80,7 +83,7 @@ export const confirmId = async (fullName, personId) => {
     const data = await response.json();
 
     if(response.ok) {
-      return !!data.match
+      return !!data.match;
     }
     return false;
   }

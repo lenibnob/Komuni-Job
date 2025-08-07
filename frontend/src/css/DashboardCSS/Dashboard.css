@@ -176,15 +176,22 @@ height: 70px;
 }
 
 .jobImage {
+    padding: 1rem;
     background-color: blue;
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
     width: 225px;
     height: 225px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 .jobDetails {
+    max-width: 290px;
+    max-height: 225px;
     width: 290px;
     height: 225px;
 
@@ -218,10 +225,15 @@ height: 70px;
     font-size: 1.8rem;
 
     padding: 0.5rem;
-
+    
     width: 140px;
     height: 70px;
-} .viewButton:hover:focus {
+} .viewButton:hover {
+    outline: none;
+    color: #FFF9EF;
+    background-color: #F59643;
+    border: none;
+} .viewButton:focus {
     outline: none;
 }
 
@@ -230,10 +242,12 @@ height: 70px;
     flex-direction: row;
     justify-content: flex-end;
 
+    max-width: 290px;
     width: 290px;
+    max-height: 80px;
     height: 80px;
 
-    gap: 0.5rem;
+    gap: 0.5rem;;
 }
 
 .jobStatus {

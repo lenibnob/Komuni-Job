@@ -101,6 +101,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 1rem;
   width: 500px;
   height: 510px;
@@ -115,10 +116,25 @@
   margin: 0.6rem;
 }
 
+.activeForm {
+  color: #f59643;
+}
+
+.backButton {
+  color: #f59643;
+  font-size: 4rem;
+  background-color: transparent;
+  height: 62px;
+}
+.backButton:hover {
+  color: #3B7080;
+}
+
 .pagination 
 {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 2rem;
 }
 
@@ -130,23 +146,23 @@
   align-items: center;
   width: 50px;
   height: 50px;
-  border:1px solid #3B7080;
+  border: 2px solid #3B7080;
   border-radius: 1000px;
 }
 
 .registrationInputField 
 {
-  
   width: 350px;
   height: 400px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.5rem;
 }
 
 .registrationTextInput 
 {
+  color: black;
   border:#fff;
   width: 350px;
   height: 40px;
@@ -163,35 +179,22 @@
 }
 
 .registrationNextButton {
-  background-color: #fff;
-  border: 3px solid #f59643;
-  border-radius: 10px;
-  min-width: 100px;
-  font-size: small;
-  
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 8%;
-  margin-top: 20%;
-  position: absolute;
-  color:#f59643;
+  border-radius: 30px;
+  background-color: #f59643;
+  color: #FFF9EF;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 15%;
+  width: 110px;
+  height: 40px;
 
-  outline: none;
+  font-size: 20px;
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+} .registrationNextButton:hover {
+  background-color: #FFF9EF;
+  color: #f59643;
 }
-
-.registrationNextButton button:focus,
-.registrationNextButton button:active {
-  outline: none;
-  box-shadow: none;
-}
-
-.registrationNextButton::-moz-focus-inner {
-  border: 0;
-}
-
-
-
 
 .surnameInputContainer 
 {
@@ -218,6 +221,7 @@
   position: relative;
   display: inline-block;
   min-width: 70px;
+  outline: none;
 }
 
 .dropdown-button 
@@ -233,6 +237,10 @@
   width: 80px;
   height: 40px;
   text-align: center;
+} 
+.dropdown-button:active,
+.dropdown-button:focus {
+  outline: none;
 }
 
 .dropdown-menu 
@@ -258,7 +266,7 @@
 }
 
 .dropdown-menu li:hover {
-  background-color: #ffff;
+  background-color: #f59643;
 }
 
 .registrationCheckboxContainer 
@@ -300,4 +308,29 @@
   position: absolute;
   right: 30%;
   margin-top: 1.5rem;
+}
+
+.termsCheckbox {
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: .5rem;
+}
+
+.termsCheckbox input {
+  display: none;
+} .termsCheckbox input:checked + .actualCheckbox {
+  background-color: #f59643;
+  border-color: #f59643;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.actualCheckbox {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border: 2px solid #3B7080;
+  border-radius: 4px;
+  position: relative;
 }

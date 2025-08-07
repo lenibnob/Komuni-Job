@@ -5,7 +5,13 @@ from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
-from .serializers import UserSerializer, UserProfileVerificationAdminSerializer, IdentificationCardUploadSerializer
+from .serializers import (
+    UserSerializer,
+    UserProfileVerificationAdminSerializer,
+    IdentificationCardUploadSerializer,
+    IdentificationCardSerializer,
+    UserProfileSerializer,
+)
 from .models import UserProfile, VERIFICATION_STATUS_CHOICES, IdentificationCard, IdentificationCardType
 from django.db import transaction
 from files.services import FileService
@@ -23,19 +29,28 @@ class RegisterView(APIView):
         profile_fields = [
             'middle_name', 'sex', 'phone_number', 'profile_pic_url',
             'municipality', 'barangay', 'province', 'zip_code', 'bio', 'suffix',
-            'address'  # Added address field here
+            'address'
         ]
         profile_data = {field: mutable_data.get(field) for field in profile_fields if mutable_data.get(field) is not None}
 
         email = mutable_data.get('email', '')
+        password = mutable_data.get('password', '')   # <-- GET THE PASSWORD HERE
         if email and not mutable_data.get('username'):
             mutable_data['username'] = email.split('@')[0]
 
-        serializer = UserSerializer(data=mutable_data)
+        # Remove password from serializer data if not in serializer fields
+        mutable_data_for_serializer = mutable_data.copy()
+        if 'password' in mutable_data_for_serializer:
+            del mutable_data_for_serializer['password']
+
+        serializer = UserSerializer(data=mutable_data_for_serializer)
         if serializer.is_valid():
             with transaction.atomic():
                 user = serializer.save()
-                new_username = f"{user.first_name.replace(" ", "").lower()}.{user.last_name.replace(" ", "").lower()}#{user.id}"
+                # SET THE PASSWORD HERE
+                user.set_password(password)
+                # Generate username (optional, as in your logic)
+                new_username = f"{user.first_name.replace(' ', '').lower()}.{user.last_name.replace(' ', '').lower()}#{user.id}"
                 user.username = new_username
                 user.save()
                 profile, created = UserProfile.objects.get_or_create(user=user)
@@ -100,7 +115,8 @@ class UserProfileView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        serializer = UserSerializer(request.user)
+        profile = request.user.profile
+        serializer = UserProfileSerializer(profile)
         return Response(serializer.data)
 
     def put(self, request):
@@ -126,7 +142,6 @@ class UserProfileVerificationView(APIView):
             serializer.save()
             return Response({'message': 'Verification status updated', 'profile': serializer.data})
         return Response(serializer.errors, status=400)
-    
 
 class RefreshTokenView(TokenRefreshView):
     def post(self, request, *args, **kwargs):
@@ -135,9 +150,10 @@ class RefreshTokenView(TokenRefreshView):
         if not refresh_token:
             return Response({'error':"No refresh token found in cookies"})
 
-        request.data._mutable = True  
-        request.data['refresh'] = refresh_token
-        request.data._mutable = False
+        # Make request.data mutable for SimpleJWT
+        data = request.data.copy()
+        data['refresh'] = refresh_token
+        request._full_data = data  # monkey patch for DRF
 
         response = super().post(request, *args, **kwargs)
         access_token = response.data.get('access')
@@ -188,17 +204,50 @@ class ProfilePictureUploadView(APIView):
             
             # Update user profile
             user_profile = request.user.profile
-            user_profile.profile_pic_url = file_obj.file_url
+            user_profile.profile_pic_url = file_obj.file_url if hasattr(file_obj, 'file_url') else file_obj['file_url']
             user_profile.save()
             
             return Response({
                 'success': True,
-                'profile_pic_url': file_obj.file_url
+                'profile_pic_url': user_profile.profile_pic_url
             }, status=status.HTTP_200_OK)
             
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+class CoverPhotoUploadView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        try:
+            file = request.FILES.get('cover_photo')
+            if not file:
+                return Response({'error': 'No file provided'}, status=status.HTTP_400_BAD_REQUEST)
+
+            file_obj = FileService.upload_file(
+                file_obj=file,
+                category_name='Cover Photos',
+                user=request.user,
+                content_type_str='userprofile',
+                object_id=request.user.profile.id,
+                is_public=True
+            )
+
+            user_profile = request.user.profile
+            user_profile.cover_photo_url = file_obj.file_url if hasattr(file_obj, 'file_url') else file_obj['file_url']
+            user_profile.save()
+
+            # Use FileService directly, no re-import
+            signed_url = FileService.get_signed_url_from_path(user_profile.cover_photo_url, expires_in=3600)
+
+            return Response({
+                'success': True,
+                'cover_photo_url': user_profile.cover_photo_url,
+                'cover_photo_signed_url': signed_url
+            }, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
 class IdentificationCardUploadView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -263,3 +312,15 @@ class IdentificationCardUploadView(APIView):
             'id_back': id_back_url
         }, status=status.HTTP_201_CREATED)
 
+class IdentificationCardDetailView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        profile = request.user.profile
+        card = profile.identification_card
+        if not card:
+            return Response({'error': 'No identification card found'}, status=status.HTTP_404_NOT_FOUND)
+        # Use your serializer for IdentificationCard
+        from .serializers import IdentificationCardSerializer
+        serializer = IdentificationCardSerializer(card, context={'request': request})
+        return Response(serializer.data, status=status.HTTP_200_OK)

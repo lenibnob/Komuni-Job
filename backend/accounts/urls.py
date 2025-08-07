@@ -16,4 +16,6 @@ urlpatterns = [
     path('profile/upload-picture/', ProfilePictureUploadView.as_view(), name='profile_picture_upload'),
     path('profile/verify/<int:pk>/', UserProfileVerificationView.as_view(), name='user_profile_verify'),
     path('profile/upload-id/', IdentificationCardUploadView.as_view(), name='upload-id'),
+    path('profile/identification-card/', IdentificationCardDetailView.as_view(), name='identification-card-detail'),
+    path('profile/upload-cover-photo/', CoverPhotoUploadView.as_view(), name='cover-photo-upload'),
 ]
