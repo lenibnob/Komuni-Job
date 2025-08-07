@@ -101,14 +101,15 @@ export default function RegistrationPage() {
       suffix: suffix
     };
 
-    var fullName = formData.surname + formData.givenName; 
-
-    fullName = fullName.replace(/\s+/g, "").toLowerCase();
+    var first_name = formData.givenName;
+    var middle_name = formData.middleName;
+    var last_name = formData.surname;
     
     try {
-      if(confirmId(fullName, file)) {
+      if(confirmId(first_name, middle_name, last_name, file)) {
         if(register(backendData)){
           alert("Registration successful");
+          navigate("/login");
         }
         else {
           alert("There is an error");
