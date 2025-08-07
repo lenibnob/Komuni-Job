@@ -20,6 +20,7 @@
 
 .registrationContainer 
 {
+  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,20 +42,59 @@
 }
 
 .imageContainer {
+  position:relative;
   width: 500px;
   height: 510px;
-  background-image: url('../../../recources/SVG files/gear.svg');
+
+  /* Image + semi-transparent overlay */
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)),
+    url('../../../../frontend/recources/SVG files/gear.svg');
+  background-size: cover;
   background-position: center;
-  background: rgba(255, 255, 255, 0.1); /* semi-transparent */
+  background-repeat: no-repeat;
+
+  background-blend-mode: overlay;
+
+  /* Glassmorphism effect */
   border-radius: 16px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+
+  /* Styling */
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white; /* optional: make text readable on glass */
+  color: white;
   z-index: 10;
   position: relative;
+
+  /* Optional: Flex to center inner content */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Optional: Responsive improvements */
+  max-width: 100%;
+  overflow: visible;
 }
+
+
+.orangeOverlay {
+  position:absolute;
+  top:-40px;
+  left: -40px;
+  width: 500px;
+  height: 300px; 
+  z-index: 11;
+  pointer-events: none;
+
+  background-image: url('../../../../frontend/recources/SVG files/easter egg/Rectangle%20171.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top left;
+}
+
+
 
 .registrationForm 
 {
@@ -123,7 +163,6 @@
 }
 
 .registrationNextButton {
-  color: #f59643;
   background-color: #fff;
   border: 3px solid #f59643;
   border-radius: 10px;
@@ -136,16 +175,21 @@
   margin-left: 8%;
   margin-top: 20%;
   position: absolute;
+  color:#f59643;
 
   outline: none;
 }
 
-/* Remove outline and focus shadow when clicked or tabbed */
-.registrationNextButton:focus,
-.registrationNextButton:active {
+.registrationNextButton button:focus,
+.registrationNextButton button:active {
   outline: none;
   box-shadow: none;
 }
+
+.registrationNextButton::-moz-focus-inner {
+  border: 0;
+}
+
 
 
 

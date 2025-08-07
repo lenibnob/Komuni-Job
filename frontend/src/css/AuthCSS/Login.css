@@ -65,6 +65,23 @@
   z-index: 1;
 }
 
+.orangeOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 500px;
+  height: 150px; 
+  z-index: 2;
+  pointer-events: none;
+
+  
+  background-image: url('../../../../frontend/recources/SVG files/easter egg/Rectangle%20171.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top left;
+}
+
+
 .loginForm {
     
     display: flex;

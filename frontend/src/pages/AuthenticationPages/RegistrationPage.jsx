@@ -129,7 +129,9 @@ export default function RegistrationPage() {
       <div className="registrationPage">
         <div className="registrationContainer">
           <div className="registration">
-            <div className="imageContainer"></div>
+            <div className="imageContainer">
+              <div className="orangeOverlay"></div>
+            </div>
             <div className="registrationForm">
               <div className="pagination">
                 {step > 1 && (
@@ -221,9 +223,9 @@ export default function RegistrationPage() {
                         </div>
                         <button className="validateButton">Validate</button>
                     </div>
-                    <div className="registrationNextButton">
-                      <button onClick={handleRegister}>Register</button>
-                    </div>
+                    <button className="registrationNextButton" onClick={handleRegister}>
+                    Register
+                    </button>
                   </>
                 )}
               </div>
