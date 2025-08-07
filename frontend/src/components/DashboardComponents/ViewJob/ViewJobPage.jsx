@@ -1,10 +1,10 @@
 import "@/css/DashboardCSS/ViewJob.css"
 import ApplyHeader from "@/components/DashboardComponents/ViewJob/ApplyHeader";
 
-export default function JobPage() {
+export default function ViewJobPage() {
 
     return (
-        <div className="jobPage">
+        <div className="viewJobPage">
             <ApplyHeader />
             <div className="jobFile">
                 <div className="viewJobInfo">

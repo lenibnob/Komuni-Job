@@ -9,14 +9,13 @@ import { Link } from "react-router-dom";
 export default function DashboardNav () {
     return (
         <div className="dashboardNav">
-            <Link to="/"><div className="dashboardLogo"></div></Link>
+            <Link to="/dashboard"><div className="dashboardLogo"></div></Link>
             <div className="dashboardButtonRow">
-                {/*replace these divs with Links later*/}
                 <Link to="/"><LuHouse className="jobListingButton"/></Link>
                 <Link to="/"><FiBriefcase className="jobPostedButton" /></Link>
-                <Link to="/"><FaRegPlusSquare   className="createButton" /></Link>
+                <Link to="/dashboard/postjob"><FaRegPlusSquare className="createButton" /></Link>
                 <Link to="/"><FiUser className="profileButton" /></Link>
-                <Link to="/"><MdMailOutline  className="inboxButton"/></Link>
+                <Link to="/"><MdMailOutline className="inboxButton"/></Link>
             </div>
             <Link to="/"><GoGear className="settingsButton"/></Link>
         </div>
