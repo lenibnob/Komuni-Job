@@ -63,11 +63,7 @@ export default function LoginPage() {
                 Don't have an account? <Link to="/register">Sign up</Link>
               </p>
               <div className="buttonGroup">
-<<<<<<< HEAD
-              <button onClick={handleLogin}>Login</button>
-=======
                 <button onClick={handleLogin}>Log In</button>
->>>>>>> origin/main
               </div>
             </div>
           </div>
