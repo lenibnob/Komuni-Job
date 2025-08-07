@@ -81,13 +81,20 @@
 }
 
 .backButton {
-  color: white;
+  color: #f59643;
+  font-size: 4rem;
+  background-color: transparent;
+  height: 62px;
+}
+.backButton:hover {
+  color: #3B7080;
 }
 
 .pagination 
 {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 2rem;
 }
 
@@ -105,7 +112,6 @@
 
 .registrationInputField 
 {
-  
   width: 350px;
   height: 400px;
   display: flex;
@@ -134,24 +140,21 @@
 
 .registrationNextButton {
   border-radius: 30px;
+  background-color: #f59643;
   color: #FFF9EF;
   padding-left: 30px;
   padding-right: 30px;
   margin-top: 15%;
-  width: 100px;
+  width: 110px;
+  height: 40px;
+
+  font-size: 20px;
 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  outline: none;
+} .registrationNextButton:hover {
+  background-color: #FFF9EF;
+  color: #f59643;
 }
-
-/* Remove outline and focus shadow when clicked or tabbed */
-.registrationNextButton:focus,
-.registrationNextButton:active {
-  outline: none;
-  box-shadow: none;
-}
-
-
 
 .surnameInputContainer 
 {

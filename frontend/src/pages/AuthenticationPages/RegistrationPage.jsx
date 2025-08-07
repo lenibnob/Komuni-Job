@@ -6,6 +6,7 @@ import SuffixDropdown from "@/components/AuthComponents/SuffixDropdown";
 import RadioGroup from "@/components/AuthComponents/RadioGroup";
 import { useNavigate } from "react-router-dom";
 import { confirmId, register } from "../../endpoints/api"
+import { IoArrowBackCircleOutline } from "react-icons/io5";
 
 export default function RegistrationPage() {
   const navigate = useNavigate();
@@ -134,7 +135,7 @@ export default function RegistrationPage() {
             <div className="registrationForm">
               <div className="pagination">
                 {step > 1 && (
-                  <button className="backButton" onClick={() => setStep(step - 1)}>BACK</button>
+                  <button className="backButton" onClick={() => setStep(step - 1)}><IoArrowBackCircleOutline /></button>
                 )}
                 <h2 className={step === 1 ? 'active' : 'activeForm'}>1</h2>
                 <h2 className={step === 2 ? 'active' : 'activeForm'}>2</h2>

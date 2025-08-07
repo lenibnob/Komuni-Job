@@ -1,11 +1,8 @@
-import "@/css/Dashboard.css";
+import "@/css/DashboardCSS/Dashboard.css";
 import DashboardNav from "@/components/DashboardComponents/DashboardNav";
-import JobList from "@/components/DashboardComponents/JobList";
+import JobList from "@/components/DashboardComponents/Dashboard/JobList";
 
 export default function DashboardPage() {
-
-    
-
 
     return (
         <>

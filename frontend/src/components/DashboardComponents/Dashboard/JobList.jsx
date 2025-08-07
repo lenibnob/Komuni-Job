@@ -1,4 +1,4 @@
-import SearchBar from "@/components/DashboardComponents/SearchBar";
+import SearchBar from "@/components/DashboardComponents/Dashboard/SearchBar";
 import { useState } from "react";
 import { Link } from 'react-router-dom';
  
@@ -36,7 +36,7 @@ export default function JobList () {
                             <p>{data.location}</p>
                             <p>{data.timePost}</p>
                         </div>
-                        <Link><button className="viewButton">View</button></Link>
+                        <Link to="/dashboard/viewjob/id"><button className="viewButton">View</button></Link>
                     </div>
                 </div>
             </div>

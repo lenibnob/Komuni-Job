@@ -228,7 +228,12 @@ height: 70px;
     
     width: 140px;
     height: 70px;
-} .viewButton:hover, .viewButton:focus {
+} .viewButton:hover {
+    outline: none;
+    color: #FFF9EF;
+    background-color: #F59643;
+    border: none;
+} .viewButton:focus {
     outline: none;
 }
 
