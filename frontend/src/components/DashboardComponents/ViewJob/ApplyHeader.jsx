@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { useState } from "react";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 
@@ -7,9 +8,11 @@ export default function ApplyHeader() {
     return (
         <div className="applyHeader">
             <div className="rowThis">
-                <button className="returnButton">
-                    <IoArrowBackCircleOutline />
-                </button>
+                <Link className="returnButton" to="/dashboard">
+                    <button className="returnButton">
+                        <IoArrowBackCircleOutline />
+                    </button>
+                </Link>
                 <p>Recommended for beginners</p>
             </div>
 
