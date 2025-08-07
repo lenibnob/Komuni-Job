@@ -11,6 +11,7 @@ export default function TextInput({ label, name, value, onChange, type = "text",
         name={name}
         value={value}
         onChange={onChange}
+        autoComplete="off"
       />
     </div>
   );

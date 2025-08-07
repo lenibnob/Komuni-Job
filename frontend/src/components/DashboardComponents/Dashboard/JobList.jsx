@@ -36,7 +36,7 @@ export default function JobList () {
                             <p>{data.location}</p>
                             <p>{data.timePost}</p>
                         </div>
-                        <Link to="/dashboard/viewjob/id"><button className="viewButton">View</button></Link>
+                        <Link to="/dashboard/viewjob"><button className="viewButton">View</button></Link>
                     </div>
                 </div>
             </div>

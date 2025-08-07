@@ -10,6 +10,8 @@ import { IoArrowBackCircleOutline } from "react-icons/io5";
 
 export default function RegistrationPage() {
   const navigate = useNavigate();
+  const [face, setFace] = useState("");
+  const [faceState, setFaceState] = useState("");
   const [status, setStatus] = useState('');
   const [file, setFile] = useState('');
   const [suffix, setSuffix] = useState('');
@@ -63,6 +65,9 @@ export default function RegistrationPage() {
         if(!file) {
           alert("Upload Student ID");
           return true;
+        } else if(!face) {
+          alert("Upload face image");
+          return true;
         }
         break;
       default:
@@ -105,9 +110,9 @@ export default function RegistrationPage() {
     var first_name = formData.givenName;
     var middle_name = formData.middleName;
     var last_name = formData.surname;
-    
+    var suffix = formData.suffix;
     try {
-      if(confirmId(first_name, middle_name, last_name, file)) {
+      if(confirmId(first_name, middle_name, last_name, suffix, file, face)) {
         if(register(backendData)){
           alert("Registration successful");
           navigate("/login");
@@ -117,7 +122,7 @@ export default function RegistrationPage() {
         }
       } 
       else {
-        alert("There is an error");
+        alert("There is an error please try again");
       }
     } catch (error) {
       console.error("Registration error:", error);
@@ -224,7 +229,25 @@ export default function RegistrationPage() {
                           required/>
                           <p>{status}</p>
                         </div>
-                        <button className="validateButton">Validate</button>
+                        <br />
+                        <div className="fileSelect" onClick={() => document.getElementById('face_image').click()}>
+                          Click to select file
+                          <input 
+                          type="file" 
+                          id="face_image" 
+                          name="face_image" 
+                          accept="image/*" 
+                          style={{display: 'none'}} 
+                          onChange={(e) => {
+                            const face = e.target.files[0]; 
+                            if(face) {
+                              setFaceState("Uploaded"); 
+                              setFace(face)
+                            }
+                          }}
+                          required/>
+                          <p>{faceState}</p>
+                        </div>
                     </div>
                     <div>
                       <button className="registrationNextButton" onClick={handleRegister}>Register</button>

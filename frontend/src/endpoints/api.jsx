@@ -67,13 +67,15 @@ export const uploadId = async () => {
     return false;
 }
 
-export const confirmId = async (firstName, middleName, lastName, personId) => {
+export const confirmId = async (firstName, middleName, lastName, suffix, personId, personFace) => {
   
   const formData = new FormData();
   formData.append("first_name", firstName);
   formData.append("middle_name", middleName);
   formData.append("last_name", lastName);
+  ormData.append("suffix", suffix);
   formData.append("id_image", personId);
+  formData.append("face_image", personFace);
   
   try{
     const response = await fetch(VERIFY_URL, {

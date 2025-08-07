@@ -12,7 +12,7 @@ import os
 def normalize(text: str) -> str:
     return re.sub(r'[^a-z ]', '', text.lower())
 
-def formatName(first_name: str, middle_name: str, last_name: str) -> list:
+def formatName(first_name: str, middle_name: str, last_name: str, suffix: str) -> list:
     middle_parts = middle_name.split()
     if(len(middle_parts) > 1):
         initials: str = ""
@@ -26,19 +26,19 @@ def formatName(first_name: str, middle_name: str, last_name: str) -> list:
 def verify_id_text_and_face(request):
     try:
         id_image = request.FILES.get('id_image')
-        live_image = request.FILES.get('live_image')
+        live_image = request.FILES.get('face_image')
         first_name: str = normalize(request.POST.get('first_name', ''))
         middle_name: str = normalize(request.POST.get('middle_name', ''))
         last_name: str = normalize(request.POST.get('last_name', ''))
-        full_name: str = f"{first_name} {middle_name} {last_name}"
+        suffix: str = normalize(request.POST.get('suffix', ''))
+        full_name: str = f"{first_name} {middle_name} {last_name} {suffix}"
 
-        name: list = formatName(first_name, middle_name, last_name)
+        name: list = formatName(first_name, middle_name, last_name, suffix)
         size_of_name: int = len(name)
 
         if not id_image or not live_image or not first_name or not last_name:
             return Response({'error': 'Missing required fields: id_image, live_image, first_name, last_name'}, status=400)
 
-        # OCR Name Matching
         try:
             img = Image.open(id_image)
             extracted_text: str = pytesseract.image_to_string(img)
@@ -70,7 +70,10 @@ def verify_id_text_and_face(request):
 
                 id_path = os.path.join(tmpdirname, f"id{id_save_ext}")
                 live_path = os.path.join(tmpdirname, f"live{live_save_ext}")
-                img.save(id_path)
+
+                id_img = Image.open(id_image)
+                id_img.save(id_path)
+                
                 live_img = Image.open(live_image)
                 live_img.save(live_path)
 
