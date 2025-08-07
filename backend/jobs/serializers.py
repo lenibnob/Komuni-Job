@@ -1,90 +1,142 @@
 from rest_framework import serializers
 from .models import Job, JobImage, JobApplication, PaymentOption, JobCategory, JobSkill
 from django.contrib.auth.models import User
+from files.services import FileService
 
-class UserSerializer(serializers.ModelSerializer):
+class JobCardSerializer(serializers.ModelSerializer):
+    cover_photo_signed_url = serializers.SerializerMethodField()
+    city = serializers.CharField()
+    province = serializers.CharField()
+    posted_days_ago = serializers.SerializerMethodField()
+    short_description = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Job
+        fields = [
+            'job_id', 'job_title', 'cover_photo_signed_url', 'city', 'province',
+            'posted_days_ago', 'short_description'
+        ]
+
+    def get_cover_photo_signed_url(self, obj):
+        if obj.cover_photo_url:
+            return FileService.get_signed_url_from_path(obj.cover_photo_url, expires_in=3600)
+        return None
+
+    def get_posted_days_ago(self, obj):
+        from django.utils import timezone
+        delta = timezone.now() - obj.job_post_date
+        return delta.days
+
+    def get_short_description(self, obj):
+        return obj.job_description[:120] + "..." if len(obj.job_description) > 120 else obj.job_description
+
+class JobImageSerializer(serializers.ModelSerializer):
+    signed_url = serializers.SerializerMethodField()
+    class Meta:
+        model = JobImage
+        fields = ['job_image_id', 'job_id', 'image', 'signed_url', 'image_upload_date']
+    def get_signed_url(self, obj):
+        if obj.image:
+            return FileService.get_signed_url_from_path(obj.image, expires_in=3600)
+        return None
+
+class EmployerSerializer(serializers.ModelSerializer):
+    profile_picture = serializers.SerializerMethodField()
+    is_verified = serializers.SerializerMethodField()
+
     class Meta:
         model = User
-        fields = ['id', 'username', 'first_name', 'last_name']
+        fields = ['first_name', 'profile_picture', 'is_verified']
+
+    def get_profile_picture(self, obj):
+        profile = getattr(obj, 'profile', None)
+        if profile and profile.profile_pic_url:
+            return FileService.get_signed_url_from_path(profile.profile_pic_url, expires_in=3600)
+        return None
+
+    def get_is_verified(self, obj):
+        profile = getattr(obj, 'profile', None)
+        return profile.verification_status == 'verified' if profile else False
+
+class JobDetailSerializer(serializers.ModelSerializer):
+    employer = EmployerSerializer(source='user_id', read_only=True)
+    cover_photo_signed_url = serializers.SerializerMethodField()
+    images = JobImageSerializer(many=True, read_only=True)
+    job_category_name = serializers.SerializerMethodField()
+    payment_option_type = serializers.SerializerMethodField()
+    posted_days_ago = serializers.SerializerMethodField()
+    job_expire_date = serializers.DateTimeField()
+    application_deadline = serializers.DateTimeField()
+    city = serializers.CharField()
+    province = serializers.CharField()
+    barangay = serializers.CharField()
+    tags = serializers.SerializerMethodField()
+    required_skills = serializers.PrimaryKeyRelatedField(
+        queryset=JobSkill.objects.all(), many=True, write_only=True, required=False
+    )
+
+    class Meta:
+        model = Job
+        fields = [
+            'job_id', 'employer', 'job_title', 'job_description',
+            'cover_photo_signed_url', 'images',
+            'job_category_name', 'job_category', 'barangay', 'city', 'province',
+            'tags', 'payment_option_type', 'payment_option', 'payment_amount',
+            'posted_days_ago', 'job_post_date', 'application_deadline', 'job_expire_date',
+            'required_skills'
+        ]
+
+    def get_cover_photo_signed_url(self, obj):
+        if obj.cover_photo_url:
+            return FileService.get_signed_url_from_path(obj.cover_photo_url, expires_in=3600)
+        return None
+
+    def get_job_category_name(self, obj):
+        return obj.job_category.job_cat_name if obj.job_category else None
+
+    def get_payment_option_type(self, obj):
+        return obj.payment_option.payment_option_type if obj.payment_option else None
+
+    def get_posted_days_ago(self, obj):
+        from django.utils import timezone
+        delta = timezone.now() - obj.job_post_date
+        return delta.days
+
+    def get_tags(self, obj):
+        return [skill.job_skill_name for skill in obj.required_skills.all()]
+
+    def create(self, validated_data):
+        required_skills = validated_data.pop('required_skills', [])
+        job = super().create(validated_data)
+        job.required_skills.set(required_skills)
+        return job
+
+    def update(self, instance, validated_data):
+        required_skills = validated_data.pop('required_skills', None)
+        job = super().update(instance, validated_data)
+        if required_skills is not None:
+            job.required_skills.set(required_skills)
+        return job
+    
+class JobApplicationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JobApplication
+        fields = [
+            'application_id', 'job_id', 'applicant_id',
+            'application_date', 'status'
+        ]
 
 class PaymentOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = PaymentOption
         fields = ['payment_option_id', 'payment_option_type']
-
+        
 class JobCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = JobCategory
         fields = ['job_cat_id', 'job_cat_name']
-
+        
 class JobSkillSerializer(serializers.ModelSerializer):
-    category_name = serializers.SerializerMethodField()
-    
     class Meta:
         model = JobSkill
-        fields = ['job_skill_id', 'job_skill_name', 'job_category', 'category_name']
-    
-    def get_category_name(self, obj):
-        return obj.job_category.job_cat_name if obj.job_category else None
-
-class JobImageSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = JobImage
-        fields = ['job_image_id', 'job_id', 'image', 'image_upload_date']
-
-class JobSerializer(serializers.ModelSerializer):
-    images = JobImageSerializer(many=True, read_only=True)
-    employer_name = serializers.SerializerMethodField()
-    application_count = serializers.SerializerMethodField()
-    payment_option_type = serializers.SerializerMethodField()
-    job_category_name = serializers.SerializerMethodField()
-    required_skill_names = serializers.SerializerMethodField()
-    required_skills = serializers.PrimaryKeyRelatedField(
-        queryset=JobSkill.objects.all(), many=True
-    )
-    
-    class Meta:
-        model = Job
-        fields = [
-            'job_id', 'user_id', 'job_title', 'job_description',
-            'payment_option', 'payment_option_type', 'payment_amount',
-            'job_location', 'job_category', 'job_category_name',
-            'required_skills', 'required_skill_names', 'job_post_date',
-            'application_deadline', 'job_expire_date', 'job_is_active',
-            'job_viewcount', 'images', 'employer_name', 'application_count'
-        ]
-        read_only_fields = ['job_id', 'user_id', 'job_post_date', 'job_viewcount']
-        
-    def get_employer_name(self, obj):
-        return f"{obj.user_id.first_name} {obj.user_id.last_name}" if obj.user_id else None
-        
-    def get_application_count(self, obj):
-        return obj.applications.count()
-    
-    def get_payment_option_type(self, obj):
-        return obj.payment_option.payment_option_type if obj.payment_option else None
-    
-    def get_job_category_name(self, obj):
-        return obj.job_category.job_cat_name if obj.job_category else None
-    
-    def get_required_skill_names(self, obj):
-        return [skill.job_skill_name for skill in obj.required_skills.all()]
-
-class JobApplicationSerializer(serializers.ModelSerializer):
-    applicant_name = serializers.SerializerMethodField()
-    job_title = serializers.SerializerMethodField()
-    applicant_details = UserSerializer(source='applicant_id', read_only=True)
-    
-    class Meta:
-        model = JobApplication
-        fields = [
-            'application_id', 'job_id', 'applicant_id', 'application_date',
-            'status', 'applicant_name', 'job_title', 'applicant_details'
-        ]
-        read_only_fields = ['application_id', 'applicant_id', 'application_date']
-        
-    def get_applicant_name(self, obj):
-        return f"{obj.applicant_id.first_name} {obj.applicant_id.last_name}" if obj.applicant_id else None
-        
-    def get_job_title(self, obj):
-        return obj.job_id.job_title if obj.job_id else None
+        fields = ['job_skill_id', 'job_skill_name', 'job_category']

@@ -6,45 +6,81 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from .models import Job, JobImage, JobApplication, PaymentOption, JobCategory, JobSkill
 from .serializers import (
-    JobSerializer, JobImageSerializer, JobApplicationSerializer,
+    JobCardSerializer, JobDetailSerializer, JobImageSerializer, JobApplicationSerializer,
     PaymentOptionSerializer, JobCategorySerializer, JobSkillSerializer
 )
 from .permissions import IsEmployer, IsApplicant, IsOwnerOrReadOnly
+from files.services import FileService
+from rest_framework.views import APIView
 
 class JobViewSet(viewsets.ModelViewSet):
     queryset = Job.objects.all()
-    serializer_class = JobSerializer
     permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    filterset_fields = ['job_category', 'job_location', 'payment_option', 'job_is_active']
+    filterset_fields = ['job_category', 'payment_option', 'job_is_active']
     search_fields = ['job_title', 'job_description']
     ordering_fields = ['job_post_date', 'payment_amount']
     
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        if self.request.query_params.get('my_jobs') and self.request.user.is_authenticated:
-            return queryset.filter(user_id=self.request.user)
-        return queryset
-    
     def perform_create(self, serializer):
         serializer.save(user_id=self.request.user)
-        
-    @action(detail=True, methods=['post'], permission_classes=[IsAuthenticated])
-    def apply(self, request, pk=None):
-        job = self.get_object()
-        if job.applications.filter(applicant_id=request.user).exists():
-            return Response({'detail': 'You have already applied for this job.'}, 
-                            status=status.HTTP_400_BAD_REQUEST)
-        
-        JobApplication.objects.create(job_id=job, applicant_id=request.user)
-        return Response({'detail': 'Application submitted successfully.'}, 
-                        status=status.HTTP_201_CREATED)
+
+    def get_serializer_class(self):
+        if self.action == 'card_list':
+            return JobCardSerializer
+        elif self.action == 'retrieve':
+            return JobDetailSerializer
+        return JobDetailSerializer  
+
+    @action(detail=False, methods=['get'])
+    def card_list(self, request):
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = JobCardSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+class JobCoverPhotoUploadView(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def post(self, request, job_pk):
+        job = Job.objects.get(pk=job_pk)
+        file = request.FILES.get('image')
+        if not file:
+            return Response({'error': 'No file provided'}, status=status.HTTP_400_BAD_REQUEST)
+        file_obj = FileService.upload_file(
+            file_obj=file,
+            category_name='Job Images',
+            user=request.user,
+            content_type_str='job',
+            object_id=job_pk,
+            is_public=True
+        )
+        image_url = file_obj.file_url if hasattr(file_obj, 'file_url') else file_obj['file_url']
+        job.cover_photo_url = image_url
+        job.save()
+        return Response({'success': True, 'cover_photo_url': image_url}, status=status.HTTP_201_CREATED)
+
+class JobImageUploadView(APIView):
+    permission_classes = [IsAuthenticated]
+    def post(self, request, job_pk):
+        job = Job.objects.get(pk=job_pk)
+        file = request.FILES.get('image')
+        if not file:
+            return Response({'error': 'No file provided'}, status=status.HTTP_400_BAD_REQUEST)
+        file_obj = FileService.upload_file(
+            file_obj=file,
+            category_name='Job Images',
+            user=request.user,
+            content_type_str='job',
+            object_id=job_pk,
+            is_public=True
+        )
+        image_url = file_obj.file_url if hasattr(file_obj, 'file_url') else file_obj['file_url']
+        job_image = JobImage.objects.create(job_id=job, image=image_url)
+        return Response({'success': True, 'image_url': job_image.image}, status=status.HTTP_201_CREATED)
 
 class JobImageViewSet(viewsets.ModelViewSet):
     queryset = JobImage.objects.all()
     serializer_class = JobImageSerializer
     permission_classes = [IsAuthenticated, IsEmployer]
-    
     def get_queryset(self):
         return JobImage.objects.filter(job_id__user_id=self.request.user)
 
@@ -54,7 +90,6 @@ class JobApplicationViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['status', 'job_id']
-    
     def get_queryset(self):
         queryset = JobApplication.objects.all()
         if self.request.user.is_authenticated:
@@ -62,7 +97,6 @@ class JobApplicationViewSet(viewsets.ModelViewSet):
                 return queryset.filter(job_id__user_id=self.request.user)
             return queryset.filter(applicant_id=self.request.user)
         return JobApplication.objects.none()
-    
     def perform_create(self, serializer):
         serializer.save(applicant_id=self.request.user)
 
