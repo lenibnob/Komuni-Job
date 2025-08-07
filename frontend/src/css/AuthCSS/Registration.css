@@ -80,6 +80,10 @@
   color: #f59643;
 }
 
+.backButton {
+  color: white;
+}
+
 .pagination 
 {
   display: flex;
