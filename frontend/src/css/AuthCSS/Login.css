@@ -102,23 +102,22 @@
 }
 
 .login button{
-    border: 1px solid #f59643;
     border-radius: 30px;
-    color: #f59643;
+    color: #FFF9EF;
     padding-left: 30px;
     padding-right: 30px;
     margin-top:30%;
-    width:300px;
+    width: 300px;
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .login button:hover{
-     border: 1px solid #fff;
-     background-color: #e0924e;
+    background-color: #FFF9EF;
     border-radius: 30px;
-    color: #fff;
+    color: #F59643;
     padding-left: 30px;
     padding-right: 30px;
-    width:300px;
 }
 
 .login button:focus,

@@ -61,6 +61,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 1rem;
   width: 500px;
   height: 510px;
@@ -73,6 +74,10 @@
   border-radius: 20px;
   width: 450px;
   margin: 0.6rem;
+}
+
+.activeForm {
+  color: #f59643;
 }
 
 .pagination 
@@ -90,7 +95,7 @@
   align-items: center;
   width: 50px;
   height: 50px;
-  border:1px solid #3B7080;
+  border: 2px solid #3B7080;
   border-radius: 1000px;
 }
 
@@ -101,12 +106,13 @@
   height: 400px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.5rem;
 }
 
 .registrationTextInput 
 {
+  color: black;
   border:#fff;
   width: 350px;
   height: 40px;
@@ -123,20 +129,14 @@
 }
 
 .registrationNextButton {
-  color: #f59643;
-  background-color: #fff;
-  border: 3px solid #f59643;
-  border-radius: 10px;
-  min-width: 100px;
-  font-size: small;
-  
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 8%;
-  margin-top: 20%;
-  position: absolute;
+  border-radius: 30px;
+  color: #FFF9EF;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 15%;
+  width: 100px;
 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   outline: none;
 }
 
@@ -174,6 +174,7 @@
   position: relative;
   display: inline-block;
   min-width: 70px;
+  outline: none;
 }
 
 .dropdown-button 
@@ -189,6 +190,10 @@
   width: 80px;
   height: 40px;
   text-align: center;
+} 
+.dropdown-button:active,
+.dropdown-button:focus {
+  outline: none;
 }
 
 .dropdown-menu 
@@ -214,7 +219,7 @@
 }
 
 .dropdown-menu li:hover {
-  background-color: #ffff;
+  background-color: #f59643;
 }
 
 .registrationCheckboxContainer 
@@ -256,4 +261,29 @@
   position: absolute;
   right: 30%;
   margin-top: 1.5rem;
+}
+
+.termsCheckbox {
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: .5rem;
+}
+
+.termsCheckbox input {
+  display: none;
+} .termsCheckbox input:checked + .actualCheckbox {
+  background-color: #f59643;
+  border-color: #f59643;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.actualCheckbox {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border: 2px solid #3B7080;
+  border-radius: 4px;
+  position: relative;
 }

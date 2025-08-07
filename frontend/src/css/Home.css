@@ -58,32 +58,16 @@
 
 .startButton 
 {
-  color: #FFF9EF;
+  color: #f59643;
   width: 220px;
   align-self: flex-start;
   padding: 10px 16px;
-  background-color: #f59643;
-  border: 2px solid #FFF9EF;
+  background-color: #FFF9EF;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
 
   cursor: pointer;
   font-size: 25px;
-<<<<<<< HEAD
-} 
-
-.startButton:hover
- {
-  color: #f59643;
-  border: 2px solid #f59643;
-  border-radius: 30px;
-  background-color: #fff;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
-}
-
-.startButton:focus{
-  outline:none;
-=======
 } .startButton:hover {
   outline: none;
   color: white;
@@ -91,7 +75,6 @@
   background-color: #f59643;
 } .startButton:focus {
   outline: none;
->>>>>>> 6be6aa902e6720ab0a5c44cd97f03dce3147494b
 }
 
 .introduction {

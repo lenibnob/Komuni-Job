@@ -135,10 +135,10 @@ export default function RegistrationPage() {
                 {step > 1 && (
                   <button className="backButton" onClick={() => setStep(step - 1)}>←</button>
                 )}
-                <h2 className={step === 1 ? 'active' : ''}>1</h2>
-                <h2 className={step === 2 ? 'active' : ''}>2</h2>
-                <h2 className={step === 3 ? 'active' : ''}>3</h2>
-                <h2 className={step === 4 ? 'active' : ''}>4</h2>
+                <h2 className={step === 1 ? 'active' : 'activeForm'}>1</h2>
+                <h2 className={step === 2 ? 'active' : 'activeForm'}>2</h2>
+                <h2 className={step === 3 ? 'active' : 'activeForm'}>3</h2>
+                <h2 className={step === 4 ? 'active' : 'activeForm'}>4</h2>
               </div>
               <hr />
               <div className="registrationInputField">
@@ -157,8 +157,8 @@ export default function RegistrationPage() {
                       selected={formData.sex}
                       onChange={handleChange}
                     />
-                    <div className="registrationNextButton">
-                      <button onClick={() => {if(!missing()){setStep(2)}}}>Next</button>
+                    <div>
+                      <button className="registrationNextButton" onClick={() => {if(!missing()){setStep(2)}}}>Next</button>
                     </div>
                   </>
                 )}
@@ -169,8 +169,8 @@ export default function RegistrationPage() {
                     <TextInput label="Province" name="province" value={formData.province} onChange={handleChange} variant="registration" />
                     <TextInput label="Barangay" name="barangay" value={formData.barangay} onChange={handleChange} variant="registration" />
                     <TextInput label="Address" name="address" value={formData.address} onChange={handleChange} variant="registration" />
-                    <div className="registrationNextButton">
-                      <button onClick={() => {if(!missing()){setStep(3)}}}>Next</button>
+                    <div>
+                      <button className="registrationNextButton" onClick={() => {if(!missing()){setStep(3)}}}>Next</button>
                     </div>
                   </>
                 )}
@@ -189,12 +189,13 @@ export default function RegistrationPage() {
                           checked={formData.agreeToTerms}
                           onChange={handleChange}
                         />
-                        I agree to the terms and conditions
+                        <span className="actualCheckbox"></span>
+                        <p>I agree to the terms and conditions</p>
                       </label>    
                       {error && <div className="error-message" style={{ color: 'black', margin: '10px 0' }}>{error}</div>}  
                     </div>
-                    <div className="registrationNextButton">
-                      <button onClick={() => {if(!missing()){setStep(4)}}}>Next</button>
+                    <div>
+                      <button className="registrationNextButton" onClick={() => {if(!missing()){setStep(4)}}}>Next</button>
                     </div>
                   </>
                 )}
@@ -221,8 +222,8 @@ export default function RegistrationPage() {
                         </div>
                         <button className="validateButton">Validate</button>
                     </div>
-                    <div className="registrationNextButton">
-                      <button onClick={handleRegister}>Register</button>
+                    <div>
+                      <button className="registrationNextButton" onClick={handleRegister}>Register</button>
                     </div>
                   </>
                 )}
