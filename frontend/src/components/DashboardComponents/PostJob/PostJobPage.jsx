@@ -93,13 +93,13 @@ export default function PostJobPage() {
                     <label>
                         <div className="locationInput">
                             Enter Job Location
-                            <input type="text" placeholder="Address"/>
+                            <input type="text" placeholder="Address" name="address"/>
                             <div className="locationRow">
-                                <input type="text" placeholder="Barangay"/>
-                                <input type="text" placeholder="City"/>
-                                <input type="text" placeholder="Province"/>
+                                <input type="text" placeholder="Barangay" name="barangay"/>
+                                <input type="text" placeholder="City" name="city"/>
+                                <input type="text" placeholder="Province" name="province"/>
                             </div>
-                            <input type="text" placeholder="Gmaps Coordinates"/>
+                            <input type="text" placeholder="Gmaps Coordinates" name="maps"/>
                         </div>
                     </label>
                     </div>
