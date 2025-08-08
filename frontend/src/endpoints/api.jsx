@@ -12,6 +12,8 @@ const UPLOAD_URL = `${BASE_URL}api/accounts/register/upload-id/`
 
 const VERIFY_URL =  `${BASE_URL}id-verify/id-ocr/`
 
+const POST_URL = `${BASE_URL}/api/jobs/`
+
 export const login = async (data) => {
   try{
     const response = await fetch(LOGIN_URL, {
@@ -141,6 +143,27 @@ export const getDataDashboard = async () => {
   }
   catch(error){
     console.error("Error at: ", error);
+    return false;
+  }
+}
+
+export const postJob = async (data) => {
+  try{
+    const response = await fetch(UPLOAD_URL, {
+        method: "POST",
+        headers: {
+          'Content-Type': "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify(data)
+      });
+    if(response.ok) {
+        return true;
+    }
+    return false;
+  }
+  catch(error) {
+    alert("An error has occured");
     return false;
   }
 }

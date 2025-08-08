@@ -1,6 +1,7 @@
 import "@/css/DashboardCSS/PostJob.css";
 import PostHeader from "@/components/DashboardComponents/PostJob/PostHeader";
 import {useState, useEffect} from 'react';
+import postJob from '@/endpoints/api'
 
 export default function PostJobPage() {
     const [jobCategory, setJobCategory] = useState([]);
