@@ -42,6 +42,14 @@ class JobViewSet(viewsets.ModelViewSet):
         queryset = self.filter_queryset(self.get_queryset())
         serializer = JobCardSerializer(queryset, many=True)
         return Response(serializer.data)
+    
+    @action(detail=True, methods=['get'], permission_classes=[IsAuthenticated, IsEmployer])
+    def applicants(self, request, pk=None):
+        job = self.get_object()
+        applications = JobApplication.objects.filter(job_id=job)
+        applicants = [app.applicant_id for app in applications]
+        serializer = UserSerializer(applicants, many=True)
+        return Response(serializer.data)
 
 class JobCoverPhotoUploadView(APIView):
     permission_classes = [IsAuthenticated]
