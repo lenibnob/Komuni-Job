@@ -1,8 +1,10 @@
 import "@/css/DashboardCSS/PostJob.css";
 import PostHeader from "@/components/DashboardComponents/PostJob/PostHeader";
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 export default function PostJobPage() {
+    const [jobCategory, setJobCategory] = useState([]);
+    const [selected, setSelected] = useState("");
     const [jobDetail, setJobDetail] = useState([{
         job_title: "",
         payment_option: "",
@@ -19,6 +21,23 @@ export default function PostJobPage() {
         province: ""
     }]);
 
+    useEffect(() => {
+        fetch("http://127.0.0.1:8000/api/job-categories/", {
+            method: 'GET',
+            credentials: 'include'
+        })
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! Status: ${res.status}`);
+            }
+            return res.json();
+        })
+        .then(data => setJobCategory(data))
+        .catch(err => console.error("Fetch error: ", err));
+    }, []);
+    
+
+
     return (
         <div className="postJobContainer">
             <PostHeader />
@@ -33,7 +52,14 @@ export default function PostJobPage() {
 
                     <label>
                         Job Category
-                        <input type="text" />
+                        <select value={selected} onChange={(e) => setSelected(e.target.value)}>
+                            <option value="">Select a job category</option>
+                            {jobCategory.map(category => (
+                                <option key={category.id} value={category.id}>
+                                    {category.name}
+                                </option>
+                            ))}
+                        </select>
                     </label>
 
                     <label>
