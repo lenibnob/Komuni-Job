@@ -1,4 +1,5 @@
 import "@/css/DashboardCSS/DashboardNav.css"
+import { useState } from "react";
 import { LuHouse } from "react-icons/lu";
 import { FiBriefcase } from "react-icons/fi";
 import { FaRegPlusSquare } from "react-icons/fa";
@@ -6,8 +7,11 @@ import { FiUser } from "react-icons/fi";
 import { MdMailOutline } from "react-icons/md";
 import { GoGear } from "react-icons/go";
 import { NavLink } from "react-router-dom";
+import { LuLogOut } from "react-icons/lu";
 
 export default function DashboardNav () {
+    const [isVisible, setIsVisible] = useState(false);
+
     return (
         <div className="dashboardNav">
             <NavLink to="/dashboard"><div className="dashboardLogo"></div></NavLink>
@@ -36,7 +40,23 @@ export default function DashboardNav () {
                     )}
                 </NavLink>
             </div>
-            <NavLink to="/"><GoGear className="settingsButton"/></NavLink>
+            <div>
+                <button className={`settingsButton ${isVisible ? "active" : ""}`} onClick={() =>  setIsVisible(!isVisible)}>
+                    <GoGear className={`settingsButton ${isVisible ? "active" : ""}`}/>
+                </button>
+                {isVisible && (
+                    <div className="settingsPopUp">
+                            <NavLink className="settingsPopUpTop" to='/settings'>
+                                <GoGear className="settingsPopUpIcon"/>
+                                <h1>User Settings</h1>
+                            </NavLink>
+                        <NavLink className="settingsPopUpBottom" to='/' end>
+                            <LuLogOut  className="settingsPopUpIcon"/>
+                            <h1>Sign Out</h1>
+                        </NavLink>
+                    </div>
+                )}
+            </div>
         </div>
     );
 }
