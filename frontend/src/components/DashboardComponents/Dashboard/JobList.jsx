@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 export default function JobList () {
 
     const [tempData, setTempData] = useState([]);
+    const [timePosted, setTimePosted] = useState("");
     const [search, setSearch] = useState("");
+    const time = new Date();
 
     useEffect(() => {
         fetch("http://127.0.0.1:8000/api/jobs/card-list/", {
@@ -25,7 +27,6 @@ export default function JobList () {
         .catch(err => console.error("Fetch error: ", err))
     }, []);
 
-
     function JobPost({data}) {
         return (
             <div className="jobPost">
@@ -39,7 +40,7 @@ export default function JobList () {
                     <div className="jobStatusContainer">
                         <div className="jobStatus">
                             <p>{data.city} {data.province}</p>
-                            <p>{data.posted_days_ago}</p>
+                            <p>{data.job_post_date}</p>
                         </div>
                         <Link to="/dashboard/viewjob"><button className="viewButton">View</button></Link>
                     </div>

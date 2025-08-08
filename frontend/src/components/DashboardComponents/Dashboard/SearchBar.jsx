@@ -4,7 +4,7 @@ export default function SearchBar() {
   return (
     <div className="searchBar">
       <FaSearch className="searchIcon" />
-      <input type="text" placeholder="Search..." onChange/>
+      <input type="text" placeholder="Search..."/>
     </div>
   );
 }
