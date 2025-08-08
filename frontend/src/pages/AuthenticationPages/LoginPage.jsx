@@ -8,6 +8,7 @@ import { login } from '../../endpoints/api'
 
 
 export default function LoginPage() {
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -56,9 +57,20 @@ export default function LoginPage() {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                type="password"
+                type={showPassword ? "text" : "password"}
                 variant="login"
               />
+              <div className="showPasswordText" style={{ marginTop: "0.5rem" }}>
+                <input
+                  type="checkbox"
+                  id="showPassword"
+                  checked={showPassword}
+                  onChange={() => setShowPassword((prev) => !prev)}
+                />
+                <label htmlFor="showPassword" style={{ marginLeft: "0.5rem" }}>
+                  Show Password
+                </label>
+              </div>
               <p>
                 Don't have an account? <Link to="/register">Sign up</Link>
               </p>

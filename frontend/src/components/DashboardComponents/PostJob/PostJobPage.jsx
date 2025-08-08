@@ -91,10 +91,15 @@ export default function PostJobPage() {
                     </label>
 
                     <label>
-                        Location
-                        <p>Where is your job site located</p>
-                        <div className="jobPost-mapContainer">
-                        <img src="https://maps.googleapis.com/maps/api/staticmap?center=Santa+Rosa&zoom=15&size=600x300" alt="Map" />
+                        <div className="locationInput">
+                            Enter Job Location
+                            <input type="text" placeholder="Address"/>
+                            <div className="locationRow">
+                                <input type="text" placeholder="Barangay"/>
+                                <input type="text" placeholder="City"/>
+                                <input type="text" placeholder="Province"/>
+                            </div>
+                            <input type="text" placeholder="Gmaps Coordinates"/>
                         </div>
                     </label>
                     </div>

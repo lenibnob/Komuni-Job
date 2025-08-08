@@ -1,0 +1,86 @@
+
+.dashboardNav {
+    background-color: #FFF9EF;
+    width: 8vw;
+    height: 100vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px;
+}
+
+.dashboardLogo {
+    border-radius: 10px;
+    background-color: white; 
+    background-image: url("../../recources/SVG files/komunijob_logo.svg");
+    background-size: cover;
+    width: 70px;
+height: 70px;
+} .dashboardLogo:hover {
+    background-image: url("../../recources/SVG files/komunijob_hover.svg");
+}
+
+.dashboardButtonRow {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.jobListingButton {
+    color: #22424C; /*this page is active*/
+    width: 60px;
+    height: 60px;
+} .jobListingButton:hover {
+    color: #22424C;    
+}
+
+.createButton {
+    color: #F59643; /*this should turn into #22424C when this page is active*/
+    width: 60px;
+    height: 60px;
+} .createButton:hover {
+    color: #22424C;    
+} .createButton.active {
+    color: #22424C; /*this should turn into #22424C when this page is active*/
+    width: 60px;
+    height: 60px;
+}
+
+.jobPostedButton {
+    color: #F59643;
+    width: 60px;
+    height: 60px;
+} .jobPostedButton:hover {
+    color: #22424C;    
+}
+
+.profileButton {
+    color: #F59643;
+    width: 60px;
+    height: 60px;
+} .profileButton:hover {
+    color: #22424C;    
+}
+
+.inboxButton {
+    color: #F59643;
+    width: 60px;
+    height: 60px;
+} .inboxButton:hover {
+    color: #22424C;    
+}
+
+.settingsButton {
+    color: #F59643;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+} .settingsButton:hover {
+    color: #22424C;    
+}
