@@ -75,6 +75,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.common.CommonMiddleware",
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -161,9 +162,10 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # !!!!CHANGE FOR DEPLOYMENT!!!!
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:5173"
-# ]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
 
-CORS_ALLOW_ALL_ORIGINS = True  # Allow all origins for development; change for production
-CORS_ALLOWED_CREDENTIALS = True
+# CORS_ALLOW_ALL_ORIGINS = True  # Allow all origins for development; change for production
+CORS_ALLOW_CREDENTIALS = True

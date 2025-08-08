@@ -23,9 +23,7 @@ export const login = async (data) => {
     });
     const res = await response.json();
 
-    if(response.ok) {
-      return res.success;
-    }
+    return res.success;
   }
   catch(error) {
     alert("An error has occured");

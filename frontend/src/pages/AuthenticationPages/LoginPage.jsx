@@ -24,7 +24,7 @@ export default function LoginPage() {
       return;
     }
     else {
-      if(login(formData) == true) {
+      if(login(formData)) {
         alert("Log in successful");
         navigate("/dashboard");
       }

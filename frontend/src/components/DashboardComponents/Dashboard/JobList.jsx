@@ -5,10 +5,14 @@ import { Link } from 'react-router-dom';
 export default function JobList () {
 
     const [tempData, setTempData] = useState([]);
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         fetch("http://127.0.0.1:8000/api/jobs/card-list/", {
             method: 'GET',
+            headers: {
+                'Content-Type' : 'application/json'
+            },
             credentials: 'include',
         })
         .then(res => {
