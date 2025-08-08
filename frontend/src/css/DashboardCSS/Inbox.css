@@ -10,6 +10,7 @@
 .appliedJobsContainer {
     width: 100vw;
     height: 100vh;
+    margin-left: 8vw;
     padding: 5rem;
 }
 
