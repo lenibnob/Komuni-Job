@@ -1,4 +1,4 @@
-export default function TextInput({ label, name, value, onChange, type = "text", variant = "login", placeholder }) {
+export default function TextInput({ label, name, value, onChange, type = "text", variant = "login", placeholder, ButtonName }) {
   const isSurname = name === "surname";
   const baseClass = variant === "registration" ? "registrationTextInput" : "loginTextInput";
 
@@ -13,6 +13,7 @@ export default function TextInput({ label, name, value, onChange, type = "text",
         onChange={onChange}
         placeholder={placeholder}
         autoComplete="off"
+        button={ButtonName}
       />
     </div>
   );
