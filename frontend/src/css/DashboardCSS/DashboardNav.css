@@ -33,7 +33,7 @@ height: 70px;
 }
 
 .jobListingButton {
-    color: #22424C;
+    color: #22424C; /*this page is active*/
     width: 60px;
     height: 60px;
 } .jobListingButton:hover {
@@ -41,12 +41,16 @@ height: 70px;
 }
 
 .createButton {
-    color: #F59643;
+    color: #F59643; /*this should turn into #22424C when this page is active*/
     width: 60px;
     height: 60px;
 } .createButton:hover {
     color: #22424C;    
-} 
+} .createButton.active {
+    color: #22424C; /*this should turn into #22424C when this page is active*/
+    width: 60px;
+    height: 60px;
+}
 
 .jobPostedButton {
     color: #F59643;
