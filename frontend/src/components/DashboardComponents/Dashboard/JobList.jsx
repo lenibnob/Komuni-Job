@@ -12,10 +12,7 @@ export default function JobList () {
     useEffect(() => {
         fetch("http://127.0.0.1:8000/api/jobs/card-list/", {
             method: 'GET',
-            headers: {
-                'Content-Type' : 'application/json'
-            },
-            credentials: 'include',
+            credentials: 'include'
         })
         .then(res => {
             if(!res.ok) {

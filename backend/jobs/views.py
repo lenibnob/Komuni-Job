@@ -119,10 +119,12 @@ class PaymentOptionViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = PaymentOptionSerializer
 
 class JobCategoryViewSet(viewsets.ReadOnlyModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = JobCategory.objects.all()
     serializer_class = JobCategorySerializer
 
 class JobSkillViewSet(viewsets.ReadOnlyModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = JobSkill.objects.all()
     serializer_class = JobSkillSerializer
     filter_backends = [DjangoFilterBackend]
