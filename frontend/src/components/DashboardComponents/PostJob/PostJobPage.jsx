@@ -5,11 +5,11 @@ import {useState} from 'react';
 export default function PostJobPage() {
     const [jobDetail, setJobDetail] = useState([{
         job_title: "",
-        job_category: "",
         payment_option: "",
-        job_category: [""],
-        job_hiring_amount: "",
-        job_cost_per_hour: "",
+        job_category: "",
+        job_skills: [""],
+        //job_hiring_amount: "",
+        //job_cost_per_hour: "",
         payment_amount: "",
         job_descritpion: "",
         job_expire_date: "",
@@ -17,7 +17,6 @@ export default function PostJobPage() {
         barangay: "",
         city: "",
         province: ""
-
     }]);
 
     return (
@@ -92,10 +91,15 @@ export default function PostJobPage() {
                     </label>
 
                     <label>
-                        Location
-                        <p>Where is your job site located</p>
-                        <div className="jobPost-mapContainer">
-                        <img src="https://maps.googleapis.com/maps/api/staticmap?center=Santa+Rosa&zoom=15&size=600x300" alt="Map" />
+                        <div className="locationInput">
+                            Enter Job Location
+                            <input type="text" placeholder="Address" name="address"/>
+                            <div className="locationRow">
+                                <input type="text" placeholder="Barangay" name="barangay"/>
+                                <input type="text" placeholder="City" name="city"/>
+                                <input type="text" placeholder="Province" name="province"/>
+                            </div>
+                            <input type="text" placeholder="Gmaps Coordinates" name="maps"/>
                         </div>
                     </label>
                     </div>

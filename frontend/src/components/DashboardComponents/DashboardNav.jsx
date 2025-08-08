@@ -5,20 +5,20 @@ import { FaRegPlusSquare } from "react-icons/fa";
 import { FiUser } from "react-icons/fi";
 import { MdMailOutline } from "react-icons/md";
 import { GoGear } from "react-icons/go";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function DashboardNav () {
     return (
         <div className="dashboardNav">
-            <Link to="/dashboard"><div className="dashboardLogo"></div></Link>
+            <NavLink to="/dashboard"><div className="dashboardLogo"></div></NavLink>
             <div className="dashboardButtonRow">
-                <Link to="/"><LuHouse className="jobListingButton"/></Link>
-                <Link to="/"><FiBriefcase className="jobPostedButton" /></Link>
-                <Link to="/dashboard/postjob"><FaRegPlusSquare className="createButton" /></Link>
-                <Link to="/userprofile"><FiUser className="profileButton" /></Link>
-                <Link to="/dashboard/inbox"><MdMailOutline className="inboxButton"/></Link>
+                <NavLink to="/"><LuHouse className="jobListingButton"/></NavLink>
+                <NavLink to="/"><FiBriefcase className="jobPostedButton" /></NavLink>
+                <NavLink to="/dashboard/postjob"><FaRegPlusSquare className="createButton" /></NavLink>
+                <NavLink to="/userprofile"><FiUser className="profileButton" /></NavLink>
+                <NavLink to="/dashboard/inbox"><MdMailOutline className="inboxButton"/></NavLink>
             </div>
-            <Link to="/"><GoGear className="settingsButton"/></Link>
+            <NavLink to="/"><GoGear className="settingsButton"/></NavLink>
         </div>
     );
 }
