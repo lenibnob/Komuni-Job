@@ -362,6 +362,26 @@
     height: 150px;
 }
 
+.youthCardIcon.economicEmpowerment {
+    background-image: url("..\\..\\recources\\SVG files\\profiles\\Mark.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.youthCardIcon.governance {
+    background-image: url("..\\..\\recources\\SVG files\\profiles\\Mark.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.youthCardIcon.activeCitizenship {
+    background-image: url("..\\..\\recources\\SVG files\\profiles\\Mark.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.youthCardIcon.socialInclusion {
+    background-image: url("..\\..\\recources\\SVG files\\profiles\\Mark.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 
 .youthCardTexts {
     border: 2px solid rgba(0, 0, 0, 0);
