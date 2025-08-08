@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 from .serializers import (
     UserSerializer,
     UserProfileVerificationAdminSerializer,
@@ -69,49 +69,24 @@ class LoginView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
-        res = Response()
-        res.delete_cookie('access_token', path='/')
-        res.delete_cookie('refresh_token', path='/')
         email = request.data.get('email')
         password = request.data.get('password')
+
         if not email or not password:
             return Response({'error': 'Please provide both email and password'}, status=400)
+
         try:
-            user = User.objects.get(email=email)
+            user_obj = User.objects.get(email=email)
         except User.DoesNotExist:
-            return Response({'error': 'Invalid credentials'}, status=400)
-        user = authenticate(username=user.username, password=password)
+            return Response({'success': False}, status=400)
+
+        user = authenticate(username=user_obj.username, password=password)
+
         if user:
-            refresh = RefreshToken.for_user(user)
-            access = str(refresh.access_token)
-            refresh = str(refresh)
-            res = Response({
-                'message': 'Login successful!',
-                'user': UserSerializer(user).data
-            })
+            login(request, user)
+            return Response({'success': True, 'user': UserSerializer(user).data})
 
-            res.data = {"success": True}
-            
-            res.set_cookie(
-                key='access_token',
-                value=access,
-                httponly=True,
-                secure=False,
-                samesite='Lax',
-                path='/'
-            )
-
-            res.set_cookie(
-                key='refresh_token',
-                value=refresh,
-                httponly=True,
-                secure=False,
-                samesite='Lax',
-                path='/'
-            )
-
-            return res
-        return Response({'error': 'Invalid credentials'}, status=400)
+        return Response({'success': False}, status=200)
 
 class UserProfileView(APIView):
     permission_classes = [IsAuthenticated]

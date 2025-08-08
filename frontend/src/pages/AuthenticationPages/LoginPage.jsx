@@ -25,11 +25,14 @@ export default function LoginPage() {
       return;
     }
     else {
-      if(login(formData)) {
+      const isSuccess = await login(formData);
+      if(isSuccess) {
         alert("Log in successful");
-        //navigate("/dashboard");
+        navigate("/dashboard");
       }
-      else alert("There is an error");
+      else {
+        alert("Invalid email or password");
+      }
     }
   };
 
