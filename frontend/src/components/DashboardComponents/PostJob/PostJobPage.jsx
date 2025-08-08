@@ -1,27 +1,34 @@
 import "@/css/DashboardCSS/PostJob.css";
 import PostHeader from "@/components/DashboardComponents/PostJob/PostHeader";
+import { useNavigate } from "react-router-dom";
 import {useState, useEffect} from 'react';
-import postJob from '@/endpoints/api'
+import {postJob} from '@/endpoints/api'
 
 export default function PostJobPage() {
+    const navigate = useNavigate();
+    const [paymentMethod, setPaymentMethod] = useState("");
     const [jobCategory, setJobCategory] = useState([]);
     const [jobSkills, setJobSkills] = useState([]);
     const [jobTags, setJobTags] = useState([]);
     const [jobDetail, setJobDetail] = useState([{
         job_title: "",
         payment_option: "",
-        job_category: "",
-        job_skills: [""],
-        //job_hiring_amount: "",
-        //job_cost_per_hour: "",
+        job_category_id: "",
+        job_skills: "",
         payment_amount: "",
         job_descritpion: "",
         job_expire_date: "",
         address: "",
         barangay: "",
         city: "",
-        province: ""
+        province: "",
+        vacancy: "",
+        maps: ""
     }]);
+
+    const handleChange = (e) => {
+        setJobDetail({...jobDetail, [e.target.name]: e.target.value});
+    }
 
     useEffect(() => {
         const token = localStorage.getItem("access_key");
@@ -62,8 +69,20 @@ export default function PostJobPage() {
         .then(data => setJobSkills(data))
         .catch(err => console.error("Fetch error: ", err)); 
     }, []);
-    
 
+    const handlePost = async () => {
+        try{
+            if(await postJob(jobDetail)) {
+                alert("Job posted");
+                navigate("/dashboard");
+            } else {
+                alert("There is an error on posting job");
+            }
+        }
+        catch(error){
+            console.error(`${error}`);
+        }
+    }
 
     return (
         <div className="postJobContainer">
@@ -74,15 +93,15 @@ export default function PostJobPage() {
                 <div className="jobPost-formLeft">
                     <label>
                         Job post title
-                        <input type="text" placeholder="Enter job title" />
+                        <input type="text" placeholder="Enter job title" name="job_title" onChange={handleChange}/>
                     </label>
 
                     <label>
-                        Job Category
-                        <select value={jobDetail.job_category} onChange={(e) => jobDetail.job_category = e.target.value}>
+                        Job category
+                        <select name="job_category_id" value={jobDetail.job_category} onChange={handleChange}>
                             <option value="">Select a job category</option>
                             {jobCategory.map(category => (
-                                <option key={category.job_cat_id} value={category.job_cat_name}>
+                                <option key={category.job_cat_id} value={category.job_category_id}>
                                     {category.job_cat_name}
                                 </option>
                             ))}
@@ -90,17 +109,20 @@ export default function PostJobPage() {
                     </label>
 
                     <label>
-                        Payment Option
-                        <select>
-                        <option>Select option</option>
-                        <option>Hourly</option>
-                        <option>Fixed</option>
+                        Payment option
+                        <select name="payment_option" onChange={(e) => {
+                            handleChange(e);
+                            setPaymentMethod(e.target.value);
+                        }}>
+                        <option value="">Select option</option>
+                        <option value="Hourly">Hourly</option>
+                        <option value="Fixed">Fixed</option>
                         </select>
                     </label>
 
                     <label>
                         Required skill
-                        <select value={jobDetail.job_skills} onChange={(e) => jobDetail.job_skills = e.target.value}>
+                        <select value={jobDetail.job_skills} name="job_skills" onChange={handleChange}>
                             <option value="">Select job skill requirements</option>
                             {jobSkills.map(category => (
                                 <option key={category.job_skill_id} value={category.job_skill_name}>
@@ -112,16 +134,15 @@ export default function PostJobPage() {
 
                     <label>
                         Hiring amount
-                        <input type="number" />
+                        <input type="number" name="vacancy" onChange={handleChange} placeholder="Hiring amount/vacancy"/>
                     </label>
 
                     <label>
-                        Cost per hour
+                        {paymentMethod}
                         <div className="jobPost-costInput">
                         <span>₱</span>
-                        <input type="number" />
+                        <input type="number" name="payment_amount" onChange={handleChange} placeholder="Payment amount"/>
                         </div>
-                        <small>Total Cost: ₱100.00</small>
                     </label>
                     </div>
 
@@ -129,29 +150,26 @@ export default function PostJobPage() {
                     <label>
                         Description
                         <p>Provide a brief and concise job description</p>
-                        <textarea />
+                        <textarea placeholder="Short description for the job" name="job_descritpion" onChange={handleChange}/>
                         <div className="jobPost-formattingBar">
-                        <button><b>B</b></button>
-                        <button><i>I</i></button>
-                        <button><u>U</u></button>
                         </div>
                     </label>
 
                     <label>
                         Job Deadline
-                        <input type="date" />
+                        <input type="date" name="job_expire_date" onChange={handleChange} />
                     </label>
 
                     <label>
                         <div className="locationInput">
                             Enter Job Location
-                            <input type="text" placeholder="Address" name="address"/>
+                            <input type="text" placeholder="Address" name="address" onChange={handleChange}/>
                             <div className="locationRow">
-                                <input type="text" placeholder="Barangay" name="barangay"/>
-                                <input type="text" placeholder="City" name="city"/>
-                                <input type="text" placeholder="Province" name="province"/>
+                                <input type="text" placeholder="Barangay" name="barangay" onChange={handleChange}/>
+                                <input type="text" placeholder="City" name="city" onChange={handleChange}/>
+                                <input type="text" placeholder="Province" name="province" onChange={handleChange}/>
                             </div>
-                            <input type="text" placeholder="Gmaps Coordinates" name="maps"/>
+                            <input type="text" placeholder="Gmaps Coordinates" name="maps" onChange={handleChange}/>
                         </div>
                     </label>
                     </div>

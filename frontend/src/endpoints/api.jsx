@@ -149,7 +149,7 @@ export const getDataDashboard = async () => {
 
 export const postJob = async (data) => {
   try{
-    const response = await fetch(UPLOAD_URL, {
+    const response = await fetch(POST_URL, {
         method: "POST",
         headers: {
           'Content-Type': "application/json"
