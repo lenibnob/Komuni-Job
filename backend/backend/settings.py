@@ -49,6 +49,13 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
 
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = 'None'
+
+CSRF_COOKIE_SAMESITE = None
+CSRF_COOKIE_SECURE = False
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -170,3 +177,5 @@ CORS_ALLOWED_ORIGINS = [
 
 # CORS_ALLOW_ALL_ORIGINS = True  # Allow all origins for development; change for production
 CORS_ALLOW_CREDENTIALS = True
+
+SESSION_ENGINE = "django.contrib.sessions.backends.db"

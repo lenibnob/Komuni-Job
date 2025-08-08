@@ -84,7 +84,7 @@ class LoginView(APIView):
 
         if user:
             login(request, user)
-            return Response({'success': True, 'user': UserSerializer(user).data})
+            return Response({'success': True,  'user': UserSerializer(user).data})
 
         return Response({'success': False}, status=200)
 

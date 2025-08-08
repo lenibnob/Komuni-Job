@@ -4,7 +4,8 @@ import {useState, useEffect} from 'react';
 
 export default function PostJobPage() {
     const [jobCategory, setJobCategory] = useState([]);
-    const [selected, setSelected] = useState("");
+    const [jobSkills, setJobSkills] = useState([]);
+    const [jobTags, setJobTags] = useState([]);
     const [jobDetail, setJobDetail] = useState([{
         job_title: "",
         payment_option: "",
@@ -22,9 +23,14 @@ export default function PostJobPage() {
     }]);
 
     useEffect(() => {
+        const token = localStorage.getItem("access_key");
+
         fetch("http://127.0.0.1:8000/api/job-categories/", {
             method: 'GET',
-            credentials: 'include'
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include"
         })
         .then(res => {
             if (!res.ok) {
@@ -33,7 +39,27 @@ export default function PostJobPage() {
             return res.json();
         })
         .then(data => setJobCategory(data))
-        .catch(err => console.error("Fetch error: ", err));
+        .catch(err => console.error("Fetch error: ", err)); 
+    }, []);
+
+    useEffect(() => {
+        const token = localStorage.getItem("access_key");
+
+        fetch("http://127.0.0.1:8000/api/job-skills/", {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include"
+        })
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! Status: ${res.status}`);
+            }
+            return res.json();
+        })
+        .then(data => setJobSkills(data))
+        .catch(err => console.error("Fetch error: ", err)); 
     }, []);
     
 
@@ -52,11 +78,11 @@ export default function PostJobPage() {
 
                     <label>
                         Job Category
-                        <select value={selected} onChange={(e) => setSelected(e.target.value)}>
+                        <select value={jobDetail.job_category} onChange={(e) => jobDetail.job_category = e.target.value}>
                             <option value="">Select a job category</option>
                             {jobCategory.map(category => (
-                                <option key={category.id} value={category.id}>
-                                    {category.name}
+                                <option key={category.job_cat_id} value={category.job_cat_name}>
+                                    {category.job_cat_name}
                                 </option>
                             ))}
                         </select>
@@ -72,16 +98,15 @@ export default function PostJobPage() {
                     </label>
 
                     <label>
-                        Tags
-                        <input type="text" />
-                        <div className="jobPost-tagPreview">
-                        <p>Preview</p>
-                        <div className="jobPost-tags">
-                            <div className="jobPost-tag">Example</div>
-                            <div className="jobPost-tag">Sample</div>
-                            <div className="jobPost-tag jobPost-tagAdd">+</div>
-                        </div>
-                        </div>
+                        Required skill
+                        <select value={jobDetail.job_skills} onChange={(e) => jobDetail.job_skills = e.target.value}>
+                            <option value="">Select job skill requirements</option>
+                            {jobSkills.map(category => (
+                                <option key={category.job_skill_id} value={category.job_skill_name}>
+                                    {category.job_skill_name}
+                                </option>
+                            ))}
+                        </select>
                     </label>
 
                     <label>
