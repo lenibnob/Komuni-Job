@@ -59,10 +59,16 @@
     color: black;
 } .aboutText h1 {
     margin-bottom: 1rem;
+    color: #22424C;
+    text-shadow: 0px 0px 5px rgba(83,83,83,0.48);
 } .aboutText h2 {
     margin-bottom: .5rem;
+    color: #22424C;
+    text-shadow: 0px 0px 5px rgba(83,83,83,0.48);
 } .aboutText h3 {
-    color: rgb(59, 59, 59);
+    color: #22424C;
+    text-shadow: 0px 0px 5px rgba(83,83,83,0.48);
+
 }
 
 /*----------------------------------------------------------------------*/
@@ -357,28 +363,28 @@
 }
 
 .youthCardIcon {
-    border: 2px solid black;
+    border: 2px solid rgba(0, 0, 0, 0);
     width: 150px;
     height: 150px;
 }
 
 .youthCardIcon.economicEmpowerment {
-    background-image: url("..\\..\\recources\\SVG files\\profiles\\Mark.svg");
+    background-image: url("..\\..\\recources\\SVG files\\card pictures\\economic.svg");
     background-size: cover;
     background-repeat: no-repeat;
 }
 .youthCardIcon.governance {
-    background-image: url("..\\..\\recources\\SVG files\\profiles\\Mark.svg");
+    background-image: url("..\\..\\recources\\SVG files\\card pictures\\governance.svg");
     background-size: cover;
     background-repeat: no-repeat;
 }
 .youthCardIcon.activeCitizenship {
-    background-image: url("..\\..\\recources\\SVG files\\profiles\\Mark.svg");
+    background-image: url("..\\..\\recources\\SVG files\\card pictures\\active.svg");
     background-size: cover;
     background-repeat: no-repeat;
 }
 .youthCardIcon.socialInclusion {
-    background-image: url("..\\..\\recources\\SVG files\\profiles\\Mark.svg");
+    background-image: url("..\\..\\recources\\SVG files\\card pictures\\social.svg");
     background-size: cover;
     background-repeat: no-repeat;
 }
