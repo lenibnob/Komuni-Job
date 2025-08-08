@@ -12,11 +12,29 @@ export default function DashboardNav () {
         <div className="dashboardNav">
             <NavLink to="/dashboard"><div className="dashboardLogo"></div></NavLink>
             <div className="dashboardButtonRow">
-                <NavLink to="/"><LuHouse className="jobListingButton"/></NavLink>
+                <NavLink to="/dashboard" end>
+                    {({ isActive }) => (
+                        <LuHouse className={`jobListingButton ${isActive ? "active" : ""}`}/>
+                    )}
+                </NavLink>
                 <NavLink to="/"><FiBriefcase className="jobPostedButton" /></NavLink>
-                <NavLink to="/dashboard/postjob"><FaRegPlusSquare className="createButton" /></NavLink>
-                <NavLink to="/userprofile"><FiUser className="profileButton" /></NavLink>
-                <NavLink to="/dashboard/inbox"><MdMailOutline className="inboxButton"/></NavLink>
+                <NavLink to="/dashboard/postjob" end>
+                    {({ isActive }) => (
+                        <FaRegPlusSquare 
+                            className={`createButton ${isActive ? "active" : ""}`} 
+                        />
+                    )}
+                </NavLink>
+                <NavLink to="/userprofile" end>
+                    {({ isActive }) => (
+                        <FiUser className={`profileButton ${isActive ? "active" : ""}`} />
+                    )}
+                </NavLink>
+                <NavLink to="/dashboard/inbox" end>
+                    {({ isActive }) => (
+                        <MdMailOutline className={`inboxButton ${isActive ? "active" : ""}`}/>
+                    )}
+                </NavLink>
             </div>
             <NavLink to="/"><GoGear className="settingsButton"/></NavLink>
         </div>
