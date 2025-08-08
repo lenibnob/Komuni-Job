@@ -5,8 +5,9 @@ import TextInput from "@/components/AuthComponents/TextInput";
 import SuffixDropdown from "@/components/AuthComponents/SuffixDropdown";
 import RadioGroup from "@/components/AuthComponents/RadioGroup";
 import { useNavigate } from "react-router-dom";
-import { confirmId, register } from "../../endpoints/api"
+import { confirmId, register } from "@/endpoints/api"
 import { IoArrowBackCircleOutline } from "react-icons/io5";
+import { isNumber, isAlpha, isEmail } from "@/authenticate/authenticate"
 
 export default function RegistrationPage() {
   const navigate = useNavigate();
@@ -47,17 +48,35 @@ export default function RegistrationPage() {
         if(!formData.givenName || !formData.middleName || !formData.surname || !formData.sex) {
           alert("Incomplete Field(s)");
           return true;
+        } else if(!(isAlpha(formData.givenName) || isAlpha(formData.middleName) || isAlpha(formData.surname))) {
+          alert("Input a valid name");
+          return true;
         }
         break;
       case 2:
         if(!formData.city || !formData.province || !formData.barangay || !formData.address) {
           alert("Incomplete Field(s)");
           return true;
+        } else if(!(isAlpha(formData.city) || isAlpha(formData.province) || isAlpha(formData.barangay))) {
+          alert("Input a valid place");
+          return true;
         }
         break;
       case 3:
         if(!formData.phone || !formData.email || !formData.password || !formData.confirmPassword) {
           alert("Incomplete Field(s)");
+          return true;
+        } else if(!isNumber(formData.phone)){
+          alert("Phone number should only contain numbers");
+          return true;
+        } else if(formData.phone.length != 11){
+          alert("Phone number should only contain 11 numbers");
+          return true;
+        } else if(!isEmail(formData.email)) {
+          alert("Input a valid email address");
+          return true;
+        } else if(formData.password.length < 8) {
+          alert("Password should be 8 or more characters");
           return true;
         }
         break;
@@ -211,7 +230,7 @@ export default function RegistrationPage() {
                   <>
                     <div className="inputGroup">
                         <div className="fileSelect" onClick={() => document.getElementById('id_image').click()}>
-                          Click and select you student ID
+                          Click and select your student ID
                           <input 
                           type="file" 
                           id="id_image" 
