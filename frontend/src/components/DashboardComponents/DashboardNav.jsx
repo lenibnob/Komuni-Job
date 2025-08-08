@@ -14,7 +14,7 @@ export default function DashboardNav () {
                 <Link to="/"><LuHouse className="jobListingButton"/></Link>
                 <Link to="/"><FiBriefcase className="jobPostedButton" /></Link>
                 <Link to="/dashboard/postjob"><FaRegPlusSquare className="createButton" /></Link>
-                <Link to="/"><FiUser className="profileButton" /></Link>
+                <Link to="/userprofile"><FiUser className="profileButton" /></Link>
                 <Link to="/"><MdMailOutline className="inboxButton"/></Link>
             </div>
             <Link to="/"><GoGear className="settingsButton"/></Link>

@@ -1,0 +1,188 @@
+.userProfilePage { /*CONTAINER*/
+    background-color: #FFF9EF;
+    color: black;
+    width: 100vw;
+    height: 200vh;
+    display: flex;
+}
+
+.userProfileContainer { /*CONTAINER*/
+    width: 100vw;
+    height: 200vh;
+
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.userProfileBackground { /*CONTAINER*/
+    background-color: #3B7080;
+    width: 100%;
+    height: 25%;
+    z-index: 1;
+}
+
+.userProfile { /*CONTAINER*/
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 200vh;
+    z-index: 2;
+
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+
+    margin-top: -20px;
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/*========================================================*/
+
+.userProfileDetails { /*CONTAINER*/
+    border: 2px solid red;
+    width: 100%;
+    height: 20%;
+
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+} 
+
+.userProfileImage { /*CONTAINER*/
+    background-color: purple;
+    width: 300px;
+    height: 300px;
+    border-radius: 100%;
+
+    z-index: 2;
+    margin-top: -150px;
+}
+
+.userProfileText { /*CONTAINER*/
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    width: 500px;
+}
+.userProfileText h1 {
+    background-color: #FFF9EF;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 55px;
+
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.userProfileContacts { /*CONTAINER*/
+    width: 425px;
+
+    display: flex;
+    flex-direction: column;
+    size: 100%;
+
+} .userProfileContacts h2 {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.userProfileEmail {
+    color: #F59643;
+    width: 40px;
+    height: 40px;
+}
+
+.userProfileLocation {
+    color: #F59643;
+    width: 40px;
+    height: 40px;
+}
+
+.userProfileNumber {
+    color: #F59643;
+    width: 40px;
+    height: 40px;
+}
+
+/*========================================================*/
+
+.userProfileDescriptionContainer { /*CONTAINER*/
+    border: 2px solid green;
+    width: 100%;
+    height: 40%;
+    
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+}
+
+.userProfileDescription {
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 25px;
+    width: 60%;
+
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.userProfileRating {
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 25px;
+    width: 40%;
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+} .userProfileRating p {
+    color: rgb(59, 59, 59);
+}
+
+.ratingButtonRow {
+    border: 2px solid orange;
+    width: 100%;
+    height: 30%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+} .ratingButtonRow button {
+    background-color: transparent;
+}
+
+.starButton {
+    color: #F59643;
+    width: 80px;
+    height: 80px;
+}
+
+.ratingDescription {
+    border: 2px solid orange;
+    width: 100%;
+    height: 70%;
+}
+
+
+/*========================================================*/
+
+.userProfileResume { /*CONTAINER*/
+    background-color: gray;
+    width: 100%;
+    height: 60%;
+}
+
