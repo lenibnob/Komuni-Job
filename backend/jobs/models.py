@@ -40,9 +40,6 @@ class Job(models.Model):
     city = models.CharField(max_length=100, null=True, blank=False)
     province = models.CharField(max_length=100, null=True, blank=False)
     address = models.CharField(max_length=100, null=True, blank=False)
-    latitude = models.FloatField(blank=True, null=True)
-    longitude = models.FloatField(blank=True, null=True)
-    map_link = models.URLField(max_length=500, blank=True, null=True)
 
     def __str__(self):
         return self.job_title

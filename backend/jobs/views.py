@@ -6,22 +6,21 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from .models import Job, JobImage, JobApplication, PaymentOption, JobCategory, JobSkill
 from .serializers import (
-    JobCardSerializer, JobDetailSerializer, JobImageSerializer, JobApplicationSerializer,
-    PaymentOptionSerializer, JobCategorySerializer, JobSkillSerializer
+    JobCardSerializer, JobDetailPublicSerializer, JobDetailAcceptedSerializer, JobImageSerializer,
+    JobApplicationSerializer, PaymentOptionSerializer, JobCategorySerializer, JobSkillSerializer, EmployerSerializer
 )
 from .permissions import IsEmployer, IsApplicant, IsOwnerOrReadOnly
 from files.services import FileService
 from rest_framework.views import APIView
 
 class JobViewSet(viewsets.ModelViewSet):
-
     queryset = Job.objects.all()
     permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = ['job_category', 'payment_option', 'job_is_active']
     search_fields = ['job_title', 'job_description']
     ordering_fields = ['job_post_date', 'payment_amount']
-    
+
     def perform_create(self, serializer):
         serializer.save(user_id=self.request.user)
 
@@ -29,8 +28,14 @@ class JobViewSet(viewsets.ModelViewSet):
         if self.action == 'card_list':
             return JobCardSerializer
         elif self.action == 'retrieve':
-            return JobDetailSerializer
-        return JobDetailSerializer  
+            job = self.get_object()
+            user = self.request.user
+            if user.is_authenticated:
+                accepted = JobApplication.objects.filter(job_id=job, applicant_id=user, status='ACCEPTED').exists()
+                if accepted:
+                    return JobDetailAcceptedSerializer
+            return JobDetailPublicSerializer
+        return JobDetailPublicSerializer
 
     @action(detail=False, methods=['get'])
     def card_list(self, request):
@@ -40,7 +45,7 @@ class JobViewSet(viewsets.ModelViewSet):
 
 class JobCoverPhotoUploadView(APIView):
     permission_classes = [IsAuthenticated]
-    
+
     def post(self, request, job_pk):
         job = Job.objects.get(pk=job_pk)
         file = request.FILES.get('image')

@@ -3,6 +3,26 @@ from .models import Job, JobImage, JobApplication, PaymentOption, JobCategory, J
 from django.contrib.auth.models import User
 from files.services import FileService
 
+# Employer info
+class EmployerSerializer(serializers.ModelSerializer):
+    profile_picture = serializers.SerializerMethodField()
+    is_verified = serializers.SerializerMethodField()
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'profile_picture', 'is_verified']
+
+    def get_profile_picture(self, obj):
+        profile = getattr(obj, 'profile', None)
+        if profile and profile.profile_pic_url:
+            return FileService.get_signed_url_from_path(profile.profile_pic_url, expires_in=3600)
+        return None
+
+    def get_is_verified(self, obj):
+        profile = getattr(obj, 'profile', None)
+        return profile.verification_status == 'verified' if profile else False
+
+# Job card for job list/grid/search results
 class JobCardSerializer(serializers.ModelSerializer):
     cover_photo_signed_url = serializers.SerializerMethodField()
     city = serializers.CharField()
@@ -30,6 +50,7 @@ class JobCardSerializer(serializers.ModelSerializer):
     def get_short_description(self, obj):
         return obj.job_description[:120] + "..." if len(obj.job_description) > 120 else obj.job_description
 
+# Job images
 class JobImageSerializer(serializers.ModelSerializer):
     signed_url = serializers.SerializerMethodField()
     class Meta:
@@ -40,36 +61,14 @@ class JobImageSerializer(serializers.ModelSerializer):
             return FileService.get_signed_url_from_path(obj.image, expires_in=3600)
         return None
 
-class EmployerSerializer(serializers.ModelSerializer):
-    profile_picture = serializers.SerializerMethodField()
-    is_verified = serializers.SerializerMethodField()
-
-    class Meta:
-        model = User
-        fields = ['first_name', 'profile_picture', 'is_verified']
-
-    def get_profile_picture(self, obj):
-        profile = getattr(obj, 'profile', None)
-        if profile and profile.profile_pic_url:
-            return FileService.get_signed_url_from_path(profile.profile_pic_url, expires_in=3600)
-        return None
-
-    def get_is_verified(self, obj):
-        profile = getattr(obj, 'profile', None)
-        return profile.verification_status == 'verified' if profile else False
-
-class JobDetailSerializer(serializers.ModelSerializer):
+# Public/Applied view (no full address)
+class JobDetailPublicSerializer(serializers.ModelSerializer):
     employer = EmployerSerializer(source='user_id', read_only=True)
     cover_photo_signed_url = serializers.SerializerMethodField()
     images = JobImageSerializer(many=True, read_only=True)
     job_category_name = serializers.SerializerMethodField()
     payment_option_type = serializers.SerializerMethodField()
     posted_days_ago = serializers.SerializerMethodField()
-    job_expire_date = serializers.DateTimeField()
-    application_deadline = serializers.DateTimeField()
-    city = serializers.CharField()
-    province = serializers.CharField()
-    barangay = serializers.CharField()
     tags = serializers.SerializerMethodField()
     required_skills = serializers.PrimaryKeyRelatedField(
         queryset=JobSkill.objects.all(), many=True, write_only=True, required=False
@@ -80,7 +79,7 @@ class JobDetailSerializer(serializers.ModelSerializer):
         fields = [
             'job_id', 'employer', 'job_title', 'job_description',
             'cover_photo_signed_url', 'images',
-            'job_category_name', 'job_category', 'barangay', 'city', 'province',
+            'job_category_name', 'job_category', 'province', 'city',
             'tags', 'payment_option_type', 'payment_option', 'payment_amount',
             'posted_days_ago', 'job_post_date', 'application_deadline', 'job_expire_date',
             'required_skills'
@@ -117,7 +116,13 @@ class JobDetailSerializer(serializers.ModelSerializer):
         if required_skills is not None:
             job.required_skills.set(required_skills)
         return job
-    
+
+# Accepted view (shows address/barangay)
+class JobDetailAcceptedSerializer(JobDetailPublicSerializer):
+    class Meta(JobDetailPublicSerializer.Meta):
+        fields = JobDetailPublicSerializer.Meta.fields + ['barangay', 'address']
+
+# Job application
 class JobApplicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = JobApplication
@@ -130,12 +135,12 @@ class PaymentOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = PaymentOption
         fields = ['payment_option_id', 'payment_option_type']
-        
+
 class JobCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = JobCategory
         fields = ['job_cat_id', 'job_cat_name']
-        
+
 class JobSkillSerializer(serializers.ModelSerializer):
     class Meta:
         model = JobSkill
