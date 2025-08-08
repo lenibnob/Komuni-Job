@@ -91,5 +91,7 @@
     font-size: 1.8rem;
     width: 200px;
     height: 50px;
-
+} .appliedJobViewButton:hover {
+    background-color: #F59643;
+    color: #FFF9EF;
 }
