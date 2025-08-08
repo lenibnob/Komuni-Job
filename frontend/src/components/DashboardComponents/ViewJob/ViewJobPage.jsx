@@ -37,11 +37,11 @@ export default function ViewJobPage() {
 
                         <div className="viewJobDetails">
                             <h1>{data.title}</h1>
-                            <h3>Hiring {data.hiring_count} people</h3>
+                            <h3 className="job_hiring_count">Hiring {data.hiring_count} people</h3>
                             <h2>Job Category</h2>
-                            <h3>{data.job_category}</h3>
+                            <h3 className="job_category">{data.job_category}</h3>
                             <h2>Location</h2>
-                            <h3>{data.location}</h3>
+                            <h3 className="job_location">{data.location}</h3>
 
                             <h2>Job Tags</h2>
                             <div className="jobTags">
