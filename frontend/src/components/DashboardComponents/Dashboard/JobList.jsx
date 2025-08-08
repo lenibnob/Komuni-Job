@@ -1,40 +1,41 @@
 import SearchBar from "@/components/DashboardComponents/Dashboard/SearchBar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
  
 export default function JobList () {
 
-    const [tempData, setTempData] = useState([
-        {
-            id: 1,
-            title: "Frontend Developer",
-            description: "We need someone to build the frontend page of our website",
-            location: "Germany", 
-            timePost: "1945"
-        },
-        {
-            id: 2,
-            title: "Backend Engineer",
-            description: "We need someone to bridge our frontend and backend data",
-            location: "Twin Towers",
-            timePost: "2001"
-        }
-    ]);
+    const [tempData, setTempData] = useState([]);
+
+    useEffect(() => {
+        fetch("http://127.0.0.1:8000/api/jobs/card-list/", {
+            method: 'GET',
+            credentials: 'include',
+        })
+        .then(res => {
+            if(!res.ok) {
+                throw new Error(`HTTP error! Status: ${res.status}`);
+            }
+            return res.json();
+        })
+        .then(data => setTempData(data))
+        .catch(err => console.error("Fetch error: ", err))
+    }, []);
+
 
     function JobPost({data}) {
         return (
             <div className="jobPost">
                 <div className="jobImage">
-                    <h2>{data.title}</h2>
+                    <h2>{data.job_title}</h2>
                 </div>
                 <div className="jobDetails">
                     <div className="jobIntro">
-                        <p>{data.description}</p>
+                        <p>{data.short_description}</p>
                     </div>
                     <div className="jobStatusContainer">
                         <div className="jobStatus">
-                            <p>{data.location}</p>
-                            <p>{data.timePost}</p>
+                            <p>{data.city} {data.province}</p>
+                            <p>{data.posted_days_ago}</p>
                         </div>
                         <Link to="/dashboard/viewjob"><button className="viewButton">View</button></Link>
                     </div>
@@ -55,10 +56,10 @@ export default function JobList () {
                     <div className="jobPostContainer">
                        {tempData.length > 0 ? (
                             tempData.map((job) => (
-                                <JobPost key={job.id} data={job} />
+                                <JobPost key={job.job_id} data={job} />
                             ))
                         ) : (
-                            <p>No job posts available.</p>
+                            <p style={{color: "black"}}>No job posts available.</p>
                         )}
                     </div>
                 </div>

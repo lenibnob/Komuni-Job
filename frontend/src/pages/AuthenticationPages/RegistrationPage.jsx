@@ -110,19 +110,18 @@ export default function RegistrationPage() {
     var first_name = formData.givenName;
     var middle_name = formData.middleName;
     var last_name = formData.surname;
-    var suffix = formData.suffix;
     try {
-      if(confirmId(first_name, middle_name, last_name, suffix, file, face)) {
-        if(register(backendData)){
+      if(await confirmId(first_name, middle_name, last_name, suffix, file, face) == true) {
+        if(await register(backendData) == true){
           alert("Registration successful");
           navigate("/login");
         }
         else {
-          alert("There is an error");
+          alert("There is an error on submiting registration");
         }
       } 
       else {
-        alert("There is an error please try again");
+        alert("Credentials doesn't match");
       }
     } catch (error) {
       console.error("Registration error:", error);
@@ -153,10 +152,10 @@ export default function RegistrationPage() {
               <div className="registrationInputField">
                 {step === 1 && (
                   <>
-                    <TextInput label="Given Name" name="givenName" value={formData.givenName} onChange={handleChange} variant="registration"  />
-                    <TextInput label="Middle Name" name="middleName" value={formData.middleName} onChange={handleChange} variant="registration" />
+                    <TextInput label="Given Name" name="givenName" value={formData.givenName} onChange={handleChange} variant="registration" placeholder="Given Name"  />
+                    <TextInput label="Middle Name" name="middleName" value={formData.middleName} onChange={handleChange} variant="registration" placeholder="Middle Name" />
                     <div className="surnameInputContainer">
-                      <TextInput label="Surname" name="surname" value={formData.surname} onChange={handleChange} variant="registration" />
+                      <TextInput label="Surname" name="surname" value={formData.surname} onChange={handleChange} variant="registration" placeholder="Surname" />
                       <SuffixDropdown onChange={(val) => setSuffix(val)} />
                     </div>
                     <RadioGroup
@@ -174,10 +173,10 @@ export default function RegistrationPage() {
 
                 {step === 2 && (
                   <>
-                    <TextInput label="City" name="city" value={formData.city} onChange={handleChange} variant="registration" />
-                    <TextInput label="Province" name="province" value={formData.province} onChange={handleChange} variant="registration" />
-                    <TextInput label="Barangay" name="barangay" value={formData.barangay} onChange={handleChange} variant="registration" />
-                    <TextInput label="Address" name="address" value={formData.address} onChange={handleChange} variant="registration" />
+                    <TextInput label="City" name="city" value={formData.city} onChange={handleChange} variant="registration" placeholder="City" />
+                    <TextInput label="Province" name="province" value={formData.province} onChange={handleChange} variant="registration" placeholder="Province" />
+                    <TextInput label="Barangay" name="barangay" value={formData.barangay} onChange={handleChange} variant="registration" placeholder="Barangay" />
+                    <TextInput label="Address" name="address" value={formData.address} onChange={handleChange} variant="registration" placeholder="Address" />
                     <div>
                       <button className="registrationNextButton" onClick={() => {if(!missing()){setStep(3)}}}>Next</button>
                     </div>
@@ -186,10 +185,10 @@ export default function RegistrationPage() {
 
                 {step === 3 && (
                   <>
-                    <TextInput label="Phone Number" name="phone" value={formData.phone} onChange={handleChange} type="tel" variant="registration" />
-                    <TextInput label="Email" name="email" value={formData.email} onChange={handleChange} type="email" variant="registration" />
-                    <TextInput label="Password" name="password" value={formData.password} onChange={handleChange} type="password" variant="registration" />
-                    <TextInput label="Confirm Password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} type="password" variant="registration" />
+                    <TextInput label="Phone Number" name="phone" value={formData.phone} onChange={handleChange} type="tel" variant="registration" placeholder="Phone Number" />
+                    <TextInput label="Email" name="email" value={formData.email} onChange={handleChange} type="email" variant="registration" placeholder="Email"/>
+                    <TextInput label="Password" name="password" value={formData.password} onChange={handleChange} type="password" variant="registration" placeholder="Password"/>
+                    <TextInput label="Confirm Password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} type="password" variant="registration" placeholder="Confirm Password" />
                     <div className="inputGroup">
                       <label className="termsCheckbox">
                         <input
@@ -212,7 +211,7 @@ export default function RegistrationPage() {
                   <>
                     <div className="inputGroup">
                         <div className="fileSelect" onClick={() => document.getElementById('id_image').click()}>
-                          Click to select file
+                          Click and select you student ID
                           <input 
                           type="file" 
                           id="id_image" 
@@ -231,7 +230,7 @@ export default function RegistrationPage() {
                         </div>
                         <br />
                         <div className="fileSelect" onClick={() => document.getElementById('face_image').click()}>
-                          Click to select file
+                          Click and select your selfie
                           <input 
                           type="file" 
                           id="face_image" 

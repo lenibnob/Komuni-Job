@@ -24,11 +24,11 @@ export default function LoginPage() {
       return;
     }
     else {
-      if(login(formData)) {
+      if(login(formData) == true) {
         alert("Log in successful");
         navigate("/dashboard");
       }
-      else alert("Log in successful");
+      else alert("There is an error");
     }
   };
 
