@@ -194,32 +194,32 @@
     background-repeat: no-repeat;
 }
 .teamImage.josh {
-    background-image: url("..\\..\\recources\\SVG files\\profiles\\Lance.svg");
+    background-image: url("..\\..\\recources\\SVG files\\profiles\\Joshua.svg");
     background-size: cover;
     background-repeat: no-repeat;
 }
 .teamImage.rein {
-    background-image: url("..\\..\\recources\\SVG files\\profiles\\Lance.svg");
+    background-image: url("..\\..\\recources\\SVG files\\profiles\\Rein.svg");
     background-size: cover;
     background-repeat: no-repeat;
 }
 .teamImage.mark {
-    background-image: url("..\\..\\recources\\SVG files\\profiles\\Lance.svg");
+    background-image: url("..\\..\\recources\\SVG files\\profiles\\Mark.svg");
     background-size: cover;
     background-repeat: no-repeat;
 }
 .teamImage.naomi {
-    background-image: url("..\\..\\recources\\SVG files\\profiles\\Lance.svg");
+    background-image: url("..\\..\\recources\\SVG files\\profiles\\naomi.svg");
     background-size: cover;
     background-repeat: no-repeat;
 }
 .teamImage.shawnlee {
-    background-image: url("..\\..\\recources\\SVG files\\profiles\\Lance.svg");
+    background-image: url("..\\..\\recources\\SVG files\\profiles\\Shawnlee.svg");
     background-size: cover;
     background-repeat: no-repeat;
 }
 .teamImage.gelo {
-    background-image: url("..\\..\\recources\\SVG files\\profiles\\Lance.svg");
+    background-image: url("..\\..\\recources\\SVG files\\profiles\\Angelo.svg");
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -362,6 +362,7 @@
     height: 150px;
 }
 
+
 .youthCardTexts {
     border: 2px solid rgba(0, 0, 0, 0);
     color: #22424C;
@@ -376,6 +377,7 @@
 } .youthCardTexts h3 {
     margin-bottom: 1rem;
 }
+
 
 /*----------------------------------------------------------------------*/
 
