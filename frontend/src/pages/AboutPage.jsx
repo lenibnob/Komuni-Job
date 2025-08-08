@@ -7,6 +7,7 @@ import UNGoals from "@/components/AboutComponents/UNGoals";
 import YouthParticipation from "@/components/AboutComponents/YouthParticipation";
 import AboutFooter from "@/components/AboutComponents/AboutFooter";
 
+
 export default function AboutPage() {
     return (
         <>
@@ -20,3 +21,5 @@ export default function AboutPage() {
         </>
     );
 }
+
+
