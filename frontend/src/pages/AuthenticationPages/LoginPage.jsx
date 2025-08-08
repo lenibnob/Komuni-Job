@@ -27,7 +27,7 @@ export default function LoginPage() {
     else {
       if(login(formData)) {
         alert("Log in successful");
-        navigate("/dashboard");
+        //navigate("/dashboard");
       }
       else alert("There is an error");
     }

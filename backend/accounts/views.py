@@ -70,6 +70,8 @@ class LoginView(APIView):
 
     def post(self, request):
         res = Response()
+        res.delete_cookie('access_token', path='/')
+        res.delete_cookie('refresh_token', path='/')
         email = request.data.get('email')
         password = request.data.get('password')
         if not email or not password:

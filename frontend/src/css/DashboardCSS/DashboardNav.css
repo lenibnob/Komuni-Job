@@ -11,6 +11,8 @@
     align-items: center;
 
     padding: 10px;
+    position: fixed;
+    z-index: 999;
 }
 
 .dashboardLogo {
@@ -33,11 +35,15 @@ height: 70px;
 }
 
 .jobListingButton {
-    color: #22424C; /*this page is active*/
+    color: #F59643; /*this page is active*/
     width: 60px;
     height: 60px;
 } .jobListingButton:hover {
     color: #22424C;    
+} .jobListingButton.active {
+    color: #22424C; /*this should turn into #22424C when this page is active*/
+    width: 60px;
+    height: 60px;
 }
 
 .createButton {
@@ -66,6 +72,10 @@ height: 70px;
     height: 60px;
 } .profileButton:hover {
     color: #22424C;    
+} .profileButton.active {
+    color: #22424C; /*this should turn into #22424C when this page is active*/
+    width: 60px;
+    height: 60px;
 }
 
 .inboxButton {
@@ -74,6 +84,10 @@ height: 70px;
     height: 60px;
 } .inboxButton:hover {
     color: #22424C;    
+} .inboxButton.active {
+    color: #22424C; /*this should turn into #22424C when this page is active*/
+    width: 60px;
+    height: 60px;
 }
 
 .settingsButton {
@@ -83,4 +97,8 @@ height: 70px;
     margin-bottom: 1rem;
 } .settingsButton:hover {
     color: #22424C;    
+} .settingsButton.active {
+    color: #22424C; /*this should turn into #22424C when this page is active*/
+    width: 60px;
+    height: 60px;
 }
