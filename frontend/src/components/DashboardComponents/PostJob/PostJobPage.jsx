@@ -5,11 +5,11 @@ import {useState} from 'react';
 export default function PostJobPage() {
     const [jobDetail, setJobDetail] = useState([{
         job_title: "",
-        job_category: "",
         payment_option: "",
-        job_category: [""],
-        job_hiring_amount: "",
-        job_cost_per_hour: "",
+        job_category: "",
+        job_skills: [""],
+        //job_hiring_amount: "",
+        //job_cost_per_hour: "",
         payment_amount: "",
         job_descritpion: "",
         job_expire_date: "",
@@ -17,7 +17,6 @@ export default function PostJobPage() {
         barangay: "",
         city: "",
         province: ""
-
     }]);
 
     return (
