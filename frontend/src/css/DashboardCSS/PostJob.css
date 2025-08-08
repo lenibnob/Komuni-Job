@@ -27,7 +27,6 @@
 .postHeader { /*Container*/
     width: 100%;
     height: 70px;
-
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -171,8 +170,6 @@ textarea {
     background-color: #F59643;
     color: white;
     border-color: #F59643;
-    font-size: 1.2rem;
-    cursor: pointer;
 }
 
 .jobPost-costInput {

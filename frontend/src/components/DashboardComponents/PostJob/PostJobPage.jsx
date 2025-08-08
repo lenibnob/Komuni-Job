@@ -1,7 +1,25 @@
 import "@/css/DashboardCSS/PostJob.css";
 import PostHeader from "@/components/DashboardComponents/PostJob/PostHeader";
+import {useState} from 'react';
 
 export default function PostJobPage() {
+    const [jobDetail, setJobDetail] = useState([{
+        job_title: "",
+        job_category: "",
+        payment_option: "",
+        job_category: [""],
+        job_hiring_amount: "",
+        job_cost_per_hour: "",
+        payment_amount: "",
+        job_descritpion: "",
+        job_expire_date: "",
+        address: "",
+        barangay: "",
+        city: "",
+        province: ""
+
+    }]);
+
     return (
         <div className="postJobContainer">
             <PostHeader />
