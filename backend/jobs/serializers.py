@@ -27,13 +27,14 @@ class JobCardSerializer(serializers.ModelSerializer):
     cover_photo_signed_url = serializers.SerializerMethodField()
     city = serializers.CharField()
     province = serializers.CharField()
+    vacancies = serializers.IntegerField()
     posted_days_ago = serializers.SerializerMethodField()
     short_description = serializers.SerializerMethodField()
 
     class Meta:
         model = Job
         fields = [
-            'job_id', 'job_title', 'cover_photo_signed_url', 'city', 'province',
+            'job_id', 'job_title', 'vacancies', 'cover_photo_signed_url', 'city', 'province',
             'posted_days_ago', 'short_description'
         ]
 

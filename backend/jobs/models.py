@@ -28,6 +28,7 @@ class Job(models.Model):
     job_description = models.TextField()
     payment_option = models.ForeignKey(PaymentOption, on_delete=models.PROTECT)
     payment_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    vacancies = models.PositiveIntegerField(default=1, help_text="Number of persons needed for this job")
     job_category = models.ForeignKey(JobCategory, on_delete=models.PROTECT)
     required_skills = models.ManyToManyField(JobSkill)
     job_post_date = models.DateTimeField(default=timezone.now)
