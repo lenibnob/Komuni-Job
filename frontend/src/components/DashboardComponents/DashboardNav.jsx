@@ -1,3 +1,4 @@
+import "@/css/DashboardCSS/DashboardNav.css"
 import { LuHouse } from "react-icons/lu";
 import { FiBriefcase } from "react-icons/fi";
 import { FaRegPlusSquare } from "react-icons/fa";
