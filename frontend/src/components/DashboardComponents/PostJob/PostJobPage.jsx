@@ -81,8 +81,6 @@ export default function PostJobPage() {
                         </div>
                     </label>
                     </div>
-
-
             </div>
         </div>
     )

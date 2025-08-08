@@ -8,6 +8,7 @@ import DashboardPage from './pages/Dashboard/DashboardPage';
 import ViewJob from './pages/Dashboard/ViewJob';
 import PostJob from './pages/Dashboard/PostJob';
 import UserProfile from './pages/Dashboard/UserProfile';
+import InboxPage from './pages/Dashboard/InboxPage';
 
 export default function App() {
  
@@ -24,8 +25,9 @@ export default function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path='/dashboard' element={<DashboardPage />} />
           <Route path='/dashboard/viewjob' element={<ViewJob />} />
-          <Route path='/dashboard/postjob' element={<PostJob/>}/>
+          <Route path='/dashboard/postjob' element={<PostJob/>} />
           <Route path='/userprofile' element={<UserProfile/>} />
+          <Route path='/dashboard/inbox' element={<InboxPage/>} />
         </Routes>
 
       </main>

@@ -2,6 +2,7 @@ import "@/css/DashboardCSS/UserProfile.css"
 import DashboardNav from "@/components/DashboardComponents/DashboardNav";
 import UserProfileDetails from "@/components/DashboardComponents/UserProfile/UserProfileDetails";
 import UserProfileDescription from "@/components/DashboardComponents/UserProfile/UserProfileDescription";
+import UserProfileResume from "@/components/DashboardComponents/UserProfile/UserProfileResume";
 
 export default function UserProfile() {
     return (
@@ -14,9 +15,7 @@ export default function UserProfile() {
                 <div className="userProfile">
                     <UserProfileDetails />
                     <UserProfileDescription />
-                    <div className="userProfileResume">
-
-                    </div>
+                    <UserProfileResume />
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 .postJob {
     background-color: #FFF9EF;
     display: flex;
-    height: 100vh;
+    height: 110vh;
 }
 
 .postJob p
@@ -123,6 +123,7 @@
 .jobPost-formLeft textarea:focus {
     border-color: #F59643;
     box-shadow: 0 0 5px rgba(245, 150, 67, 0.5);
+    outline: none;
 }
 
 textarea {
