@@ -15,7 +15,7 @@ export default function DashboardNav () {
                 <Link to="/"><FiBriefcase className="jobPostedButton" /></Link>
                 <Link to="/dashboard/postjob"><FaRegPlusSquare className="createButton" /></Link>
                 <Link to="/userprofile"><FiUser className="profileButton" /></Link>
-                <Link to="/"><MdMailOutline className="inboxButton"/></Link>
+                <Link to="/dashboard/inbox"><MdMailOutline className="inboxButton"/></Link>
             </div>
             <Link to="/"><GoGear className="settingsButton"/></Link>
         </div>
