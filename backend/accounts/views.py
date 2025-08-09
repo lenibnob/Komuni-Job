@@ -310,3 +310,16 @@ class IdentificationCardDetailView(APIView):
         from .serializers import IdentificationCardSerializer
         serializer = IdentificationCardSerializer(card, context={'request': request})
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class UserIdView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get_id(request):
+        try:
+            user = request.user
+            data = {
+                "id": user.id
+            }
+            return JsonResponse(data, status=200)
+        except Exception as e:
+            return JsonResponse({"error": "User not found"}, status=404)
