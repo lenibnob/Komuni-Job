@@ -112,73 +112,99 @@ export default function PostJobPage() {
             <div className="postJobForm">
                 
                 <div className="jobPost-formLeft">
-                    <label>
-                        Job post title
-                        <input type="text" placeholder="Enter job title" name="job_title" onChange={handleChange}/>
-                    </label>
+                    <div className="top_row">
+                        <label>
+                            Job post title
+                            <input type="text" placeholder="Enter job title" name="job_title" onChange={handleChange}/>
+                        </label>
 
-                    <label>
-                        Job category
-                        <select name="job_category" value={jobDetail.job_category} onChange={handleChange}>
-                            <option value="">Select a job category</option>
-                            {jobCategory.map(category => (
-                                <option key={category.job_cat_id} value={category.job_cat_id}>
-                                    {category.job_cat_name}
-                                </option>
-                            ))}
-                        </select>
-                    </label>
+                        <label>
+                            Hiring amount
+                            <input type="number" name="vacancy" onChange={handleChange} placeholder="Hiring amount/vacancy"/>
+                        </label>
+                    </div>
 
-                    <label>
-                        Payment option
-                        <select name="payment_option" onChange={(e) => {
-                            handleChange(e);
-                            setPaymentMethod(e.target.value == 1 ? "Hourly" : "Fixed");
-                            setJobDetail(prev => ({
-                                ...prev,
-                                payment_option: e.target.value
-                            }));
-                        }}>
-                        <option value="">Select option</option>
-                        <option value={1}>Hourly</option>
-                        <option value={2}>Fixed</option>
-                        </select>
-                    </label>
+                    <div className="description_field">
+                        <label>
+                            Description
+                            <textarea placeholder="Short description for the job" name="job_description" onChange={handleChange}/>
+                            <div className="jobPost-formattingBar">
+                            </div>
+                        </label>
+                    </div>
 
-                    <label>
-                        Required skill
-                        <select value={jobDetail.job_skills} name="job_skills" onChange={handleChange}>
-                            <option value="">Select job skill requirements</option>
-                            {jobSkills.map(category => (
-                                <option key={category.job_skill_id} value={category.job_skill_name}>
-                                    {category.job_skill_name}
-                                </option>
-                            ))}
-                        </select>
-                    </label>
+                    <div className="middle_row">
+                        <label>
+                            Job category
+                            <select name="job_category" value={jobDetail.job_category} onChange={handleChange}>
+                                <option value="">Select a job category</option>
+                                {jobCategory.map(category => (
+                                    <option key={category.job_cat_id} value={category.job_cat_id}>
+                                        {category.job_cat_name}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
 
-                    <label>
-                        Hiring amount
-                        <input type="number" name="vacancy" onChange={handleChange} placeholder="Hiring amount/vacancy"/>
-                    </label>
+                        <label>
+                            Required skill
+                            <select value={jobDetail.job_skills} name="job_skills" onChange={handleChange}>
+                                <option value="">Select job skill requirements</option>
+                                {jobSkills.map(category => (
+                                    <option key={category.job_skill_id} value={category.job_skill_name}>
+                                        {category.job_skill_name}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
+                    </div>
+                    <div className="bottom_row">
+                        <label>
+                            Payment option
+                            <select name="payment_option" onChange={(e) => {
+                                handleChange(e);
+                                setPaymentMethod(e.target.value == 1 ? "Hourly" : "Fixed");
+                                setJobDetail(prev => ({
+                                    ...prev,
+                                    payment_option: e.target.value
+                                }));
+                            }}>
+                            <option value="">Select option</option>
+                            <option value={1}>Hourly</option>
+                            <option value={2}>Fixed</option>
+                            </select>
+                        </label>
 
-                    <label>
-                        Payment Amount
-                        <div className="jobPost-costInput">
-                        <span>₱</span>
-                        <input type="number" name="payment_amount" onChange={handleChange} placeholder={paymentMethod}/>
+                        <label>
+                            Payment Amount
+                            <div className="jobPost-costInput">
+                            <span>₱</span>
+                            <input type="number" name="payment_amount" onChange={handleChange} placeholder={paymentMethod}/>
+                            </div>
+                        </label>
                         </div>
-                    </label>
                     </div>
 
                     <div className="jobPost-formRight">
-                    <label>
-                        Description
-                        <p>Provide a brief and concise job description</p>
-                        <textarea placeholder="Short description for the job" name="job_description" onChange={handleChange}/>
-                        <div className="jobPost-formattingBar">
+                    
+                    <div className="job_image" onClick={() => document.getElementById('id_image').click()}>
+                          Select Job Image
+                          <input 
+                          type="file" 
+                          id="id_image" 
+                          name="id_image" 
+                          accept="image/*" 
+                          style={{display: 'none'}} 
+                          onChange={(e) => {
+                            const file = e.target.files[0]; 
+                            if(file) {
+                              setStatus("Uploaded"); 
+                              setFile(file)
+                            }
+                          }}
+                          required/>
+                          <p>{status}</p>
                         </div>
-                    </label>
                     
                     <label>
                         Job expiry date

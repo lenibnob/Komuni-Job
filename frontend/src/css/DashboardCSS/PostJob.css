@@ -88,20 +88,49 @@
     flex-direction: row;
 }
 
+.top_row,
+.middle_row,
+.bottom_row {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
 .jobPost-formLeft, .jobPost-formRight {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
+    width: 100%;
+}
+
+.jobPost-formLeft label
+{
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: black;
     width: 50%;
 }
 
-.jobPost-formLeft label,
+.description_field label
+{
+    width: 100%;
+}
 .jobPost-formRight label {
     display: flex;
     flex-direction: column;
     font-weight: bold;
     font-size: 1.2rem;
     color: black;
+}
+.job_image{
+    color: #3B7080;
+    border: 2px dashed #3B7080;
+    border-radius: 10px;
+    padding: 8rem;
+    text-align: center;
+    cursor: pointer;
 }
 
 .jobPost-formLeft input,
@@ -115,6 +144,7 @@
     font-size: 1rem;
     background-color: white;
     color: black;
+    width: 100%;
 }
 
 
