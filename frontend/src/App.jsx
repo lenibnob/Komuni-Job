@@ -7,6 +7,7 @@ import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import DashboardPage from './pages/Dashboard/DashboardPage';
 import ViewJob from './pages/Dashboard/ViewJob';
+import ViewJobTemp from './pages/Dashboard/ViewJobTemp';
 import PostJob from './pages/Dashboard/PostJob';
 import UserProfile from './pages/Dashboard/UserProfile';
 import InboxPage from './pages/Dashboard/InboxPage';
@@ -29,6 +30,7 @@ export default function App() {
           <Route path='/dashboard' element={<DashboardPage />} />
           <Route path='/dashboard/pendingapplicants' element={<PendingApplicants />} />
           <Route path='/dashboard/viewjob' element={<ViewJob />} />
+          <Route path='/dashboard/viewjobtemp' element={<ViewJobTemp />} />
           <Route path='/dashboard/postjob' element={<PostJob/>} />
           <Route path='/userprofile' element={<UserProfile/>} />
           <Route path='/dashboard/inbox' element={<InboxPage/>} />
