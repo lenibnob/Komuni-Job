@@ -1,3 +1,48 @@
+@-webkit-keyframes slide-fwd-center {
+  0% {
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+  }
+  100% {
+    -webkit-transform: translateZ(160px);
+            transform: translateZ(160px);
+  }
+}
+@keyframes slide-fwd-center {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes slide-in-right {
+  0% {
+    -webkit-transform: translateX(1000px);
+            transform: translateX(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-right {
+  0% {
+    -webkit-transform: translateX(1000px);
+            transform: translateX(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
 @font-face {
   font-family: 'Varela Round';
   src: url('../../../../frontend/recources/VarelaRound-Regular.ttf') format('truetype');
@@ -38,6 +83,7 @@
 
 .registration 
 {
+  animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
   display: flex;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
@@ -138,6 +184,7 @@
   color: #3B7080;
   transform: translateX(-2px);
   transform: translateY(-2px);
+  animation:forwards 5ms;
 }
 
 .pagination 
@@ -187,14 +234,21 @@
 .registrationTextInput:active{
   outline:none;
 }
-
+.buttonContainer{
+  align-items: center;
+  border: 1px solid #ffffff00;
+  border-radius: 20px;
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 5%;
+}
 .registrationNextButton {
   border-radius: 30px;
   background-color: #f59643;
   color: #FFF9EF;
   padding-left: 30px;
   padding-right: 30px;
-  margin-top: 15%;
+  margin-top: 5%;
   width: 200px;
   height: 45px;
   text-align: center;
@@ -307,7 +361,7 @@
   width: 20px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
   appearance: none;
-  background: #FFF9EF;
+  background: #ffffff;
   cursor: pointer;
   vertical-align: middle;
   margin-right: 0.75rem;
@@ -374,8 +428,36 @@
 .actualCheckbox {
   width: 20px;
   height: 20px;
-  background-color: white;
+  background-color: #ffffff;
   border: 2px solid #3B7080;
   border-radius: 4px;
   position: relative;
+}
+.showPasswordContainer {
+  margin-top: 3%;
+}
+.showPasswordCheckbox {
+  
+  background-color: white; 
+  border: 2px solid #3B7080;
+  border-radius: 4px;
+  position: relative;
+  height: 20px;
+  width: 20px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  appearance: none;
+  cursor: pointer;
+  vertical-align: left;
+}
+
+.showPasswordCheckbox:checked {
+  background-color: #f59643;
+  border-color: #f59643;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+.termsCheckbox {
+  margin-top: 3%;
+}
+.formStep {
+  animation: slide-fwd-center 0.45s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }

@@ -15,7 +15,7 @@ from rest_framework.views import APIView
 
 class JobViewSet(viewsets.ModelViewSet):
     queryset = Job.objects.all()
-    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly, IsAuthenticated]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = ['job_category', 'payment_option', 'job_is_active']
     search_fields = ['job_title', 'job_description']

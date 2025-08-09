@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = 'http://127.0.0.1:8000/'
+export const BASE_URL = 'http://localhost:8000/'
 
 const LOGIN_URL = `${BASE_URL}api/accounts/login/`
 
@@ -12,12 +12,46 @@ const UPLOAD_URL = `${BASE_URL}api/accounts/register/upload-id/`
 
 const VERIFY_URL =  `${BASE_URL}id-verify/id-ocr/`
 
+const CSRF_URL = `${BASE_URL}api/accounts/csrf/`
+
+const POST_URL = `${BASE_URL}api/jobs/`
+
+const APPLY_URL = `${BASE_URL}api/applications/`
+
+export function goToJob(id) {
+  return POST_URL + id + '/';
+}
+
+export function getJobUrl() {
+  return localStorage.getItem("view_job_url");
+}
+
+export function setViewJobUrl(url) {
+  localStorage.setItem("view_job_url", url);
+}
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.startsWith(name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
 export const login = async (data) => {
   try{
     const response = await fetch(LOGIN_URL, {
         method: "POST",
+        credentials: 'include',
         headers: {
-            'Content-Type' : 'application/json'
+            'Content-Type' : 'application/json',
         },
         body: JSON.stringify(data) 
     });
@@ -144,3 +178,50 @@ export const getDataDashboard = async () => {
   }
 }
 
+export const postJob = async (data) => {
+  const csrf = await getCookie("csrftoken");
+  try{
+    const response = await fetch(POST_URL, {
+        method: "POST",
+        headers: {
+          'Content-Type': "application/json",
+          'X-CSRFToken': csrf 
+        },
+        credentials: 'include',
+        body: JSON.stringify(data)
+      });
+    if(response.ok) {
+        return true;
+    }
+    return false;
+  }
+  catch(error) {
+    alert("An error has occured");
+    return false;
+  }
+}
+
+export const applyJob = async (data) => {
+  const csrf = await getCookie("csrftoken");
+  try{
+    const response = await fetch(`${APPLY_URL}`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type" : "application/json",
+        'X-CSRFToken': csrf 
+      },
+      body: JSON.stringify(data)
+    });
+    if(response.ok) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  catch(error) {
+    console.error(`${error}`);
+    return false
+  }
+}

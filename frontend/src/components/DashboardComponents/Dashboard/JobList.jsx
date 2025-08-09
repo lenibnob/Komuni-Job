@@ -1,6 +1,7 @@
 import SearchBar from "@/components/DashboardComponents/Dashboard/SearchBar";
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
+import { setViewJobUrl, goToJob} from "@/endpoints/api";
  
 export default function JobList () {
 
@@ -10,7 +11,7 @@ export default function JobList () {
     const time = new Date();
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/jobs/card-list/", {
+        fetch("http://localhost:8000/api/jobs/card-list/", {
             method: 'GET',
             credentials: 'include'
         })
@@ -39,7 +40,7 @@ export default function JobList () {
                             <p>{data.city} {data.province}</p>
                             <p>{data.job_post_date}</p>
                         </div>
-                        <Link to="/dashboard/viewjob"><button className="viewButton">View</button></Link>
+                        <Link to="/dashboard/viewjob"><button onClick={() => {setViewJobUrl(goToJob(data.job_id))}} className="viewButton">View</button></Link>
                     </div>
                 </div>
             </div>

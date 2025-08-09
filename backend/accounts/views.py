@@ -1,6 +1,7 @@
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.http import HttpResponse, JsonResponse
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import User
@@ -12,6 +13,7 @@ from .serializers import (
     IdentificationCardSerializer,
     UserProfileSerializer,
 )
+from django.middleware.csrf import get_token
 from .models import UserProfile, VERIFICATION_STATUS_CHOICES, IdentificationCard, IdentificationCardType
 from django.db import transaction
 from files.services import FileService
@@ -20,6 +22,13 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView,
 )
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.utils.decorators import method_decorator
+
+@method_decorator(ensure_csrf_cookie, name='dispatch')
+def csrf(request):
+    return JsonResponse({"csrfToken": get_token(request)})
 
 class RegisterView(APIView):
     permission_classes = [AllowAny]
@@ -74,7 +83,6 @@ class LoginView(APIView):
 
         if not email or not password:
             return Response({'error': 'Please provide both email and password'}, status=400)
-
         try:
             user_obj = User.objects.get(email=email)
         except User.DoesNotExist:
@@ -83,8 +91,9 @@ class LoginView(APIView):
         user = authenticate(username=user_obj.username, password=password)
 
         if user:
+            get_token(request)
             login(request, user)
-            return Response({'success': True, 'user': UserSerializer(user).data})
+            return Response({'success': True,  'user': UserSerializer(user).data})
 
         return Response({'success': False}, status=200)
 
@@ -153,8 +162,8 @@ class LogOutView(TokenObtainPairView):
         try:
             res = Response()
             res.data = {'success': True}
-            res.delete_cookie("access_token", path='/', samesite="None")
-            res.delete_cookie("refresh_token", path='/', samesite="None")
+            res.delete_cookie("sessionid", path='/', samesite="None", domain="localhost")
+            res.delete_cookie("csrftoken", path='/', samesite="None", domain="localhost")
             return res
         except:
             return Response({"error": "Something went wrong"})
@@ -301,3 +310,16 @@ class IdentificationCardDetailView(APIView):
         from .serializers import IdentificationCardSerializer
         serializer = IdentificationCardSerializer(card, context={'request': request})
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class UserIdView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get_id(request):
+        try:
+            user = request.user
+            data = {
+                "id": user.id
+            }
+            return JsonResponse(data, status=200)
+        except Exception as e:
+            return JsonResponse({"error": "User not found"}, status=404)
