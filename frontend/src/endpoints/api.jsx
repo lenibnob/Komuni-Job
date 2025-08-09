@@ -16,6 +16,8 @@ const CSRF_URL = `${BASE_URL}api/accounts/csrf/`
 
 const POST_URL = `${BASE_URL}api/jobs/`
 
+const APPLY_URL = `${BASE_URL}api/applications/`
+
 export function goToJob(id) {
   return POST_URL + id + '/';
 }
@@ -199,3 +201,27 @@ export const postJob = async (data) => {
   }
 }
 
+export const applyJob = async (data) => {
+  const csrf = await getCookie("csrftoken");
+  try{
+    const response = await fetch(`${APPLY_URL}`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type" : "application/json",
+        'X-CSRFToken': csrf 
+      },
+      body: JSON.stringify(data)
+    });
+    if(response.ok) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  catch(error) {
+    console.error(`${error}`);
+    return false
+  }
+}
