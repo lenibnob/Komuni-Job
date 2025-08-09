@@ -15,15 +15,15 @@ export default function TeamSection() {
             <div className="teamSectionContainer">
                 <h1>Meet Our Team</h1>
                 <div className="teamCardsContainer">
-                    <TeamCard memberClass="lance" name={"Lance\nFrontEnd"} /> 
-                    <TeamCard memberClass="josh" name={"Joshua\nBackEnd"} />
-                    <TeamCard memberClass="rein" name={"Rein\nBackEnd"} />
+                    <TeamCard memberClass="lance" name={"Lance\nFrontend Dev"} /> 
+                    <TeamCard memberClass="josh" name={"Joshua\nFull Stack Dev"} />
+                    <TeamCard memberClass="rein" name={"Rein\nBackend Dev"} />
                 </div>
                 <div className="teamCardsContainer">
-                    <TeamCard memberClass="mark" name={"Mark\nFrontEnd"} />
-                    <TeamCard memberClass="naomi" name={"Naomi\nFrontEnd"} />
-                    <TeamCard memberClass="shawnlee" name={"Shawnlee\nBackEnd"} />
-                    <TeamCard memberClass="gelo" name={"Angelo\nDocumentation"} />
+                    <TeamCard memberClass="mark" name={"Mark\nUI/UX Designer"} />
+                    <TeamCard memberClass="naomi" name={"Naomi\nFrontend Dev"} />
+                    <TeamCard memberClass="shawnlee" name={"Shawnlee\nBackend Dev"} />
+                    <TeamCard memberClass="gelo" name={"Angelo\nTeam Leader"} />
                 </div>
             </div>
         </div>
