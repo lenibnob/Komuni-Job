@@ -169,9 +169,10 @@ export default function RegistrationPage() {
                 <h2 className={step === 4 ? 'active' : 'activeForm'}>4</h2>
               </div>
               <hr />
+              
               <div className="registrationInputField">
                 {step === 1 && (
-                  <>
+                  <div className="formStep">
                     <TextInput label="Given Name" name="givenName" value={formData.givenName} onChange={handleChange} variant="registration" placeholder="Given Name"  />
                     <TextInput label="Middle Name" name="middleName" value={formData.middleName} onChange={handleChange} variant="registration" placeholder="Middle Name" />
                     <div className="surnameInputContainer">
@@ -188,11 +189,11 @@ export default function RegistrationPage() {
                     <div>
                       <button className="registrationNextButton" onClick={() => {if(!missing()){setStep(2)}}}>Next</button>
                     </div>
-                  </>
+                  </div>
                 )}
 
                 {step === 2 && (
-                  <>
+                  <div className="formStep">
                     <TextInput label="City" name="city" value={formData.city} onChange={handleChange} variant="registration" placeholder="City" />
                     <TextInput label="Province" name="province" value={formData.province} onChange={handleChange} variant="registration" placeholder="Province" />
                     <TextInput label="Barangay" name="barangay" value={formData.barangay} onChange={handleChange} variant="registration" placeholder="Barangay" />
@@ -200,11 +201,11 @@ export default function RegistrationPage() {
                     <div>
                       <button className="registrationNextButton" onClick={() => {if(!missing()){setStep(3)}}}>Next</button>
                     </div>
-                  </>
+                  </div>
                 )}
 
                 {step === 3 && (
-                  <>
+                  <div className="formStep">
                     <TextInput label="Phone Number" name="phone" value={formData.phone} onChange={handleChange} type="tel" variant="registration" placeholder="Phone Number" />
                     <TextInput label="Email" name="email" value={formData.email} onChange={handleChange} type="email" variant="registration" placeholder="Email"/>
                     <TextInput
@@ -240,7 +241,7 @@ export default function RegistrationPage() {
                     <div>
                       <button className="registrationNextButton" onClick={() => {if(!missing()){setStep(4)}}}>Next</button>
                     </div>
-                  </>
+                  </div>
                 )}
                 {step === 4 && (
                   <>
