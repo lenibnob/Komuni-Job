@@ -41,6 +41,7 @@ class Job(models.Model):
     city = models.CharField(max_length=100, null=True, blank=False)
     province = models.CharField(max_length=100, null=True, blank=False)
     address = models.CharField(max_length=100, null=True, blank=False)
+    google_maps_url = models.URLField(max_length=500, blank=True, null=True)
 
     def __str__(self):
         return self.job_title

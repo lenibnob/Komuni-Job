@@ -320,7 +320,7 @@ class UserIdView(APIView):
             data = {
                 "id": user.id
             }
-            return JsonResponse({"owner_id":data}, status=200)
+            return JsonResponse({"owner_id": data}, status=200)
         except Exception as e:
             return JsonResponse({"error": "User not found"}, status=404)
 
