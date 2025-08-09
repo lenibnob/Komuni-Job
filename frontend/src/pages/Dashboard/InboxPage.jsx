@@ -9,6 +9,8 @@ export default function InboxPage() {
     const [owner, setOwner] = useState([{}]);
     const [ownerName, setOwnerName] = useState([{}]);
 
+    const id = owner[0]?.user_id;
+
     useEffect(() => {
     fetch("http://localhost:8000/api/job/employer-detail/", {
         method: "GET",
@@ -23,7 +25,7 @@ export default function InboxPage() {
       }
       return res.json();
     })
-    .then(data => setOwner(data.job))
+    .then(data => setOwner(data.job_owner))
     .catch(err => console.error("Fetch error: ", err));
     }, []);
 
@@ -46,7 +48,8 @@ export default function InboxPage() {
     }, []);
     
     useEffect(() => {
-        fetch(`http://localhost:8000/api/accounts/get-user/${1}/`, {
+        if(!id) return;
+        fetch(`http://localhost:8000/api/accounts/get-user/${id}/`, {
             method: "GET",
             credentials: "include",
             headers: {
@@ -61,7 +64,7 @@ export default function InboxPage() {
         })
         .then(data => setOwnerName(data.job_owner))
         .catch(err => console.error("Fetch error: ", err));
-    }, []);
+    }, [id]);
 
     function AppliedJob({data}) {
         return (
@@ -73,7 +76,7 @@ export default function InboxPage() {
                     <HiOutlinePhone className="employerProfileNumber"/>
                     <MdMailOutline className="employerProfileEmail"/>
                     <div className="employerImage"></div>
-                    <h2>{ownerName?.first_name}</h2>
+                    <h2>{ownerName.first_name}</h2>
                     <button className="appliedJobViewButton">View Profile</button>
                 </div>
             </div>           
