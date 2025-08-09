@@ -64,6 +64,10 @@ height: 70px;
     height: 60px;
 } .jobPostedButton:hover {
     color: #22424C;    
+} .jobPostedButton.active {
+    color: #22424C; /*this should turn into #22424C when this page is active*/
+    width: 60px;
+    height: 60px;
 }
 
 .profileButton {
