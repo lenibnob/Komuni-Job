@@ -1,0 +1,119 @@
+.contactPage {
+    background-color: #FFF9EF;
+    width: 100vh;
+    height: 100vh;
+    margin-top: 7rem;
+}
+
+.contactHeader {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    width: 100vw;
+} .contactHeader h2 {
+    width: 40%;
+    text-align: center;
+}
+
+.contactFormContainer {
+    width: 100vw;
+    height: 77.7vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2rem;
+}
+
+.contactForm {
+    width: 50%;
+    height: 95%;
+    border: 2px solid #F59643;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: black;
+
+    background-color: white;
+    border-radius: 25px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+.inputName {
+    width: 100%;
+    height: 20%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .5rem;
+} 
+.inputNameField {
+    width: 50%;
+    height: 100%;
+}
+.inputNameField input {
+    width: 100%;
+    height: 55%;
+
+    font-size: 1.5rem;
+    padding: 1rem;
+
+    background-color: white;
+    color: black;
+
+    border: 3px solid #3B7080;
+    border-radius: 10px;
+}
+
+.inputEmail {
+    width: 100%;
+    height: 20%;
+} .inputEmail input {
+    width: 100%;
+    height: 55%;
+
+    font-size: 1.5rem;
+    padding: 1rem;
+
+    background-color: white;
+    color: black;
+
+    border: 3px solid #3B7080;
+    border-radius: 10px;
+}
+
+.contactText {
+    width: 100%;
+    height: 50%;
+} .contactText textarea {
+    width: 100%;
+    height: 75%;
+}
+
+.contactButton {
+    width: 100%;
+    height: 10%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} .contactButton button {
+    width: 200px;
+    height: 100%;
+    
+    font-size: 1.5rem;
+    color: #F59643;
+    border: 2px solid #F59643;
+    background-color: #FFF9EF;
+
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+} .contactButton button:hover {
+    color: #FFF9EF;
+    background-color: #F59643;
+}

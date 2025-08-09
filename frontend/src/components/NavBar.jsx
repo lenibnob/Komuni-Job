@@ -7,12 +7,12 @@ export default function NavBar({authenticatePage}) {
 
             <div className="navBarBrand">
                 <div className="logoIcon"></div>
-                <Link className="navBarTitle" to="/">komuniJOB</Link>
+                <Link className="navBarTitle" to="/">KomuniJOB</Link>
             </div>
 
             <div className="navBarLinks">
                 <Link className="navLink" to="/about" >About Us</Link>
-                <Link className="navLink" to="/about" >Contact</Link>
+                <Link className="navLink" to="/contactus" >Contact</Link>
                 <Link to={authenticatePage.address}><button className="navButton">{authenticatePage.option}</button></Link>
             </div>
             

@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import LoginPage from "./pages/AuthenticationPages/LoginPage";
 import RegistrationPage from "./pages/AuthenticationPages/RegistrationPage";
 import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
 import DashboardPage from './pages/Dashboard/DashboardPage';
 import ViewJob from './pages/Dashboard/ViewJob';
 import PostJob from './pages/Dashboard/PostJob';
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegistrationPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/contactus" element={<ContactPage />}/>
           <Route path='/dashboard' element={<DashboardPage />} />
           <Route path='/dashboard/pendingapplicants' element={<PendingApplicants />} />
           <Route path='/dashboard/viewjob' element={<ViewJob />} />
