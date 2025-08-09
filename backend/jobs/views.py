@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -5,10 +6,7 @@ from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnl
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from .models import Job, JobImage, JobApplication, PaymentOption, JobCategory, JobSkill
-from .serializers import (
-    JobCardSerializer, JobDetailPublicSerializer, JobDetailAcceptedSerializer, JobImageSerializer,
-    JobApplicationSerializer, PaymentOptionSerializer, JobCategorySerializer, JobSkillSerializer, EmployerSerializer
-)
+from .serializers import *
 from .permissions import IsEmployer, IsApplicant, IsOwnerOrReadOnly
 from files.services import FileService
 from rest_framework.views import APIView
@@ -129,3 +127,35 @@ class JobSkillViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = JobSkillSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['job_category']
+
+
+class JobShortDetail(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        try:
+            user = request.user
+            applications = JobApplication.objects.filter(applicant_id=user)
+            job_list = []
+            for app in applications:
+                job_list.append({
+                    "job_id": app.job_id.job_id,
+                    "job_title": app.job_id.job_title
+                })
+            return JsonResponse({"jobs": job_list}, status=200)
+        except Exception as e:
+            return JsonResponse({'error': f'Cannot find jobs: {e}'}, status=404)
+        
+class EmployerShortDetail(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        try:
+            user = request.user
+            applications = JobApplication.objects.filter(applicant_id=user)
+            jobs = [app.job_id for app in applications]
+            serializer = JobOwnerSerializer(jobs, many=True)
+            return Response({"job": serializer.data}, status=200)
+        except Exception as e:
+            return Response({'error': f'Cannot find jobs: {e}'}, status=404)
+        

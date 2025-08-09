@@ -18,4 +18,6 @@ urlpatterns = [
     path('job-categories/<int:pk>/', views.JobCategoryViewSet.as_view({'get': 'retrieve'})),
     path('job-skills/', views.JobSkillViewSet.as_view({'get': 'list'})),
     path('job-skills/<int:pk>/', views.JobSkillViewSet.as_view({'get': 'retrieve'})),
+    path('job/short-detail/', views.JobShortDetail.as_view()),
+    path('job/employer-detail/', views.EmployerShortDetail.as_view())
 ]
