@@ -5,11 +5,9 @@ import { HiOutlinePhone } from "react-icons/hi";
 import {useState, useEffect} from 'react'
 
 export default function InboxPage() {
-    const [job, setJob] = useState({});
-    const [owner, setOwner] = useState({});
-    const [ownerName, setOwnerName] = useState({});
-
-    const owner_id = owner[0]?.user_id;
+    const [job, setJob] = useState([{}]);
+    const [owner, setOwner] = useState([{}]);
+    const [ownerName, setOwnerName] = useState([{}]);
 
     useEffect(() => {
     fetch("http://localhost:8000/api/job/employer-detail/", {
@@ -48,8 +46,7 @@ export default function InboxPage() {
     }, []);
     
     useEffect(() => {
-        if (!owner_id) return;
-        fetch(`http://localhost:8000/api/accounts/get-user/${owner_id}/`, {
+        fetch(`http://localhost:8000/api/accounts/get-user/${1}/`, {
             method: "GET",
             credentials: "include",
             headers: {
@@ -64,7 +61,7 @@ export default function InboxPage() {
         })
         .then(data => setOwnerName(data.job_owner))
         .catch(err => console.error("Fetch error: ", err));
-    }, [owner_id]);
+    }, []);
 
     function AppliedJob({data}) {
         return (
@@ -90,7 +87,7 @@ export default function InboxPage() {
                 <div className="appliedJobs">
                     <div className="appliedJobsHeader"><h2>APPLIED JOBS</h2></div>
                     <div className="appliedJobsList">
-                        {job.length > 0 ? (
+                        {job?.length > 0 ? (
                             job.map((list, index) => (
                                 <AppliedJob key={index} data={list} />
                             ))

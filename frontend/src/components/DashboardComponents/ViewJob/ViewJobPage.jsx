@@ -29,7 +29,7 @@ export default function ViewJobPage() {
             }
             return res.json();
         })
-        .then(data => setApplicantid(data))
+        .then(data => setApplicantid(data.owner_id))
         .catch(err => console.error("Fetch error: ", err));     
     }, [])
 
