@@ -70,7 +70,10 @@ class JobDetailPublicSerializer(serializers.ModelSerializer):
     payment_option_type = serializers.SerializerMethodField()
     posted_days_ago = serializers.SerializerMethodField()
     tags = serializers.SerializerMethodField()
-    vacancies = serializers.IntegerField()  # <-- Only here!
+    vacancies = serializers.IntegerField()
+    google_maps_url = serializers.URLField(required=False, allow_blank=True, allow_null=True)  # <-- add this
+    cover_photo_url = serializers.URLField(required=False, allow_blank=True, allow_null=True)  # <-- add this
+
     required_skills = serializers.PrimaryKeyRelatedField(
         queryset=JobSkill.objects.all(), many=True, write_only=True, required=False
     )
@@ -79,11 +82,12 @@ class JobDetailPublicSerializer(serializers.ModelSerializer):
         model = Job
         fields = [
             'job_id', 'employer', 'job_title', 'job_description',
-            'cover_photo_signed_url', 'images',
+            'cover_photo_signed_url', 'cover_photo_url',   # <-- add cover_photo_url here
+            'images',
             'job_category_name', 'job_category', 'province', 'city',
             'tags', 'payment_option_type', 'payment_option', 'payment_amount',
             'posted_days_ago', 'job_post_date', 'application_deadline', 'job_expire_date',
-            'vacancies',  # Only show here
+            'vacancies', "google_maps_url",
             'required_skills'
         ]
 

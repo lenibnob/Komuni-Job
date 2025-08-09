@@ -30,7 +30,7 @@ export function setViewJobUrl(url) {
   localStorage.setItem("view_job_url", url);
 }
 
-function getCookie(name) {
+export function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
         const cookies = document.cookie.split(';');
