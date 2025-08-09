@@ -267,6 +267,12 @@
     padding: 10px;
     background-color: rgba(224, 124, 31, 0.7); 
     color: #fff; 
+    text-shadow:
+    0 0 5px transparent,
+    0 0 10px #fff,
+    0 0 20px #fff,
+    0 0 40px #F59643,
+    0 0 80px #F59643;
     font-size: 20px; 
     text-align: center;
     opacity: 0; 
