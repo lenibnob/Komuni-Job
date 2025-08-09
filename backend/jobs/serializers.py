@@ -146,3 +146,8 @@ class JobSkillSerializer(serializers.ModelSerializer):
     class Meta:
         model = JobSkill
         fields = ['job_skill_id', 'job_skill_name', 'job_category']
+
+class JobOwnerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Job
+        fields = ["job_id", "user_id"]

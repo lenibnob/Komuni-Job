@@ -1,10 +1,7 @@
 import { Link } from "react-router-dom"
-import { useState } from "react";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 
-export default function ApplyHeader() {
-    const [applied, setApplied] = useState(false);
-
+export default function DeleteHeader() {
     return (
         <div className="applyHeader">
             <div className="rowThis">
@@ -13,15 +10,10 @@ export default function ApplyHeader() {
                         <IoArrowBackCircleOutline />
                     </button>
                 </Link>
-                <p>Recommended for beginners</p>
             </div>
 
-            <button
-                className={`applyButton ${applied ? "appliedButton" : ""}`}
-                onClick={() => setApplied(true)}
-                disabled={applied}
-            >
-                {applied ? "Applied" : "Apply"}
+            <button className="applyButton">
+                Delete Post
             </button>
         </div>
     );
