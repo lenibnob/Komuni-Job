@@ -23,7 +23,9 @@ class JobViewSet(viewsets.ModelViewSet):
         serializer.save(user_id=self.request.user)
 
     def get_serializer_class(self):
-        if self.action == 'card_list':
+        if self.action == 'create' or self.action == 'update' or self.action == 'partial_update':
+            return JobCreateSerializer
+        elif self.action == 'card_list':
             return JobCardSerializer
         elif self.action == 'retrieve':
             job = self.get_object()
@@ -158,4 +160,3 @@ class EmployerShortDetail(APIView):
             return Response({"job_owner": serializer.data}, status=200)
         except Exception as e:
             return Response({'error': f'Cannot find jobs: {e}'}, status=404)
-        

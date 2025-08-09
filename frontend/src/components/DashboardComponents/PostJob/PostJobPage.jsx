@@ -131,8 +131,44 @@ export default function PostJobPage() {
     skill => !jobDetail.job_category || skill.job_category == jobDetail.job_category
   );
 
+  // Validate form data
+  const validateForm = () => {
+    const requiredFields = [
+      'job_title', 
+      'job_description', 
+      'job_category', 
+      'payment_option', 
+      'payment_amount',
+      'vacancies',
+      'application_deadline',
+      'job_expire_date',
+      'address',
+      'barangay',
+      'city',
+      'province'
+    ];
+    
+    for (const field of requiredFields) {
+      if (!jobDetail[field]) {
+        setError(`${field.replace('_', ' ')} is required`);
+        return false;
+      }
+    }
+    
+    if (jobDetail.required_skills.length === 0) {
+      setError('At least one skill is required');
+      return false;
+    }
+    
+    return true;
+  };
+
   // Post the job
   const handlePost = async () => {
+    if (!validateForm()) {
+      return;
+    }
+    
     setLoading(true);
     setError(null);
     
@@ -148,17 +184,22 @@ export default function PostJobPage() {
         vacancies: parseInt(jobDetail.vacancies) || 1
       };
 
-      // Step 1: Create the job - THIS WAS MISSING
+      console.log("Sending job data:", jobData);
+
+      // Step 1: Create the job
       const response = await axios.post(
         "http://localhost:8000/api/jobs/", 
         jobData,
         { 
           withCredentials: true,
           headers: {
-            'X-CSRFToken': csrftoken
+            'X-CSRFToken': csrftoken,
+            'Content-Type': 'application/json'
           }
         }
       );
+      
+      console.log("Job creation response:", response.data);
       
       const jobId = response.data.job_id;
       
@@ -184,8 +225,22 @@ export default function PostJobPage() {
       navigate("/dashboard");
     } catch (err) {
       console.error("Error posting job:", err);
-      setError(err.response?.data?.error || "Failed to post job. Please check all fields.");
-      alert(`Error: ${err.response?.data?.error || "Failed to post job"}`);
+      if (err.response?.data) {
+        console.log("Error details:", err.response.data);
+        
+        // Handle specific API errors
+        if (typeof err.response.data === 'object') {
+          const errorMessages = [];
+          for (const field in err.response.data) {
+            errorMessages.push(`${field}: ${err.response.data[field]}`);
+          }
+          setError(errorMessages.join('\n'));
+        } else {
+          setError(err.response.data);
+        }
+      } else {
+        setError("Failed to post job. Please check all fields.");
+      }
     } finally {
       setLoading(false);
     }

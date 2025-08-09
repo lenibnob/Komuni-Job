@@ -71,8 +71,8 @@ class JobDetailPublicSerializer(serializers.ModelSerializer):
     posted_days_ago = serializers.SerializerMethodField()
     tags = serializers.SerializerMethodField()
     vacancies = serializers.IntegerField()
-    google_maps_url = serializers.URLField(required=False, allow_blank=True, allow_null=True)  # <-- add this
-    cover_photo_url = serializers.URLField(required=False, allow_blank=True, allow_null=True)  # <-- add this
+    google_maps_url = serializers.URLField(required=False, allow_blank=True, allow_null=True)
+    cover_photo_url = serializers.URLField(required=False, allow_blank=True, allow_null=True)
 
     required_skills = serializers.PrimaryKeyRelatedField(
         queryset=JobSkill.objects.all(), many=True, write_only=True, required=False
@@ -82,12 +82,12 @@ class JobDetailPublicSerializer(serializers.ModelSerializer):
         model = Job
         fields = [
             'job_id', 'employer', 'job_title', 'job_description',
-            'cover_photo_signed_url', 'cover_photo_url',   # <-- add cover_photo_url here
+            'cover_photo_signed_url', 'cover_photo_url',
             'images',
             'job_category_name', 'job_category', 'province', 'city',
             'tags', 'payment_option_type', 'payment_option', 'payment_amount',
             'posted_days_ago', 'job_post_date', 'application_deadline', 'job_expire_date',
-            'vacancies', "google_maps_url",
+            'vacancies', 'google_maps_url',
             'required_skills'
         ]
 
@@ -123,12 +123,22 @@ class JobDetailPublicSerializer(serializers.ModelSerializer):
             job.required_skills.set(required_skills)
         return job
 
+# New serializer for job creation that includes address fields
+class JobCreateSerializer(JobDetailPublicSerializer):
+    barangay = serializers.CharField(required=True)
+    address = serializers.CharField(required=True)
+    
+    class Meta(JobDetailPublicSerializer.Meta):
+        fields = JobDetailPublicSerializer.Meta.fields + ['barangay', 'address']
+
 # Accepted view (shows address/barangay, google_maps_url)
 class JobDetailAcceptedSerializer(JobDetailPublicSerializer):
-    google_maps_url = serializers.URLField()  # <-- Only here!
+    barangay = serializers.CharField()
+    address = serializers.CharField()
+    google_maps_url = serializers.URLField()
 
     class Meta(JobDetailPublicSerializer.Meta):
-        fields = JobDetailPublicSerializer.Meta.fields + ['barangay', 'address', 'google_maps_url']
+        fields = JobDetailPublicSerializer.Meta.fields + ['barangay', 'address']
 
 # Job application
 class JobApplicationSerializer(serializers.ModelSerializer):
