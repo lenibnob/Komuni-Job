@@ -6,8 +6,10 @@ import {useState, useEffect} from 'react'
 
 export default function InboxPage() {
     const [job, setJob] = useState({});
-    const [owner, setOwner] = useState([]);
+    const [owner, setOwner] = useState({});
     const [ownerName, setOwnerName] = useState({});
+
+    const owner_id = owner[0]?.user_id;
 
     useEffect(() => {
     fetch("http://localhost:8000/api/job/employer-detail/", {
@@ -41,14 +43,13 @@ export default function InboxPage() {
       }
       return res.json();
     })
-    .then(data => setJob(data.jobs))
+    .then(data => setJob(data.job_detail))
     .catch(err => console.error("Fetch error: ", err));
     }, []);
-
-    let user_id = owner[0]?.user_id;
     
     useEffect(() => {
-        fetch(`http://localhost:8000/api/accounts/get-user/${1}/`, {
+        if (!owner_id) return;
+        fetch(`http://localhost:8000/api/accounts/get-user/${owner_id}/`, {
             method: "GET",
             credentials: "include",
             headers: {
@@ -61,9 +62,9 @@ export default function InboxPage() {
         }
         return res.json();
         })
-        .then(data => setOwnerName(data))
+        .then(data => setOwnerName(data.job_owner))
         .catch(err => console.error("Fetch error: ", err));
-    }, []);
+    }, [owner_id]);
 
     function AppliedJob({data}) {
         return (
@@ -75,7 +76,7 @@ export default function InboxPage() {
                     <HiOutlinePhone className="employerProfileNumber"/>
                     <MdMailOutline className="employerProfileEmail"/>
                     <div className="employerImage"></div>
-                    <h2>{user_id}</h2>
+                    <h2>{ownerName?.first_name}</h2>
                     <button className="appliedJobViewButton">View Profile</button>
                 </div>
             </div>           

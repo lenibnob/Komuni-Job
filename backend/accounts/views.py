@@ -324,14 +324,15 @@ class UserIdView(APIView):
         except Exception as e:
             return JsonResponse({"error": "User not found"}, status=404)
 
-    def get(self, request, owner):
+    def get(self, request, pk):
         try:
-            user = User.objects.filter(id=owner)
+            user = User.objects.get(id=pk)
             data = {
                 "first_name": user.first_name,
                 "last_name": user.last_name
             }
-            return JsonResponse({"job_owner":data}, status=200)
-        except Exception as e:
-            return JsonResponse({"error": "User not found"}, status=404)
+            return JsonResponse({"job_owner": data}, status=200)
+        except User.DoesNotExist:
+            return JsonResponse({"error": f"User not found with id {pk}"}, status=404)
+
             

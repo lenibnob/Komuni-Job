@@ -142,7 +142,7 @@ class JobShortDetail(APIView):
                     "job_id": app.job_id.job_id,
                     "job_title": app.job_id.job_title
                 })
-            return JsonResponse({"jobs": job_list}, status=200)
+            return JsonResponse({"job_detail": job_list}, status=200)
         except Exception as e:
             return JsonResponse({'error': f'Cannot find jobs: {e}'}, status=404)
         
@@ -155,7 +155,7 @@ class EmployerShortDetail(APIView):
             applications = JobApplication.objects.filter(applicant_id=user)
             jobs = [app.job_id for app in applications]
             serializer = JobOwnerSerializer(jobs, many=True)
-            return Response({"job": serializer.data}, status=200)
+            return Response({"job_owner": serializer.data}, status=200)
         except Exception as e:
             return Response({'error': f'Cannot find jobs: {e}'}, status=404)
         
