@@ -103,7 +103,9 @@
   justify-content: center;
   align-items: center;
   background-size: cover;
+  margin-bottom: -15px;
 }
+
 
 
 .introductionContainer {
@@ -198,16 +200,22 @@
   background-color: #666;
 }
 
-.cardImage.img1 {
-  background-image: url('../../../frontend/recources/SVG files/card pictures/Icon (2).svg');
+.cardImage.img1:nth-child(1) {
+  background-image: url('../../../frontend/recources/SVG files/card pictures/Icon\ \(2\).svg');
+  background-position: center;
+  background-size: cover;
 }
 
-.cardImage.img2 {
+.cardImage.img2:nth-child(2) {
   background-image: url('../../../frontend/recources/SVG files/card pictures/Search.svg');
+  background-position: center;
+  background-size: cover;
 }
 
-.cardImage.img3 {
+.cardImage.img3:nth-child(3) {
   background-image: url('../../../frontend/recources/SVG files/card pictures/Dollar sign.svg');
+  background-position: center;
+  background-size: cover;
 }
 
 .homeCardIcon {
@@ -240,8 +248,10 @@
 }
 
 /*LEARN MORE*/
-/* Fullscreen container with background */
+
 .home-container {
+  margin:0;
+  padding:0;
   background-image: url('../../../frontend/recources/SVG files/background_pictures/About us overview.svg');
   background-size: cover;
   background-position: center;
@@ -250,6 +260,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: -15px;
 }
 
 /* Glass card */
@@ -335,6 +346,7 @@
 
 .journey-container h2{
   color:#000;
+  font-size: larger;
 }
 
 .subtitle {
