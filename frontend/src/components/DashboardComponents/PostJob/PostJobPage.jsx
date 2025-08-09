@@ -2,21 +2,26 @@ import "@/css/DashboardCSS/PostJob.css";
 import PostHeader from "@/components/DashboardComponents/PostJob/PostHeader";
 import { useNavigate } from "react-router-dom";
 import {useState, useEffect} from 'react';
-import {postJob} from '@/endpoints/api'
+import {postJob} from '@/endpoints/api';
+import { IoArrowBackCircleOutline } from "react-icons/io5";
+import { FiTrash2 } from "react-icons/fi";
+import { Link } from 'react-router-dom';
 
 export default function PostJobPage() {
+    const date = new Date();
     const navigate = useNavigate();
     const [paymentMethod, setPaymentMethod] = useState("");
     const [jobCategory, setJobCategory] = useState([]);
     const [jobSkills, setJobSkills] = useState([]);
     const [jobTags, setJobTags] = useState([]);
-    const [jobDetail, setJobDetail] = useState([{
+    const [jobDetail, setJobDetail] = useState({
         job_title: "",
-        payment_option_id: "",
-        job_category_id: "",
+        payment_option: 0,
+        job_category: 0,
         job_skills: "",
         payment_amount: "",
-        job_descritpion: "",
+        job_description: "",
+        application_deadline: "",
         job_expire_date: "",
         job_posted: "",
         address: "",
@@ -25,7 +30,7 @@ export default function PostJobPage() {
         province: "",
         vacancy: "",
         maps: ""
-    }]);
+    });
 
     const handleChange = (e) => {
         setJobDetail({...jobDetail, [e.target.name]: e.target.value});
@@ -34,7 +39,7 @@ export default function PostJobPage() {
     useEffect(() => {
         const token = localStorage.getItem("access_key");
 
-        fetch("http://127.0.0.1:8000/api/job-categories/", {
+        fetch("http://localhost:8000/api/job-categories/", {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json"
@@ -54,7 +59,7 @@ export default function PostJobPage() {
     useEffect(() => {
         const token = localStorage.getItem("access_key");
 
-        fetch("http://127.0.0.1:8000/api/job-skills/", {
+        fetch("http://localhost:8000/api/job-skills/", {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json"
@@ -87,8 +92,23 @@ export default function PostJobPage() {
 
     return (
         <div className="postJobContainer">
-            <PostHeader />
+        <div className="postHeader">
+            <div className="rowThis">
+                <Link className="rowThis" to="/dashboard">
+                    <button className="returnButton">
+                        <IoArrowBackCircleOutline />
+                    </button>
+                </Link>
+                <p>Create Job Posting</p>
+            </div>
 
+            <div className="groupThis">
+                <button className="deletePostButton"><FiTrash2 /></button>
+                <button className="postHeaderButton">Preview</button>
+                <button className="postHeaderButton">Save as Draft</button>
+                <button className="postHeaderButton" onClick={handlePost}>Publish</button>
+            </div>
+        </div>
             <div className="postJobForm">
                 
                 <div className="jobPost-formLeft">
@@ -99,10 +119,10 @@ export default function PostJobPage() {
 
                     <label>
                         Job category
-                        <select name="job_category_id" value={jobDetail.job_category} onChange={handleChange}>
+                        <select name="job_category" value={jobDetail.job_category} onChange={handleChange}>
                             <option value="">Select a job category</option>
                             {jobCategory.map(category => (
-                                <option key={category.job_cat_id} value={category.job_category_id}>
+                                <option key={category.job_cat_id} value={category.job_cat_id}>
                                     {category.job_cat_name}
                                 </option>
                             ))}
@@ -113,15 +133,15 @@ export default function PostJobPage() {
                         Payment option
                         <select name="payment_option" onChange={(e) => {
                             handleChange(e);
-                            setPaymentMethod(e.target.value);
+                            setPaymentMethod(e.target.value == 1 ? "Hourly" : "Fixed");
                             setJobDetail(prev => ({
                                 ...prev,
-                                payment_option_id: e.target.value === "Hourly" ? 1 : 2
+                                payment_option: e.target.value
                             }));
                         }}>
                         <option value="">Select option</option>
-                        <option value="Hourly">Hourly</option>
-                        <option value="Fixed">Fixed</option>
+                        <option value={1}>Hourly</option>
+                        <option value={2}>Fixed</option>
                         </select>
                     </label>
 
@@ -155,14 +175,31 @@ export default function PostJobPage() {
                     <label>
                         Description
                         <p>Provide a brief and concise job description</p>
-                        <textarea placeholder="Short description for the job" name="job_descritpion" onChange={handleChange}/>
+                        <textarea placeholder="Short description for the job" name="job_description" onChange={handleChange}/>
                         <div className="jobPost-formattingBar">
                         </div>
                     </label>
+                    
+                    <label>
+                        Job expiry date
+                    <input
+                    type="date"
+                    name="job_expire_date"
+                    onChange={(e) =>
+                        setJobDetail({ ...jobDetail, job_expire_date: e.target.value })
+                    }
+                    />
+                    </label>
 
                     <label>
-                        Job Deadline
-                        <input type="date" name="job_expire_date" onChange={handleChange} />
+                        Application expire date
+                    <input
+                        type="date"
+                        name="application_deadline"
+                        onChange={(e) =>
+                            setJobDetail({ ...jobDetail, application_deadline: e.target.value })
+                        }
+                        />
                     </label>
 
                     <label>
