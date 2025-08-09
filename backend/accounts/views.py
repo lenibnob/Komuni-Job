@@ -162,8 +162,8 @@ class LogOutView(TokenObtainPairView):
         try:
             res = Response()
             res.data = {'success': True}
-            res.delete_cookie("access_token", path='/', samesite="None")
-            res.delete_cookie("refresh_token", path='/', samesite="None")
+            res.delete_cookie("sessionid", path='/', samesite="None", domain="localhost")
+            res.delete_cookie("csrftoken", path='/', samesite="None", domain="localhost")
             return res
         except:
             return Response({"error": "Something went wrong"})

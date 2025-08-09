@@ -8,6 +8,7 @@ import { MdMailOutline } from "react-icons/md";
 import { GoGear } from "react-icons/go";
 import { NavLink } from "react-router-dom";
 import { LuLogOut } from "react-icons/lu";
+import { logout } from "@/endpoints/api";
 
 export default function DashboardNav () {
     const [isVisible, setIsVisible] = useState(false);
@@ -50,7 +51,7 @@ export default function DashboardNav () {
                                 <GoGear className="settingsPopUpIcon"/>
                                 <h1>User Settings</h1>
                             </NavLink>
-                        <NavLink className="settingsPopUpBottom" to='/' end>
+                        <NavLink className="settingsPopUpBottom" onClick={logout} to='/' end>
                             <LuLogOut  className="settingsPopUpIcon"/>
                             <h1>Sign Out</h1>
                         </NavLink>
