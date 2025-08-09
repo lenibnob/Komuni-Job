@@ -1,6 +1,6 @@
 import "@/css/DashboardCSS/ViewJob.css";
 import ApplyHeader from "@/components/DashboardComponents/ViewJob/ApplyHeader";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function ViewJobPage() {
     const [data, setData] = useState([{
@@ -17,7 +17,27 @@ export default function ViewJobPage() {
         desription: 'Lorem ipsum I forgot the rest of the fake latin canva description blah blah'
     }]);
 
-    // Capitalized component name
+    useEffect(() => {
+        const token = localStorage.getItem("access_key");
+
+        fetch("http://localhost:8000/api/jobs/", {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: 'include',
+        })
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! Status: ${res.status}`);
+            }
+            return res.json();
+        })
+        .then(data => setData(data))
+        .catch(err => console.error("Fetch error: ", err)); 
+    }, []);
+
+
     function DisplayJob({ data }) {
         return (
             <div className="viewJobPage">
@@ -66,10 +86,5 @@ export default function ViewJobPage() {
             </div>
         );
     }
-
-    return (
-        <>
-            <DisplayJob data={data[0]} />
-        </>
-    );
+    
 }

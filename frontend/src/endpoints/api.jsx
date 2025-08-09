@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = 'http://127.0.0.1:8000/'
+const BASE_URL = 'http://localhost:8000/'
 
 const LOGIN_URL = `${BASE_URL}api/accounts/login/`
 
@@ -12,15 +12,32 @@ const UPLOAD_URL = `${BASE_URL}api/accounts/register/upload-id/`
 
 const VERIFY_URL =  `${BASE_URL}id-verify/id-ocr/`
 
-const POST_URL = `${BASE_URL}/api/jobs/`
+const CSRF_URL = `${BASE_URL}api/accounts/csrf/`
+
+const POST_URL = `${BASE_URL}api/jobs/`
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.startsWith(name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
 
 export const login = async (data) => {
   try{
     const response = await fetch(LOGIN_URL, {
         method: "POST",
-        credentials: "include",
+        credentials: 'include',
         headers: {
-            'Content-Type' : 'application/json'
+            'Content-Type' : 'application/json',
         },
         body: JSON.stringify(data) 
     });
@@ -148,13 +165,15 @@ export const getDataDashboard = async () => {
 }
 
 export const postJob = async (data) => {
+  const csrf = await getCookie("csrftoken");
   try{
     const response = await fetch(POST_URL, {
         method: "POST",
         headers: {
-          'Content-Type': "application/json"
+          'Content-Type': "application/json",
+          'X-CSRFToken': csrf 
         },
-        credentials: "include",
+        credentials: 'include',
         body: JSON.stringify(data)
       });
     if(response.ok) {

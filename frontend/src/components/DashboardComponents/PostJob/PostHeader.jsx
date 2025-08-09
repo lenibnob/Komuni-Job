@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import { FiTrash2 } from "react-icons/fi";
-
-export default function PostHeader() {
+ 
+export default function PostHeader(data) {
 
     return (
         <div className="postHeader">
@@ -21,7 +21,6 @@ export default function PostHeader() {
                 <button className="postHeaderButton">Save as Draft</button>
                 <button className="postHeaderButton">Publish</button>
             </div>
-
         </div>
     );
 }
