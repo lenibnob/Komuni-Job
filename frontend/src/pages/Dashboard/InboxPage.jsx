@@ -64,17 +64,38 @@ export default function InboxPage() {
     }, []);
 
     function AppliedJob({data}) {
+        const [showMail, setShowMail] = useState(false);
+        const [showNumber, setShowNumber] = useState(false);
+
         return (
             <div className="appliedJob">
                 <div className="appliedJobTitle">
                     <h2>{data.job_title}</h2>
                 </div>
                 <div className="appliedJobViewContainer">
-                    <HiOutlinePhone className="employerProfileNumber"/>
-                    <MdMailOutline className="employerProfileEmail"/>
-                    <div className="employerImage"></div>
-                    <h2>{ownerName?.first_name}</h2>
-                    <button className="appliedJobViewButton">View Profile</button>
+                    <div className="number_container">
+                        <button
+                            className="employerProfileIconButton"
+                            title="Call Employer"
+                            onClick={() => setShowNumber((prev) => !prev)}>
+                            <HiOutlinePhone className="employerProfileNumber" />
+                        </button>
+                        {showNumber && <span className="popupText">number</span>}
+                    </div>
+                    <div className="mail_container">
+                        <button
+                            className="employerProfileIconButton"
+                            title="Email Employer"
+                            onClick={() => setShowMail((prev) => !prev)}>
+                            <MdMailOutline className="employerProfileEmail" />
+                        </button>
+                        {showMail && <span className="popupText">mail</span>}
+                    </div>
+                    <div className="icon_container">
+                        <div className="employerImage"></div>
+                        <h2>{ownerName?.first_name}</h2>
+                        <button className="appliedJobViewButton">View Profile</button>
+                    </div>
                 </div>
             </div>           
         )
