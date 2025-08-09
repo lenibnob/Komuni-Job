@@ -8,7 +8,7 @@ export default function UserProfileDescription() {
         <div className="userProfileDescriptionContainer">
             <div className="userProfileDescription">
                 <h2>DESCRIPTION</h2>
-                <h2>Insert data here, backend devs...</h2>
+                <h2>Describe yourself!</h2>
             </div>
 
             <div className="userProfileRating">

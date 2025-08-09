@@ -4,7 +4,7 @@ export default function UserProfileResume() {
             <div className="userProfileResume">
                 <h2>RESUMES</h2>
                 <div>
-                    <h2>no idea what to put here</h2>
+                    <h2>Insert your Resume!</h2>
                 </div>
             </div>
             <div className="userProfileFinishedJobs">

@@ -35,9 +35,9 @@ export default function UserProfileDetails() {
                     <h2>Joined July 2025</h2>
                 </div>
                 <div className="userProfileContacts">
-                    <h2><MdMailOutline className="userProfileEmail"/>{profile.user?.email}</h2>
-                    <h2><GrLocation className="userProfileLocation"/>{profile.municipality}, {profile.province}</h2>
-                    <h2><HiOutlinePhone className="userProfileNumber"/>{profile.phone_number}</h2>
+                    <h2><MdMailOutline className="userProfileEmail"/>{profile.user?.email}Email here</h2>
+                    <h2><GrLocation className="userProfileLocation"/>{profile.municipality}Location here {profile.province}</h2>
+                    <h2><HiOutlinePhone className="userProfileNumber"/>{profile.phone_number}Phone number here</h2>
                 </div>
             </div>
         );
