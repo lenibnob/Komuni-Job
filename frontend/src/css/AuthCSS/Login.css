@@ -35,9 +35,8 @@
 .login {
     
     display: flex;
-
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
     background-color: white;
-    box-shadow: 4px 10px 10px rgba(0, 0, 0, 0.2);
     border-radius: 30px;
 
     padding: 2rem;
@@ -62,7 +61,7 @@
   border-radius: 16px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
   border: 1px solid rgba(255, 255, 255, 0.2);
 
   color: white; /* for any text inside */
@@ -116,6 +115,7 @@
     border-radius: 20px;
     width: 450px;
     margin-top: 5rem;
+    
 }
 
 .loginTextInput {
@@ -127,8 +127,10 @@
     border: 1px solid transparent;
     border-radius: 24px;
     background-color: rgb(248, 240, 230);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
+
+
 
 .loginTextInput:focus,
 .loginTextInput:after
@@ -137,9 +139,26 @@
 }
 #showPassword {
   margin-left: 0.5rem;
-  border-radius: 50px;
 }
-
+.showPasswordCheckbox {
+  background-color: white;
+  border: 2px solid #3B7080;
+  border-radius: 4px;
+  position: relative;
+  height: 20px;
+  width: 20px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  appearance: none;
+  background: #FFF9EF;
+  cursor: pointer;
+  vertical-align: middle;
+  margin-right: 0.75rem;
+}
+.showPasswordCheckbox:checked {
+  background-color: #f59643;
+  border-color: #f59643;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
 
 .login button{
     border-radius: 30px;
@@ -151,7 +170,7 @@
     width: 300px;
     height: 40px;
     font-size: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
 .login button:hover{
@@ -160,6 +179,8 @@
     color: #F59643;
     padding-left: 30px;
     padding-right: 30px;
+    transform: translate(-2px, -2px);
+    box-shadow: #f59643 0px 2px 4px, #f59643 0px 7px 13px -3px;
 }
 
 .login button:focus,

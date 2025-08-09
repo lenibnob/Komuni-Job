@@ -33,6 +33,7 @@ export default function RegistrationPage() {
     confirmPassword: '',
     agreeToTerms: false
   });
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -206,20 +207,35 @@ export default function RegistrationPage() {
                   <>
                     <TextInput label="Phone Number" name="phone" value={formData.phone} onChange={handleChange} type="tel" variant="registration" placeholder="Phone Number" />
                     <TextInput label="Email" name="email" value={formData.email} onChange={handleChange} type="email" variant="registration" placeholder="Email"/>
-                    <TextInput label="Password" name="password" value={formData.password} onChange={handleChange} type="password" variant="registration" placeholder="Password"/>
-                    <TextInput label="Confirm Password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} type="password" variant="registration" placeholder="Confirm Password" />
-                    <div className="inputGroup">
-                      <label className="termsCheckbox">
-                        <input
-                          type="checkbox"
-                          name="agreeToTerms"
-                          checked={formData.agreeToTerms}
-                          onChange={handleChange}
-                        />
-                        <span className="actualCheckbox"></span>
-                        <p>I agree to the terms and conditions</p>
-                      </label>    
-                      {error && <div className="error-message" style={{ color: 'black', margin: '10px 0' }}>{error}</div>}  
+                    <TextInput
+                      label="Password"
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      type={showPassword ? "text" : "password"}
+                      variant="registration"
+                      placeholder="Password"
+                    />
+                    <TextInput
+                      label="Confirm Password"
+                      name="confirmPassword"
+                      value={formData.confirmPassword}
+                      onChange={handleChange}
+                      type={showPassword ? "text" : "password"}
+                      variant="registration"
+                      placeholder="Confirm Password"
+                    />
+                    <div className="showPasswordContainer">
+                      <input
+                        type="checkbox"
+                        id="showPassword"
+                        className="showPasswordCheckbox"
+                        checked={showPassword}
+                        onChange={() => setShowPassword((prev) => !prev)}
+                      />
+                      <label htmlFor="showPassword">
+                        Show Password
+                      </label>
                     </div>
                     <div>
                       <button className="registrationNextButton" onClick={() => {if(!missing()){setStep(4)}}}>Next</button>
@@ -266,6 +282,19 @@ export default function RegistrationPage() {
                           required/>
                           <p>{faceState}</p>
                         </div>
+                    </div>
+                    <div className="inputGroup">
+                      <label className="termsCheckbox">
+                        <input
+                          type="checkbox"
+                          name="agreeToTerms"
+                          checked={formData.agreeToTerms}
+                          onChange={handleChange}
+                        />
+                        <span className="actualCheckbox"></span>
+                        <p>I agree to the terms and conditions</p>
+                      </label>    
+                      {error && <div className="error-message" style={{ color: 'black', margin: '10px 0' }}>{error}</div>}  
                     </div>
                     <div>
                       <button className="registrationNextButton" onClick={handleRegister}>Register</button>

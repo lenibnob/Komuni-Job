@@ -193,7 +193,7 @@
   color: #FFF9EF;
   padding-left: 30px;
   padding-right: 30px;
-  margin-top: 15%;
+  margin-top: 5%;
   width: 200px;
   height: 45px;
   text-align: center;
@@ -306,7 +306,7 @@
   width: 20px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
   appearance: none;
-  background: #FFF9EF;
+  background: #ffffff;
   cursor: pointer;
   vertical-align: middle;
   margin-right: 0.75rem;
@@ -373,8 +373,26 @@
 .actualCheckbox {
   width: 20px;
   height: 20px;
-  background-color: white;
+  background-color: #ffffff;
+  border: 2px solid #3B7080;
+  border-radius: 4px;
+}
+
+.showPasswordCheckbox {
+  background-color: white; 
   border: 2px solid #3B7080;
   border-radius: 4px;
   position: relative;
+  height: 20px;
+  width: 20px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  appearance: none;
+  cursor: pointer;
+  vertical-align: left;
+}
+
+.showPasswordCheckbox:checked {
+  background-color: #f59643;
+  border-color: #f59643;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }

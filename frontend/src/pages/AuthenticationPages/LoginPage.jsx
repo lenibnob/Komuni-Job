@@ -63,10 +63,11 @@ export default function LoginPage() {
                 type={showPassword ? "text" : "password"}
                 variant="login"
               />
-              <div className="showPasswordText" style={{ marginTop: "0.5rem" }}>
+              <div className="showPasswordContainer" style={{ marginTop: "0.5rem" }}>
                 <input
                   type="checkbox"
                   id="showPassword"
+                  className="showPasswordCheckbox"
                   checked={showPassword}
                   onChange={() => setShowPassword((prev) => !prev)}
                 />
