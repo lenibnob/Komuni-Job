@@ -233,7 +233,14 @@
 .registrationTextInput:active{
   outline:none;
 }
-
+.buttonContainer{
+  align-items: center;
+  border: 1px solid #ffffff00;
+  border-radius: 20px;
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 5%;
+}
 .registrationNextButton {
   border-radius: 30px;
   background-color: #f59643;
@@ -423,9 +430,13 @@
   background-color: #ffffff;
   border: 2px solid #3B7080;
   border-radius: 4px;
+  position: relative;
 }
-
+.showPasswordContainer {
+  margin-top: 3%;
+}
 .showPasswordCheckbox {
+  
   background-color: white; 
   border: 2px solid #3B7080;
   border-radius: 4px;
@@ -443,7 +454,9 @@
   border-color: #f59643;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
-
+.termsCheckbox {
+  margin-top: 3%;
+}
 .formStep {
   animation: slide-fwd-center 0.45s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }

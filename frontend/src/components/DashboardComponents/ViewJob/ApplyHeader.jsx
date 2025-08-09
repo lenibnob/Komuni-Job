@@ -18,7 +18,7 @@ export default function ApplyHeader() {
 
             <button
                 className={`applyButton ${applied ? "appliedButton" : ""}`}
-                onClick={() => setApplied(true)}
+                onClick={() => {setApplied(true)}}
                 disabled={applied}
             >
                 {applied ? "Applied" : "Apply"}

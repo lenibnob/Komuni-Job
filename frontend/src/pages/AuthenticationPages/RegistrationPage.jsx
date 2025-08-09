@@ -186,7 +186,7 @@ export default function RegistrationPage() {
                       selected={formData.sex}
                       onChange={handleChange}
                     />
-                    <div>
+                    <div className="buttonContainer">
                       <button className="registrationNextButton" onClick={() => {if(!missing()){setStep(2)}}}>Next</button>
                     </div>
                   </div>
@@ -198,7 +198,7 @@ export default function RegistrationPage() {
                     <TextInput label="Province" name="province" value={formData.province} onChange={handleChange} variant="registration" placeholder="Province" />
                     <TextInput label="Barangay" name="barangay" value={formData.barangay} onChange={handleChange} variant="registration" placeholder="Barangay" />
                     <TextInput label="Address" name="address" value={formData.address} onChange={handleChange} variant="registration" placeholder="Address" />
-                    <div>
+                    <div className="buttonContainer">
                       <button className="registrationNextButton" onClick={() => {if(!missing()){setStep(3)}}}>Next</button>
                     </div>
                   </div>
@@ -238,13 +238,14 @@ export default function RegistrationPage() {
                         Show Password
                       </label>
                     </div>
-                    <div>
+                    <div className="buttonContainer">
                       <button className="registrationNextButton" onClick={() => {if(!missing()){setStep(4)}}}>Next</button>
                     </div>
                   </div>
                 )}
                 {step === 4 && (
                   <>
+                  <div className="formStep">
                     <div className="inputGroup">
                         <div className="fileSelect" onClick={() => document.getElementById('id_image').click()}>
                           Click and select your student ID
@@ -297,8 +298,9 @@ export default function RegistrationPage() {
                       </label>    
                       {error && <div className="error-message" style={{ color: 'black', margin: '10px 0' }}>{error}</div>}  
                     </div>
-                    <div>
+                    <div className="buttonContainer">
                       <button className="registrationNextButton" onClick={handleRegister}>Register</button>
+                    </div>
                     </div>
                   </>
                 )}

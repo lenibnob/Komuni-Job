@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = 'http://localhost:8000/'
+export const BASE_URL = 'http://localhost:8000/'
 
 const LOGIN_URL = `${BASE_URL}api/accounts/login/`
 
@@ -15,6 +15,18 @@ const VERIFY_URL =  `${BASE_URL}id-verify/id-ocr/`
 const CSRF_URL = `${BASE_URL}api/accounts/csrf/`
 
 const POST_URL = `${BASE_URL}api/jobs/`
+
+export function goToJob(id) {
+  return POST_URL + id + '/';
+}
+
+export function getJobUrl() {
+  return localStorage.getItem("view_job_url");
+}
+
+export function setViewJobUrl(url) {
+  localStorage.setItem("view_job_url", url);
+}
 
 function getCookie(name) {
     let cookieValue = null;
