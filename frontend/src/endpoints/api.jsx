@@ -12,15 +12,17 @@ const UPLOAD_URL = `${BASE_URL}api/accounts/register/upload-id/`
 
 const VERIFY_URL =  `${BASE_URL}id-verify/id-ocr/`
 
+const CSRF_URL = `${BASE_URL}api/accounts/csrf/`
+
 const POST_URL = `${BASE_URL}/api/jobs/`
 
 export const login = async (data) => {
   try{
     const response = await fetch(LOGIN_URL, {
         method: "POST",
-        credentials: "include",
+        credentials: 'include',
         headers: {
-            'Content-Type' : 'application/json'
+            'Content-Type' : 'application/json',
         },
         body: JSON.stringify(data) 
     });
@@ -154,7 +156,7 @@ export const postJob = async (data) => {
         headers: {
           'Content-Type': "application/json"
         },
-        credentials: "include",
+        credentials: 'include',
         body: JSON.stringify(data)
       });
     if(response.ok) {

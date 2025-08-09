@@ -12,12 +12,13 @@ export default function PostJobPage() {
     const [jobTags, setJobTags] = useState([]);
     const [jobDetail, setJobDetail] = useState([{
         job_title: "",
-        payment_option: "",
+        payment_option_id: "",
         job_category_id: "",
         job_skills: "",
         payment_amount: "",
         job_descritpion: "",
         job_expire_date: "",
+        job_posted: "",
         address: "",
         barangay: "",
         city: "",
@@ -38,7 +39,7 @@ export default function PostJobPage() {
             headers: {
                 "Content-Type": "application/json"
             },
-            credentials: "include"
+            credentials: 'include',
         })
         .then(res => {
             if (!res.ok) {
@@ -58,7 +59,7 @@ export default function PostJobPage() {
             headers: {
                 "Content-Type": "application/json"
             },
-            credentials: "include"
+            credentials: 'include',
         })
         .then(res => {
             if (!res.ok) {
@@ -113,6 +114,10 @@ export default function PostJobPage() {
                         <select name="payment_option" onChange={(e) => {
                             handleChange(e);
                             setPaymentMethod(e.target.value);
+                            setJobDetail(prev => ({
+                                ...prev,
+                                payment_option_id: e.target.value === "Hourly" ? 1 : 2
+                            }));
                         }}>
                         <option value="">Select option</option>
                         <option value="Hourly">Hourly</option>
@@ -138,10 +143,10 @@ export default function PostJobPage() {
                     </label>
 
                     <label>
-                        {paymentMethod}
+                        Payment Amount
                         <div className="jobPost-costInput">
                         <span>₱</span>
-                        <input type="number" name="payment_amount" onChange={handleChange} placeholder="Payment amount"/>
+                        <input type="number" name="payment_amount" onChange={handleChange} placeholder={paymentMethod}/>
                         </div>
                     </label>
                     </div>

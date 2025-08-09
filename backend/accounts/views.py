@@ -1,6 +1,7 @@
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.http import HttpResponse, JsonResponse
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import User
@@ -12,6 +13,7 @@ from .serializers import (
     IdentificationCardSerializer,
     UserProfileSerializer,
 )
+from django.middleware.csrf import get_token
 from .models import UserProfile, VERIFICATION_STATUS_CHOICES, IdentificationCard, IdentificationCardType
 from django.db import transaction
 from files.services import FileService
@@ -20,6 +22,11 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView,
 )
+from django.views.decorators.csrf import ensure_csrf_cookie
+
+@ensure_csrf_cookie
+def csrf(request):
+    return JsonResponse({"csrfToken": get_token(request)})
 
 class RegisterView(APIView):
     permission_classes = [AllowAny]
@@ -74,7 +81,6 @@ class LoginView(APIView):
 
         if not email or not password:
             return Response({'error': 'Please provide both email and password'}, status=400)
-
         try:
             user_obj = User.objects.get(email=email)
         except User.DoesNotExist:
@@ -83,6 +89,7 @@ class LoginView(APIView):
         user = authenticate(username=user_obj.username, password=password)
 
         if user:
+            get_token(request)
             login(request, user)
             return Response({'success': True,  'user': UserSerializer(user).data})
 

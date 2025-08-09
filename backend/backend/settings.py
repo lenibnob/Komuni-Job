@@ -49,11 +49,12 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
 
-SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_SAMESITE = 'None'
 
-CSRF_COOKIE_SAMESITE = None
+CSRF_COOKIE_HTTPONLY = False      
 CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_SAMESITE = 'None'
 
 
 # Application definition
@@ -171,6 +172,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # !!!!CHANGE FOR DEPLOYMENT!!!!
 CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+
+CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
 ]
