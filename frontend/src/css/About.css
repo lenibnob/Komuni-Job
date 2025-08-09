@@ -10,18 +10,15 @@
 }
 
 
-
-
-.aboutPage 
-{
-    background-color: #FFF9EF;
-}
 .aboutPage {
     background-color: #fff9ef;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    animation: fadeInUp 1s ease-out forwards;
+    opacity: 0;
 }
 
 .aboutBackground 
@@ -53,8 +50,7 @@
     width: 1200px;
     height: 500px;
 
-    animation: fadeInUp 1s ease-out forwards;
-    opacity: 0;
+    
 }
 
 .imageLogo {

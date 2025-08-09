@@ -95,14 +95,14 @@
 /*CARDS SECTION*/
 
 .introduction {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background-image: url('../../../frontend/recources/SVG files/background_pictures/lake.svg');
 
   display: flex;
   justify-content: center;
   align-items: center;
-  object-fit: cover;
+  background-size: cover;
 }
 
 
@@ -246,7 +246,7 @@
   background-size: cover;
   background-position: center;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -330,6 +330,7 @@
   width:100%;
   height: 100%;
   font-family: 'Segoe UI', sans-serif;
+  background-size: cover;
 }
 
 .journey-container h2{
