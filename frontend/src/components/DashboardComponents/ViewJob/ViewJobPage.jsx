@@ -105,14 +105,14 @@ export default function ViewJobPage() {
                         {applied ? "Applied" : "Apply"}
                     </button>
                 </div>
-                <div className="jobFile">
-                    <div className="viewJobInfo">
-                        <div className="jobUserInfo">
-                            <div className="jobUserProfile">
-                                <div className="jobUserProfileImage"></div>
-                                <div className="jobUserName">
+                <div id="jobFile">
+                    <div id="viewJobInfo">
+                        <div id="jobUserInfo">
+                            <div id="jobUserProfile">
+                                <div id="jobUserProfileImage"></div>
+                                <div id="jobUserName">
                                     <h2>{data.employer?.first_name}</h2>
-                                    <h2 className="jobUserTier">Tier 1</h2>
+                                    <h2 id="jobUserTier">Tier 1</h2>
                                 </div>
                             </div>
                             <h3>
@@ -120,27 +120,27 @@ export default function ViewJobPage() {
                             </h3>
                         </div>
 
-                        <div className="viewJobDetails">
+                        <div id="viewJobDetails">
                             <h1>{data.job_title}</h1>
-                            <h3 className="job_hiring_count">Hiring {data.hiring_count} people</h3>
+                            <h3 id="job_hiring_count">Hiring {data.hiring_count} people</h3>
                             <h2>Job Category</h2>
-                            <h3 className="job_category">{jobCategory}</h3>
+                            <h3 id="job_category">{jobCategory}</h3>
                             <h2>Location</h2>
-                            <h3 className="job_location">{data.city}, {data.province}</h3>
+                            <h3 id="job_location">{data.city}, {data.province}</h3>
 
                             <h2>Job Tags</h2>
-                            <div className="jobTags">
+                            <div id="jobTags">
                                 {data.job_tags}
                             </div>
                             <h2>{data.payment_option_type} pay of {data.payment_amount}</h2>
                         </div>
-                        <div className="jobTimePosted">
+                        <div id="jobTimePosted">
                             <h2>Posted {data.job_post_date}</h2>
                             <h2>Deadline by {data.job_expire_date}</h2>
                         </div>
                     </div>
-                    <div className="viewJobDescription">
-                        <div className="jobFileImage"></div>
+                    <div id="viewJobDescription">
+                        <div id="jobFileImage"></div>
                         <h2>Job Description</h2>
                         <h2>{data.job_description}</h2>
                     </div>
