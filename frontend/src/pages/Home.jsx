@@ -1,6 +1,10 @@
 import "../css/Home.css";
 import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
+import EmpoweringHome from "../components/HomeComponents/EmpoweringHome";
+import JourneyPath from "../components/HomeComponents/JounerPath";
+import HomeFooter from "../components/HomeComponents/homefooter";
+
 
 export default function Home() {
 
@@ -42,15 +46,44 @@ export default function Home() {
                             <h2>Post jobs. Find jobs. Hire locally.</h2>
                         </div>
                         <hr />
+
                         <div className="introductionCardsContainer">
-                            <IntroductionCard card={{icon: "🏠", text: "Start your journey. Join your neighborhood.", footer: "Create an account to join the local community network."}} />
-                            <IntroductionCard card={{icon: "🔍", text: "Look for jobs or offer jobs.", footer: "Apply for available jobs near you or post a job you need done."}} />
-                            <IntroductionCard card={{icon: "💲", text: "Build trust. Earn experience. Get paid.", footer: "After completing tasks, both parties rate each other and handle payment."}} />
-                        </div>
+                      <IntroductionCard
+                       card={{
+                        imageClass: "img1",
+                        text: "Start your journey. Join your neighborhood.",
+                        footer: "Create an account to join the local community network.",
+                     }}
+                     />
+                      <IntroductionCard
+                      card={{
+                       imageClass: "img2",
+                       text: "Look for jobs or offer jobs.",
+                       footer: "Apply for available jobs near you or post a job you need done.",
+                     }}
+                      />
+                      <IntroductionCard
+                      card={{
+                       imageClass: "img3",
+                        text: "Build trust. Earn experience. Get paid.",
+                        footer: "After completing tasks, both parties rate each other and handle payment.",
+                        }}
+                        />
+                     </div>
+
                     </div>
                 </div>
+
                 
+                    <EmpoweringHome />
+                    <JourneyPath />
+                    <HomeFooter />
+
             </div>
+
+          
+
         </>
-    )
+    
+    );
 }

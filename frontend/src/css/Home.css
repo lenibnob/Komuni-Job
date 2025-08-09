@@ -92,30 +92,37 @@
 } .startButton:focus {
   outline: none;
 }
+/*CARDS SECTION*/
 
 .introduction {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
-  background-color: #f59643;
-  
+  background-image: url('../../../frontend/recources/SVG files/background_pictures/lake.svg');
+
   display: flex;
   justify-content: center;
   align-items: center;
+  object-fit: cover;
 }
+
 
 .introductionContainer {
   width: 1200px;
   height: 600px;
-  
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-} .introductionContainer hr {
+}
+
+
+.introductionContainer hr {
   width: 100%;
   border: 3px solid black;
   border-radius: 200px;
 }
+
 
 .introductionHeaderContainer {
   color: black;
@@ -127,11 +134,16 @@
   justify-content: flex-end;
   align-items: flex-start;
   padding: 10px;
-} .introductionHeaderContainer h1 {
+}
+
+.introductionHeaderContainer h1 {
   font-size: 2rem;
-} .introductionHeaderContainer h2 {
+}
+
+.introductionHeaderContainer h2 {
   font-size: 1.5rem;
 }
+
 
 .introductionCardsContainer {
   width: 1200px;
@@ -143,27 +155,64 @@
   padding: 20px;
   gap: 60px;
 }
+
+
 .introductionCard {
-  background-color: rgba(255, 255, 255, 0.591); /* red with 50% opacity */
+  color:#000;
+  background-color: rgba(255, 255, 255, 0.685);
   border-radius: 30px;
   width: 370px;
   height: 430px;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
   padding: 30px;
   gap: 1rem;
-} .introductionCard hr {
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+  
+}
+
+.introductionCard:hover {
+  transform: translateY(-5px);
+}
+
+
+.introductionCard hr {
   width: 100%;
   border: 1px solid black;
   border-radius: 200px;
 }
 
+
+.cardImage {
+  width: 120px;
+  height: 120px;
+  background-position: center;
+  border-radius: 50%;
+  border: 3px solid #000;
+  margin-bottom: 10px;
+  background-color: #666;
+}
+
+.cardImage.img1 {
+  background-image: url('../../../frontend/recources/SVG files/card pictures/Icon (2).svg');
+}
+
+.cardImage.img2 {
+  background-image: url('../../../frontend/recources/SVG files/card pictures/Search.svg');
+}
+
+.cardImage.img3 {
+  background-image: url('../../../frontend/recources/SVG files/card pictures/Dollar sign.svg');
+}
+
 .homeCardIcon {
   width: 60px;
   height: 60px;
-  background:url(''); /* image here */
   border-radius: 200px;
   display: flex;
   justify-content: center;
@@ -187,5 +236,179 @@
   align-items: flex-start;
 } .homeCardFooter h1 {
   font-size: 1rem;
+  color: #000;
+}
+
+/*LEARN MORE*/
+/* Fullscreen container with background */
+.home-container {
+  background-image: url('../../../frontend/recources/SVG files/background_pictures/About us overview.svg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Glass card */
+.glass-card {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  align-items: center;
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 40px 60px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  max-width: 1000px;
+  width: 90%;
+  color: #000;
+}
+
+/* Image side */
+.card-image {
+  width: 320px;
+  height: 220px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+/* Text side */
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+/* Headline */
+.card-content h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+/* Paragraph */
+.card-content p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+/* Button */
+.learn-button {
+  align-self: flex-start;
+  padding: 10px 25px;
+  background: #fff;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  color: #f59643;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.learn-button:hover {
+  background: #f59643;
   color: #fff;
 }
+
+/* JOURNEY SECTION */
+.journey-container {
+  background-image: url('../../../frontend/recources/SVG files/background_pictures/OrangeBackground.svg');
+  text-align: center;
+  padding: 16rem 16rem;
+  width:100%;
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.journey-container h2{
+  color:#000;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.card-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.glass-card-last {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem;
+  width: 200px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.card-wrapper .glass-card-last:nth-child(1) {
+  background-image: url('../../../frontend/recources/SVG files/card pictures/1.svg');
+  background-size: cover;
+  background-position: center;
+}
+
+.card-wrapper .glass-card-last:nth-child(2) {
+  background-image: url('../../../frontend/recources/SVG files/card pictures/2.svg');
+  background-size: cover;
+  background-position: center;
+}
+
+.card-wrapper .glass-card-last:nth-child(3) {
+  background-image: url('../../../frontend/recources/SVG files/card pictures/3.svg');
+  background-size: cover;
+  background-position: center;
+}
+
+.card-wrapper .glass-card-last:nth-child(4) {
+  background-image: url('../../../frontend/recources/SVG files/card pictures/4.svg');;
+  background-size: cover;
+  background-position: center;
+}
+
+.card-wrapper .glass-card-last:nth-child(5) {
+  background-image: url('../../../frontend/recources/SVG files/card pictures/5.svg');;
+  background-size: cover;
+  background-position: center;
+}
+
+
+.glass-card-last:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card-image {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+

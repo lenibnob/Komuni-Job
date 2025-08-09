@@ -8,16 +8,16 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 999; /* Keeps it above other elements */
-  background-color: #FFF9EF; /* Optional: Prevents overlap transparency */
+  z-index: 999; 
+  background-color: #FFF9EF;
 }
 
 
 .logoIcon {
   width: 60px;
   height: 60px;
-  background-color: transparent; /* Remove this when image is placed */
-  background-image: url('../../../frontend/recources/SVG files/komunijob_logo.svg'); /* Replace with actual icon path */
+  background-color: transparent; 
+  background-image: url('../../../frontend/recources/SVG files/komunijob_logo.svg'); 
   background-size: cover;
   margin-right: 5px;
 } 
@@ -25,8 +25,8 @@
 .iconImage:hover 
 {
   border-radius: 5px;
-  background-color: white; /* Remove this when image is placed */
-  background-image: url("../../recources/SVG files/komunijob_logo.svg"); /* Replace with actual icon path */
+  background-color: white; 
+  background-image: url("../../recources/SVG files/komunijob_logo.svg");
   background-size: cover;
   margin-right: 5px;
 } 
@@ -50,6 +50,7 @@
   color: black;
   text-decoration:none;
   padding-left: 5px; 
+  font-weight:bolder;
 }
 
 .navBarTitle:hover
