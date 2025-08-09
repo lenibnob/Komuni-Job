@@ -67,6 +67,17 @@ export default function InboxPage() {
         const [showMail, setShowMail] = useState(false);
         const [showNumber, setShowNumber] = useState(false);
 
+        // Handlers so only one popup is active at a time
+        const handleShowMail = () => {
+            setShowMail(prev => !prev);
+            setShowNumber(false);
+        };
+
+        const handleShowNumber = () => {
+            setShowNumber(prev => !prev);
+            setShowMail(false);
+        };
+
         return (
             <div className="appliedJob">
                 <div className="appliedJobTitle">
@@ -77,7 +88,7 @@ export default function InboxPage() {
                         <button
                             className="employerProfileIconButton"
                             title="Call Employer"
-                            onClick={() => setShowNumber((prev) => !prev)}>
+                            onClick={handleShowNumber}>
                             <HiOutlinePhone className="employerProfileNumber" />
                         </button>
                         {showNumber && <span className="popupText">number</span>}
@@ -86,7 +97,7 @@ export default function InboxPage() {
                         <button
                             className="employerProfileIconButton"
                             title="Email Employer"
-                            onClick={() => setShowMail((prev) => !prev)}>
+                            onClick={handleShowMail}>
                             <MdMailOutline className="employerProfileEmail" />
                         </button>
                         {showMail && <span className="popupText">mail</span>}
