@@ -21,7 +21,11 @@ export default function DashboardNav () {
                         <LuHouse className={`jobListingButton ${isActive ? "active" : ""}`}/>
                     )}
                 </NavLink>
-                <NavLink to="/"><FiBriefcase className="jobPostedButton" /></NavLink>
+                <NavLink to="/dashboard/pendingapplicants" end>
+                    {({ isActive }) => (
+                        <FiBriefcase className={`jobPostedButton ${isActive ? "active" : ""}`} />
+                    )}
+                </NavLink>
                 <NavLink to="/dashboard/postjob" end>
                     {({ isActive }) => (
                         <FaRegPlusSquare 

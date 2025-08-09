@@ -1,0 +1,117 @@
+.jobFile {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+    width: 100%;
+    height: 55%;
+
+    padding: 2rem;
+    gap: 2rem ;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.viewJobInfo {
+    width: 40%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.jobUserInfo {
+    width: 100%;
+    height: 90px;
+
+    display: flex;
+    flex-direction: column;
+    color: #F59643;
+}
+
+.jobUserProfile {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.jobUserProfileImage {
+    background-color: red;
+    border-radius: 300px;
+    width: 55px;
+    height: 55px;
+}
+
+.jobUserName {
+    display: flex;
+    flex-direction: column;
+    
+    font-size: 0.8rem;
+    color: black;
+}
+
+.jobUserTier {
+    color: gray;
+}
+
+.viewJobDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: .1rem;
+    color: black;
+    width: 100%;
+    height: 72%;
+}
+.viewJobDetails h2{
+    font-size: 2rem;
+}
+.job_hiring_count {
+    color: #3B7080;
+    font-size: 1.2rem;
+    padding-top: 0px;
+}
+.job_location {
+    color: #808080;
+    font-size: 1.2rem;
+}
+.job_category {
+    font-family: sans-serif;
+    font-weight: normal;
+    border: 2px solid #3B7080;
+    text-align: left;
+    padding: 10px 70% 10px 10px;
+    border-radius: 5px;
+}
+
+.jobTimePosted {
+    color: gray;
+}
+
+.jobTags {
+    display: flex;
+    gap: .5rem;
+}
+.jobTags h3 {
+    border: 2px solid #3B7080;
+    border-radius: 50px;
+    padding: 5px 10px 5px 10px;
+}
+
+.viewJobDescription {
+    width: 60%;
+    height: 100%;
+    gap: 2rem;
+    color: gray;
+}
+
+.jobFileImage {
+    width: 100%;
+    height: 55%;
+    background-color: #3B7080;
+    
+    border-radius: 15px;
+}
