@@ -1,24 +1,51 @@
 import { MdMailOutline } from "react-icons/md";
 import { GrLocation } from "react-icons/gr";
+import { useState, useEffect } from 'react';
 import { HiOutlinePhone } from "react-icons/hi";
+import { BASE_URL } from "@/endpoints/api";
 
 export default function UserProfileDetails() {
-    return (
-        <div className="userProfileDetails">
-            <div className="userProfileImage">
-                {/*INSERT IMAGE HERE BACKEND DEVS*/}
+    const [profile, setProfile] = useState({});
+
+    useEffect(() => {
+        fetch(`${BASE_URL}api/accounts/profile`, {
+            method: "GET",
+            credentials: 'include',
+        })
+        .then(res => {
+            if(!res.ok) {
+                throw new Error(`HTTP error! Status: ${res.status}`);
+            }
+            return res.json();
+        })
+        .then(data => setProfile(data))
+        .catch(err => console.error("Fetch error: ", err));
+    }, []);
+
+    function DisplayProfile({data}) {
+        return (
+            <div className="userProfileDetails">
+                <div className="userProfileImage">
+                    {/*INSERT IMAGE HERE BACKEND DEVS*/}
+                </div>
+                <div className="userProfileText">
+                    {/*INSERT DATA HERE BACKEND DEVS*/}
+                    <h1>{profile.user?.first_name} {profile.user?.last_name}</h1>
+                    <h1>Tier</h1>
+                    <h2>Joined July 2025</h2>
+                </div>
+                <div className="userProfileContacts">
+                    <h2><MdMailOutline className="userProfileEmail"/>{profile.user?.email}</h2>
+                    <h2><GrLocation className="userProfileLocation"/>{profile.municipality}, {profile.province}</h2>
+                    <h2><HiOutlinePhone className="userProfileNumber"/>{profile.phone_number}</h2>
+                </div>
             </div>
-            <div className="userProfileText">
-                {/*INSERT DATA HERE BACKEND DEVS*/}
-                <h1>Juan Dela Cruz</h1>
-                <h1>Tier</h1>
-                <h2>Joined July 2025</h2>
-            </div>
-            <div className="userProfileContacts">
-                <h2><MdMailOutline className="userProfileEmail"/>user123@gmail.com</h2>
-                <h2><GrLocation className="userProfileLocation"/>City, Country</h2>
-                <h2><HiOutlinePhone className="userProfileNumber"/>09XX-XXX-XXXX</h2>
-            </div>
-        </div>
-    );
+        );
+    }
+    
+    return(
+        <>
+            <DisplayProfile data={profile}/>
+        </>
+    )
 }
