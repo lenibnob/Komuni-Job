@@ -21,7 +21,7 @@ class File(models.Model):
     file_url = models.URLField(max_length=500)
     filename = models.CharField(max_length=255)
     original_filename = models.CharField(max_length=255)
-    file_type = models.CharField(max_length=100)  # MIME type
+    file_type = models.CharField(max_length=100) 
     file_size = models.PositiveIntegerField(help_text="Size in bytes")
     category = models.ForeignKey(FileCategory, on_delete=models.PROTECT, related_name='files')
     uploader = models.ForeignKey(User, on_delete=models.CASCADE, related_name='uploaded_files')

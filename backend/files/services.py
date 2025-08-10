@@ -13,7 +13,7 @@ class FileService:
             raise ValueError(f"Category '{category_name}' does not exist")
         file_data = upload_file_to_supabase(file_obj, category.folder_path)
         file = File.objects.create(
-            file_url=file_data['storage_path'],  # store storage path ONLY
+            file_url=file_data['storage_path'],  
             filename=file_data['filename'],
             original_filename=file_data['original_filename'],
             file_type=file_data['file_type'],
@@ -41,7 +41,7 @@ class FileService:
     @staticmethod
     def delete_file(file_id):
         file = File.objects.get(id=file_id)
-        path = file.file_url  # this is now the storage path
+        path = file.file_url 
         delete_result = delete_file_from_supabase(path)
         if delete_result:
             file.is_active = False

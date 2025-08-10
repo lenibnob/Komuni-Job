@@ -9,7 +9,6 @@ class FileCategorySerializer(serializers.ModelSerializer):
 class FileSerializer(serializers.ModelSerializer):
     category_name = serializers.ReadOnlyField(source='category.name')
     uploader_username = serializers.ReadOnlyField(source='uploader.username')
-    # file_url is now the storage path, not a public URL
     class Meta:
         model = File
         fields = [
