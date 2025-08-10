@@ -77,21 +77,6 @@ export default function PostJobPage() {
     }
   };
 
-  // Fetch CSRF token before making any POST requests
-  useEffect(() => {
-    const fetchCsrf = async () => {
-      try {
-        await axios.get("http://localhost:8000/api/csrf/", {
-          withCredentials: true
-        });
-      } catch (err) {
-        console.error("Error fetching CSRF token:", err);
-      }
-    };
-    
-    fetchCsrf();
-  }, []);
-
   // Fetch job categories
   useEffect(() => {
     const fetchJobCategories = async () => {
